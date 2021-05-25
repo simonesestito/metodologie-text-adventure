@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.simonesestito.metodologie.adventure"},{"l":"com.simonesestito.metodologie.adventure.entita.factory"},{"l":"com.simonesestito.metodologie.adventure.entita.parser"},{"l":"com.simonesestito.metodologie.adventure.entita.pojo"}];updateSearchResults();
