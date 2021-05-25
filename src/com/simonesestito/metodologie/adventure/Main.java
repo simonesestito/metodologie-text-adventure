@@ -18,7 +18,7 @@ public class Main {
                                 
                 [room:s1]
                 description\tdescrizione testuale
-                links\tN:p1
+                links\tN:p1,W:p2
                                 
                 [room:s2]
                 description\tCiao sono bello
@@ -28,12 +28,13 @@ public class Main {
                             
                 [links]
                 p1\tPorta\ts1\ts2
+                p2\tPorta\ts1\ts2
                 """);
         try {
             var mondo = Mondo.fromFile(file);
             System.out.println(
                     mondo.getStart()
-                            .getLink(Direction.NORD)
+                            .getLink(Direction.OVEST)
                             .orElseThrow()
                             .getDestinazione(mondo.getStart())
                             .getDescription()
