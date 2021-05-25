@@ -4,8 +4,8 @@ import com.simonesestito.metodologie.adventure.entita.parser.GameFile;
 
 import java.util.List;
 
-@EntityFactory.ForTag("links")
-public class LinkFactory implements EntityFactory {
+@EntityProcessor.ForTag("links")
+public class LinkProcessor implements EntityProcessor {
     @Override
     public void registerDependencies(GameFile.Section section, BuildContext context) throws GameFile.ParseException {
         for (var line : section) {
@@ -14,8 +14,8 @@ public class LinkFactory implements EntityFactory {
             var className = args.next();
             var roomAName = args.next();
             var roomBName = args.next();
-            context.registerHardDependency(new BuildContext.HardDependency(
-                    className, name, List.of(name), List.of(roomAName, roomBName)
+            context.registerDependantEntity(new BuildContext.DependantEntity(
+                    className, name, List.of(roomAName, roomBName)
             ));
         }
     }

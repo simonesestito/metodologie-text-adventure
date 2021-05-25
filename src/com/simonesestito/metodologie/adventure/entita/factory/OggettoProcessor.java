@@ -4,8 +4,8 @@ import com.simonesestito.metodologie.adventure.entita.parser.GameFile;
 
 import java.util.List;
 
-@EntityFactory.ForTag("objects")
-public class OggettoFactory implements EntityFactory {
+@EntityProcessor.ForTag("objects")
+public class OggettoProcessor implements EntityProcessor {
     @Override
     public void registerDependencies(GameFile.Section section, BuildContext context) throws GameFile.ParseException {
         for (var line : section) {
@@ -14,10 +14,9 @@ public class OggettoFactory implements EntityFactory {
             var className = args.next();
             var subject = args.hasNext() ? args.next() : null;
 
-            context.registerHardDependency(new BuildContext.HardDependency(
+            context.registerDependantEntity(new BuildContext.DependantEntity(
                     className,
                     name,
-                    List.of(name),
                     subject == null ? List.of() : List.of(subject)
             ));
         }

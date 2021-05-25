@@ -1,6 +1,7 @@
 package com.simonesestito.metodologie.adventure;
 
 import com.simonesestito.metodologie.adventure.entita.pojo.Direction;
+import com.simonesestito.metodologie.adventure.entita.pojo.Giocatore;
 import com.simonesestito.metodologie.adventure.entita.pojo.Mondo;
 
 import java.nio.file.Files;
@@ -18,6 +19,7 @@ public class Main {
                 description\tdescrizione testuale
                 links\tN:p1,W:p2
                 objects\tsushi nella boccia,chiave
+                characters\tbobby
                                 
                 [room:s2]
                 description\tCiao sono bello
@@ -26,11 +28,19 @@ public class Main {
                 [links]
                 p1\tPorta\ts1\ts2
                 p2\tPorta\ts1\ts2
-                
+                                
                 [objects]
                 sushi nella boccia\tPesce
                 chiave\tChiave\tp1
                 chiave 2\tChiave\tp2
+                                
+                [characters]
+                Harry\tPersonaggio
+                Mary\tPersonaggio
+                bobby\tCane
+                                
+                [player]
+                Zak\tGiocatore
                 """);
         try {
             var mondo = Mondo.fromFile(file);
@@ -41,6 +51,7 @@ public class Main {
                             .getDestinazione(mondo.getStart())
                             .getDescription()
             );
+            System.out.println(Giocatore.getInstance().getName());
         } finally {
             Files.delete(file);
         }

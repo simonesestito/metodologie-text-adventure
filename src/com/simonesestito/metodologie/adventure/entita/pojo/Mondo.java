@@ -1,6 +1,6 @@
 package com.simonesestito.metodologie.adventure.entita.pojo;
 
-import com.simonesestito.metodologie.adventure.entita.factory.MondoFactory;
+import com.simonesestito.metodologie.adventure.entita.factory.MondoProcessor;
 import com.simonesestito.metodologie.adventure.entita.parser.GameFile;
 
 import java.io.IOException;
@@ -28,6 +28,6 @@ public class Mondo extends Entity {
     }
 
     public static Mondo fromFile(Path file) throws IOException, GameFile.ParseException {
-        return new MondoFactory().parseFromFile(file);
+        return new MondoProcessor().parseFromFile(file);
     }
 }

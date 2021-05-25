@@ -6,8 +6,8 @@ import com.simonesestito.metodologie.adventure.entita.pojo.*;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-@EntityFactory.ForTag("room")
-public class StanzaFactory implements EntityFactory {
+@EntityProcessor.ForTag("room")
+public class StanzaProcessor implements EntityProcessor {
     public static final String DESCRIPTION_LINE_KEY = "description";
     public static final String OBJECTS_LINE_KEY = "objects";
     public static final String CHARACTERS_LINE_KEY = "characters";
@@ -29,7 +29,7 @@ public class StanzaFactory implements EntityFactory {
         section.getLine(OBJECTS_LINE_KEY)
                 .map(GameFile.Line::getCommaSeparatedArguments)
                 .orElse(Stream.of())
-                .forEach(objectName -> context.registerSoftDependency(new BuildContext.SoftDependency(
+                .forEach(objectName -> context.observeEntity(new BuildContext.DependencyObserver(
                         objectName,
                         object -> stanza.addObject((Oggetto) object)
                 )));
@@ -37,7 +37,7 @@ public class StanzaFactory implements EntityFactory {
         section.getLine(CHARACTERS_LINE_KEY)
                 .map(GameFile.Line::getCommaSeparatedArguments)
                 .orElse(Stream.of())
-                .forEach(characterName -> context.registerSoftDependency(new BuildContext.SoftDependency(
+                .forEach(characterName -> context.observeEntity(new BuildContext.DependencyObserver(
                         characterName,
                         character -> stanza.addCharacter((Personaggio) character)
                 )));
@@ -45,7 +45,7 @@ public class StanzaFactory implements EntityFactory {
         section.getLine(LINKS_LINE_KEY)
                 .map(l -> l.getArgument(this::parseDirectionsLine))
                 .orElse(Stream.of())
-                .forEach(linkPair -> context.registerSoftDependency(new BuildContext.SoftDependency(
+                .forEach(linkPair -> context.observeEntity(new BuildContext.DependencyObserver(
                         linkPair.linkName(),
                         link -> stanza.addLink((Link) link, linkPair.direction())
                 )));

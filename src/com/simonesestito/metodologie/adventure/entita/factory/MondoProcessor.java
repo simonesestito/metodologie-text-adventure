@@ -10,17 +10,18 @@ import java.util.List;
 /**
  * Crea un nuovo mondo avendo un dato file come sorgente
  */
-@EntityFactory.ForTag("world")
-public class MondoFactory implements EntityFactory {
+@EntityProcessor.ForTag(MondoProcessor.TAG_NAME)
+public class MondoProcessor implements EntityProcessor {
+    public static final String TAG_NAME = "world";
     public static final String DESCRIPTION_LINE_KEY = "description";
     public static final String START_ROOM_LINE_KEY = "start";
 
     public Mondo parseFromFile(Path file) throws GameFile.ParseException, IOException {
         var gameFile = GameFile.parseFile(file);
-        var context = new BuildContext();
+        var context = new BuildContext(gameFile);
 
         for (GameFile.Section section : gameFile) {
-            EntityFactory
+            EntityProcessor
                     .forTag(section.getTag().getName())
                     .registerDependencies(section, context);
         }
@@ -44,11 +45,11 @@ public class MondoFactory implements EntityFactory {
                 .orElseThrow(() -> new GameFile.ParseException("World without a start room"))
                 .getArgumentsString();
 
-        context.registerHardDependency(new BuildContext.HardDependency(
+        context.registerDependantEntity(new BuildContext.DependantEntity(
                 Mondo.class.getSimpleName(),
                 worldName,
-                List.of(worldName, worldDescription),
-                List.of(worldStartRoom)
+                List.of(worldStartRoom),
+                List.of(worldDescription)
         ));
     }
 }
