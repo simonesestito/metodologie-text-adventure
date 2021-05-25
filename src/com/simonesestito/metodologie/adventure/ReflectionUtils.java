@@ -16,7 +16,22 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/**
+ * Classe di utility sulle reflection.
+ * <p>
+ * Implementa funzionalità usate nel progetto e verbose da scrivere nelle varie classi che le usano.
+ * <p>
+ * Inoltre, in caso di uso in più punti indipendenti tra loro, la classe evita duplicazione del codice.
+ */
 public final class ReflectionUtils {
+    /**
+     * Scansiona un package ed elenca tutte le classi al suo interno.
+     * <p>
+     * Basa il suo funzionamento sulla ricerca dei file .class dal {@link ClassLoader}.
+     *
+     * @param packageName Package name in cui cercare le classi
+     * @return Stream delle classi trovate
+     */
     public static Stream<? extends Class<?>> scanPackage(String packageName) {
         var packageResource = ReflectionUtils.class
                 .getClassLoader()
@@ -44,12 +59,31 @@ public final class ReflectionUtils {
         }
     }
 
+    /**
+     * Ottieni un costruttore dalla classe data,
+     * che sia applicabile con i parametri forniti.
+     * <p>
+     * L'ordine dei parametri viene tenuto tale, il controllo di applicabilità
+     * è sul tipo dei parametri, che possono essere superclassi dei parametri attuali.
+     *
+     * @param clazz                 Classe su cui cercare il costruttore
+     * @param constructorValueTypes Valori da voler passare al costruttore da cercare
+     * @return Costruttore corrispondente, se presente
+     */
     public static Optional<Constructor<?>> getMatchingCostructor(Class<?> clazz, List<? extends Class<?>> constructorValueTypes) {
         return Arrays.stream(clazz.getConstructors())
                 .filter(c -> matchesTypes(c.getParameterTypes(), constructorValueTypes))
                 .findAny();
     }
 
+    /**
+     * Controlla se i parametri di un metodo possono ricevere i valori forniti,
+     * senza problemi di incompatibilità dei tipi.
+     *
+     * @param methodParams Tipi del metodo da richiamare
+     * @param valueTypes   Valori da voler passare al metodo
+     * @return Se è possibile passare i parametri attuali al metodo
+     */
     public static boolean matchesTypes(Class<?>[] methodParams, List<? extends Class<?>> valueTypes) {
         if (methodParams.length != valueTypes.size())
             return false;
@@ -58,11 +92,28 @@ public final class ReflectionUtils {
                 .allMatch(i -> methodParams[i].isAssignableFrom(valueTypes.get(i)));
     }
 
+    /**
+     * Ricerca un metodo di init in una classe.
+     * <p>
+     * Il metodo di init deve:
+     * <ul>
+     *     <li>essere statico</li>
+     *     <li>essere pubblico</li>
+     *     <li>accettare i parametri forniti</li>
+     *     <li>restituire un valore (non essere void)</li>
+     *     <li>chiamarsi <code>init</code></li>
+     * </ul>
+     *
+     * @param clazz                 Classe su cui cercare
+     * @param constructorValueTypes Valori da voler passare al metodo void
+     * @return Metodo init trovato, se presente
+     */
     public static Optional<Method> getInitMethod(Class<?> clazz, List<? extends Class<?>> constructorValueTypes) {
         return Arrays.stream(clazz.getMethods())
                 .filter(m -> Modifier.isStatic(m.getModifiers()))
                 .filter(m -> Objects.equals(m.getName(), "init"))
                 .filter(m -> matchesTypes(m.getParameterTypes(), constructorValueTypes))
+                .filter(m -> m.getReturnType() != void.class)
                 .findAny();
     }
 }

@@ -16,21 +16,6 @@ public class MondoProcessor implements EntityProcessor {
     public static final String DESCRIPTION_LINE_KEY = "description";
     public static final String START_ROOM_LINE_KEY = "start";
 
-    public Mondo parseFromFile(Path file) throws GameFile.ParseException, IOException {
-        var gameFile = GameFile.parseFile(file);
-        var context = new BuildContext(gameFile);
-
-        for (GameFile.Section section : gameFile) {
-            EntityProcessor
-                    .forTag(section.getTag().getName())
-                    .registerDependencies(section, context);
-        }
-
-        return context.resolve()
-                .getResolvedDependency(Mondo.class)
-                .orElseThrow(() -> new GameFile.ParseException("World not found in this file"));
-    }
-
     @Override
     public void registerDependencies(GameFile.Section worldSection, BuildContext context) throws GameFile.ParseException {
         var worldName = worldSection.getTag()

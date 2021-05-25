@@ -4,8 +4,27 @@ import com.simonesestito.metodologie.adventure.entita.parser.GameFile;
 
 import java.util.List;
 
-@EntityProcessor.ForTag("player")
+/**
+ * Processor in grado di elaborare i giocatori.
+ * <p>
+ * Si asserisce sia uno solo, e deve essere disponibile a tutti.
+ */
+@EntityProcessor.ForTag(GiocatoreProcessor.TAG_NAME)
 public class GiocatoreProcessor implements EntityProcessor {
+    /**
+     * Tag della sezione del giocatore
+     */
+    public static final String TAG_NAME = "player";
+
+    /**
+     * Elabora la sezione del giocatore.
+     * <p>
+     * Valida che sia uno solo.
+     *
+     * @param section Sezione da processare
+     * @param context Context condiviso tra i processor
+     * @throws GameFile.ParseException Errori di elaborazione della sezione
+     */
     @Override
     public void registerDependencies(GameFile.Section section, BuildContext context) throws GameFile.ParseException {
         if (section.getLines().size() > 1)

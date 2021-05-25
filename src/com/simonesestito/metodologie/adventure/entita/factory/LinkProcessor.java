@@ -4,8 +4,26 @@ import com.simonesestito.metodologie.adventure.entita.parser.GameFile;
 
 import java.util.List;
 
-@EntityProcessor.ForTag("links")
+/**
+ * Processor in grado di elaborare la sezione
+ * relativa agli oggetti che fungono da link
+ * tra 2 stanze, che quindi saranno collegate tra loro.
+ */
+@EntityProcessor.ForTag(LinkProcessor.TAG_NAME)
 public class LinkProcessor implements EntityProcessor {
+    /**
+     * Tag identificativo della sezione dei link
+     */
+    public static final String TAG_NAME = "links";
+
+    /**
+     * Trasforma ogni linea della sezione in un link
+     * dipendente dalle stanze che collega
+     *
+     * @param section Sezione da processare
+     * @param context Context condiviso tra i processor
+     * @throws GameFile.ParseException Errori di elaborazione della sezione
+     */
     @Override
     public void registerDependencies(GameFile.Section section, BuildContext context) throws GameFile.ParseException {
         for (var line : section) {

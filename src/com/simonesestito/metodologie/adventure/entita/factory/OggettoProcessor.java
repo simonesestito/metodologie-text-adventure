@@ -4,8 +4,10 @@ import com.simonesestito.metodologie.adventure.entita.parser.GameFile;
 
 import java.util.List;
 
-@EntityProcessor.ForTag("objects")
+@EntityProcessor.ForTag(OggettoProcessor.TAG_NAME)
 public class OggettoProcessor implements EntityProcessor {
+    public static final String TAG_NAME = "objects";
+
     @Override
     public void registerDependencies(GameFile.Section section, BuildContext context) throws GameFile.ParseException {
         for (var line : section) {
