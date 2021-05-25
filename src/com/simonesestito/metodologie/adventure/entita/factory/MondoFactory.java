@@ -10,14 +10,14 @@ import java.util.List;
 /**
  * Crea un nuovo mondo avendo un dato file come sorgente
  */
+@EntityFactory.ForTag("world")
 public class MondoFactory implements EntityFactory {
-    public static final String TAG_NAME = "world";
     public static final String DESCRIPTION_LINE_KEY = "description";
     public static final String START_ROOM_LINE_KEY = "start";
 
     public Mondo parseFromFile(Path file) throws GameFile.ParseException, IOException {
         var gameFile = GameFile.parseFile(file);
-        var context = new BuildContext(gameFile);
+        var context = new BuildContext();
 
         for (GameFile.Section section : gameFile) {
             EntityFactory

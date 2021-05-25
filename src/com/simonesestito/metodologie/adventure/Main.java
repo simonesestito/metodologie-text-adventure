@@ -13,22 +13,24 @@ public class Main {
                 [world:mondoBob]
                 description\tdescrizione testuale del mondo
                 start\ts1
-                          
-                          
-                                
+                   
                 [room:s1]
                 description\tdescrizione testuale
                 links\tN:p1,W:p2
+                objects\tsushi nella boccia,chiave
                                 
                 [room:s2]
                 description\tCiao sono bello
                 links\tS:p1
-                      
-                      
-                            
+                 
                 [links]
                 p1\tPorta\ts1\ts2
                 p2\tPorta\ts1\ts2
+                
+                [objects]
+                sushi nella boccia\tPesce
+                chiave\tChiave\tp1
+                chiave 2\tChiave\tp2
                 """);
         try {
             var mondo = Mondo.fromFile(file);

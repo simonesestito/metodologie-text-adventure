@@ -1,8 +1,13 @@
 package com.simonesestito.metodologie.adventure.entita.factory;
 
+import com.simonesestito.metodologie.adventure.ReflectionUtils;
 import com.simonesestito.metodologie.adventure.entita.parser.GameFile;
 import com.simonesestito.metodologie.adventure.entita.pojo.Entity;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
@@ -10,24 +15,24 @@ import java.util.stream.Stream;
 public interface EntityFactory {
     void registerDependencies(GameFile.Section section, BuildContext context) throws GameFile.ParseException;
 
-    static EntityFactory forTag(String tagName) {
-        return switch (tagName) {
-            case MondoFactory.TAG_NAME -> new MondoFactory();
-            case LinkFactory.TAG_NAME -> new LinkFactory();
-            case StanzaFactory.TAG_NAME -> new StanzaFactory();
-            default -> null;
-        };
+    static EntityFactory forTag(String tagName) throws GameFile.ParseException {
+        try {
+            return (EntityFactory) ReflectionUtils.scanPackage(EntityFactory.class.getPackageName())
+                    .filter(c -> c.isAnnotationPresent(ForTag.class))
+                    .filter(c -> c.getAnnotation(ForTag.class).value().equals(tagName))
+                    .findAny()
+                    .orElseThrow(() -> new ClassNotFoundException("Can't find a factory class for tag" + tagName))
+                    .getConstructor()
+                    .newInstance();
+        } catch (ReflectiveOperationException | ClassCastException e) {
+            throw new GameFile.ParseException("Unrecognized tag: " + tagName, e);
+        }
     }
 
     class BuildContext {
-        private final GameFile gameFile;
         private final Map<String, HardDependency> hardDependencies = new HashMap<>();
         private final Map<String, List<SoftDependency>> softDependencies = new HashMap<>();
         private final Map<String, Entity> resolvedEntities = new HashMap<>();
-
-        public BuildContext(GameFile gameFile) {
-            this.gameFile = gameFile;
-        }
 
         public void registerHardDependency(HardDependency hardDependency) throws DependencyException {
             var key = hardDependency.dependantName();
@@ -90,11 +95,12 @@ public interface EntityFactory {
                         entry.dependencies().stream().map(resolvedEntities::get)
                 ).toList();
 
-                var constructor = clazz.getConstructor(
-                        constructorValues.stream().map(Object::getClass).toArray(Class<?>[]::new)
-                );
+                var constructorValueTypes = constructorValues.stream()
+                        .map(Object::getClass)
+                        .toList();
 
-                return (Entity) constructor.newInstance(constructorValues.toArray(Object[]::new));
+                return (Entity) ReflectionUtils.getMatchingCostructor(clazz, constructorValueTypes)
+                        .newInstance(constructorValues.toArray(Object[]::new));
             } catch (ClassNotFoundException e) {
                 throw new DependencyException("Unable to find class: " + entry.className(), e);
             } catch (NoSuchMethodException e) {
@@ -102,10 +108,6 @@ public interface EntityFactory {
             } catch (ReflectiveOperationException e) {
                 throw new DependencyException("Error creating " + entry.dependantName(), e);
             }
-        }
-
-        public GameFile getGameFile() {
-            return gameFile;
         }
 
         public static record HardDependency(
@@ -133,5 +135,11 @@ public interface EntityFactory {
                 super(message, cause);
             }
         }
+    }
+
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.TYPE)
+    @interface ForTag {
+        String value();
     }
 }

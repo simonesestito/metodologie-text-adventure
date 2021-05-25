@@ -6,8 +6,8 @@ import com.simonesestito.metodologie.adventure.entita.pojo.*;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+@EntityFactory.ForTag("room")
 public class StanzaFactory implements EntityFactory {
-    public static final String TAG_NAME = "room";
     public static final String DESCRIPTION_LINE_KEY = "description";
     public static final String OBJECTS_LINE_KEY = "objects";
     public static final String CHARACTERS_LINE_KEY = "characters";

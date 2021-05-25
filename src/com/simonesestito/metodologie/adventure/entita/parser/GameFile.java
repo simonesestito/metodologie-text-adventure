@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GameFile implements Iterable<GameFile.Section> {
+    public static final String TAG_LINE_PREFIX = "[";
     private final List<Section> sections;
 
     public GameFile(List<Section> sections) {
@@ -17,7 +18,9 @@ public class GameFile implements Iterable<GameFile.Section> {
     public static GameFile parseFile(Path file) throws IOException {
         try {
             try (var reader = new ConditionalBufferedReader(file)) {
-                var sections = Stream.generate(() -> reader.readNextLineAndWhile(s -> !s.startsWith("[")))
+                var sections = Stream.generate(
+                        () -> reader.readNextLineAndWhile(s -> !s.startsWith(TAG_LINE_PREFIX))
+                )
                         .map(Stream::toList)
                         .takeWhile(l -> !l.isEmpty())
                         .map(GameFile.Section::fromSectionLines)
@@ -40,10 +43,6 @@ public class GameFile implements Iterable<GameFile.Section> {
     public Optional<Section> getSectionByTag(String tag) {
         var sections = getSectionsByTag(tag);
         return sections.isEmpty() ? Optional.empty() : Optional.of(sections.get(0));
-    }
-
-    public Section requireSectionByTag(String tag) throws ParseException {
-        return getSectionByTag(tag).orElseThrow(() -> new ParseException("Tag not found: " + tag));
     }
 
     public List<Section> getSectionsByTag(String tag) {
