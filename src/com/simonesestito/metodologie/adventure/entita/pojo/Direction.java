@@ -1,7 +1,7 @@
 package com.simonesestito.metodologie.adventure.entita.pojo;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 public enum Direction {
     NORD("N"),
@@ -9,10 +9,10 @@ public enum Direction {
     OVEST("O", "W"),
     EST("E");
 
-    private final List<String> abbreviations;
+    private final Set<String> abbreviations;
 
     Direction(String... abbreviations) {
-        this.abbreviations = List.of(abbreviations);
+        this.abbreviations = Set.of(abbreviations);
     }
 
     public static Direction of(String abbreviation) {

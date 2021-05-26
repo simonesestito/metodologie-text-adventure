@@ -44,4 +44,12 @@ public class Stanza extends Entity {
     public void addLink(Link link, Direction direction) {
         links.put(direction, link);
     }
+
+    /* package-private */ void removeObject(Oggetto oggetto) {
+        objects.remove(oggetto);
+    }
+
+    /* package-private */ void removeCharacter(Personaggio personaggio) {
+        characters.remove(personaggio);
+    }
 }

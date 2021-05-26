@@ -1,14 +1,15 @@
 package com.simonesestito.metodologie.adventure.entita.pojo;
 
+import com.simonesestito.metodologie.adventure.engine.TextEngine;
+
 import java.util.Objects;
 
 public class Giocatore extends Personaggio {
     private static Giocatore instance;
-    private Stanza stanza;
 
     private Giocatore(String name, Stanza stanza) {
         super(name);
-        this.stanza = stanza;
+        moveTo(stanza);
     }
 
     public static Giocatore init(String nome, Mondo mondo) {
@@ -22,9 +23,5 @@ public class Giocatore extends Personaggio {
 
     public static Giocatore getInstance() {
         return Objects.requireNonNull(instance);
-    }
-
-    public Stanza getStanza() {
-        return stanza;
     }
 }

@@ -1,5 +1,6 @@
 package com.simonesestito.metodologie.adventure;
 
+import com.simonesestito.metodologie.adventure.engine.TextEngine;
 import com.simonesestito.metodologie.adventure.entita.pojo.Mondo;
 
 import java.io.BufferedReader;
@@ -10,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Gioco {
-    public void play(Mondo mondo) {
+    public void play(Mondo mondo) throws IOException {
         play(mondo, new BufferedReader(new InputStreamReader(System.in)));
     }
 
@@ -18,7 +19,13 @@ public class Gioco {
         play(mondo, Files.newBufferedReader(script));
     }
 
-    public void play(Mondo mondo, BufferedReader input) {
+    public void play(Mondo mondo, BufferedReader input) throws IOException {
         // TODO
+        var line = input.readLine();
+        try {
+            new TextEngine().processInput(line).execute(mondo);
+        } catch (TextEngine.CommandException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

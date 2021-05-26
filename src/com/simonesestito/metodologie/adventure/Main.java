@@ -52,6 +52,14 @@ public class Main {
                             .getDescription()
             );
             System.out.println(Giocatore.getInstance().getName());
+
+            System.out.println("\n\nBenvenuto!");
+
+            while (true) {
+                System.out.println("Ora sono a " + Giocatore.getInstance().getCurrentLocation().getName());
+                System.out.print("> ");
+                new Gioco().play(mondo);
+            }
         } finally {
             Files.delete(file);
         }
