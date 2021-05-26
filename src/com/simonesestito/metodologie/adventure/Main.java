@@ -17,7 +17,7 @@ public class Main {
                    
                 [room:s1]
                 description\tdescrizione testuale
-                links\tN:p1,W:p2
+                links\tN:p1,W:s2
                 objects\tsushi nella boccia,chiave
                 characters\tbobby
                                 

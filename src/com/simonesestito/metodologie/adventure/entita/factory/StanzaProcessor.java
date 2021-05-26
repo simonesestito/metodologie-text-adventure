@@ -81,7 +81,12 @@ public class StanzaProcessor implements EntityProcessor {
                 .orElse(Stream.of())
                 .forEach(linkPair -> context.observeEntity(new BuildContext.DependencyObserver(
                         linkPair.linkName(),
-                        link -> stanza.addLink((Link) link, linkPair.direction())
+                        providedLink -> {
+                            var link = providedLink instanceof Link
+                                    ? (Link) providedLink
+                                    : Link.createDirect(stanza, (Stanza) providedLink);
+                            stanza.addLink(link, linkPair.direction());
+                        }
                 )));
 
     }

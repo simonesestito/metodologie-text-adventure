@@ -15,4 +15,18 @@ public interface Link {
             return null;
         }
     }
+
+    static Link createDirect(Stanza a, Stanza b) {
+        return new Link() {
+            @Override
+            public Stanza getStanzaA() {
+                return a;
+            }
+
+            @Override
+            public Stanza getStanzaB() {
+                return b;
+            }
+        };
+    }
 }
