@@ -1,7 +1,5 @@
 package com.simonesestito.metodologie.adventure.entita.pojo;
 
-import com.simonesestito.metodologie.adventure.engine.TextEngine;
-
 import java.util.Objects;
 
 public class Giocatore extends Personaggio {

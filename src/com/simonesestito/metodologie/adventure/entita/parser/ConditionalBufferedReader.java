@@ -11,8 +11,10 @@ import java.util.stream.Stream;
 /**
  * Lettore in grado di subordinare la lettura da input,
  * se una condizione in input viene soddisfatta.
+ * <p>
+ * Utilizza il <b>Decorator pattern</b> su BufferedReader
  */
-public class ConditionalBufferedReader implements AutoCloseable {
+public class ConditionalBufferedReader extends BufferedReader implements AutoCloseable {
     /**
      * Lettore sorgente, da cui prendere i dati in origine
      */
@@ -31,6 +33,7 @@ public class ConditionalBufferedReader implements AutoCloseable {
      * @param sourceReader Reader da cui leggere le linee
      */
     public ConditionalBufferedReader(BufferedReader sourceReader) {
+        super(sourceReader);
         this.sourceReader = sourceReader;
     }
 
@@ -174,10 +177,9 @@ public class ConditionalBufferedReader implements AutoCloseable {
 
     /**
      * Chiudi il lettore corrente, chiudendo il lettore sottostante originale.
-     * @throws Exception Errore durante la chiusura
      */
     @Override
-    public void close() throws Exception {
+    public void close() throws IOException {
         sourceReader.close();
     }
 }
