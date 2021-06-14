@@ -10,11 +10,12 @@ import java.util.Optional;
 /**
  * Gestisci i comandi per gli spostamenti del protagonista
  */
+// TODO: Soluzioni migliori?
 public class MovementCommandClassifier implements CommandClassifier<MovementCommand> {
     public static final String PAROLA_AZIONE = "vai";
 
     @Override
-    public Optional<MovementCommand> processInput(List<String> input) throws TextEngine.CommandException {
+    public Optional<MovementCommand> processInput(List<String> input) {
         if (input.size() < 1)
             return Optional.empty();
 

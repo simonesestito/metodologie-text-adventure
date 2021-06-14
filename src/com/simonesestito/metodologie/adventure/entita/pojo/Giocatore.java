@@ -1,9 +1,12 @@
 package com.simonesestito.metodologie.adventure.entita.pojo;
 
+import com.simonesestito.metodologie.adventure.engine.TextEngine;
+
 import java.util.Objects;
 
 public class Giocatore extends Personaggio {
     private static Giocatore instance;
+    private Stanza currentRoom;
 
     private Giocatore(String name, Stanza stanza) {
         super(name);
@@ -21,5 +24,25 @@ public class Giocatore extends Personaggio {
 
     public static Giocatore getInstance() {
         return Objects.requireNonNull(instance);
+    }
+
+    public Stanza getCurrentLocation() {
+        return currentRoom;
+    }
+
+    public void moveTo(Stanza stanza) {
+        if (currentRoom != null) {
+            currentRoom.removeCharacter(this);
+        }
+
+        currentRoom = stanza;
+        currentRoom.addCharacter(this);
+    }
+
+    public void moveTo(Direction direction) throws TextEngine.CommandException {
+        var destination = getCurrentLocation().getLink(direction)
+                .map(l -> l.getDestinazione(getCurrentLocation()))
+                .orElseThrow(() -> new TextEngine.CommandException("Destinazione non trovata"));
+        moveTo(destination);
     }
 }

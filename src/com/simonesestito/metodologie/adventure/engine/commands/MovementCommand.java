@@ -16,6 +16,6 @@ public class MovementCommand implements Command {
 
     @Override
     public void execute(Mondo mondo) throws TextEngine.CommandException {
-        subject.moveTo(direction);
+        // FIXME: subject.moveTo(direction);
     }
 }

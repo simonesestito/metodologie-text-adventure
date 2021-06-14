@@ -20,6 +20,7 @@ public class TextEngine {
     );
 
     // TODO: reflection auto-register
+    // TODO: Soluzioni migliori?
     public static final List<CommandClassifier<?>> CLASSIFIER_LIST = List.of(
             new MovementCommandClassifier()
     );
