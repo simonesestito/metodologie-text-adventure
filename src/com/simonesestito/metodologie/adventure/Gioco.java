@@ -20,7 +20,7 @@ public class Gioco {
     }
 
     public void play(Mondo mondo, BufferedReader input) throws IOException {
-        // TODO
+        // TODO, il loop deve essere interno, non nel main
         var line = input.readLine();
         try {
             new TextEngine().processInput(line).execute(mondo);

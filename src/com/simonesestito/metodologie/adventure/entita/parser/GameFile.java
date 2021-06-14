@@ -49,6 +49,12 @@ public class GameFile implements Iterable<GameFile.Section> {
                 )
                         .map(Stream::toList)
                         .takeWhile(l -> !l.isEmpty())
+                        .map(lines -> lines.stream()
+                                .map(GameFile::removeCommentFromLine)
+                                .map(String::trim)
+                                .filter(s -> !s.isBlank())
+                                .toList()
+                        )
                         .map(GameFile.Section::fromSectionLines)
                         .toList();
                 return new GameFile(sections);
@@ -60,6 +66,21 @@ public class GameFile implements Iterable<GameFile.Section> {
             // Non propagare un'eccezione generica in quanto non prevista
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Rimuovi un commento da una linea del file.
+     * I commenti iniziano con // e persistono per tutto il resto della linea.
+     *
+     * @param line Linea da cui eliminare eventuali commenti
+     * @return Linea senza commenti
+     */
+    private static String removeCommentFromLine(String line) {
+        int commentIndex = line.indexOf("//");
+        if (commentIndex == -1)
+            return line;
+        else
+            return line.substring(0, commentIndex);
     }
 
     /**
@@ -210,8 +231,8 @@ public class GameFile implements Iterable<GameFile.Section> {
          * @param argument Argomento del tag, o <code>null</code>
          */
         private Tag(String name, String argument) {
-            this.name = name;
-            this.argument = argument;
+            this.name = name.trim();
+            this.argument = argument == null ? argument : argument.trim();
         }
 
         /**
@@ -333,7 +354,11 @@ public class GameFile implements Iterable<GameFile.Section> {
          * @see Line#ARGUMENTS_SEPARATOR
          */
         public String getKey() {
-            return text.substring(0, text.indexOf(ARGUMENTS_SEPARATOR));
+            int argumentsIndex = text.indexOf(ARGUMENTS_SEPARATOR);
+            if (argumentsIndex == -1)
+                return text;
+            else
+                return text.substring(0, argumentsIndex);
         }
 
         /**

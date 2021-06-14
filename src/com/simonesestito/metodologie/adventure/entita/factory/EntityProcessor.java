@@ -11,6 +11,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -256,7 +257,11 @@ public interface EntityProcessor {
                     return (Entity) initMethod.get().invoke(null, constructorValues);
                 }
 
-                throw new DependencyException("Requested entity doesn't match dependencies: " + entry.entityName());
+                var dependenciesDisplayName = constructorValuesList.stream()
+                        .map(Object::getClass)
+                        .map(Class::getSimpleName)
+                        .collect(Collectors.joining(", "));
+                throw new DependencyException("Requested entity constructor doesn't match dependencies: " + entry.entityName() + " -> " + dependenciesDisplayName);
             } catch (ClassNotFoundException e) {
                 throw new DependencyException("Unable to find class: " + entry.className(), e);
             } catch (ReflectiveOperationException e) {
