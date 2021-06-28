@@ -2,6 +2,8 @@ package com.simonesestito.metodologie.adventure.entita.parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
@@ -45,6 +47,15 @@ public class ConditionalBufferedReader extends BufferedReader implements AutoClo
      */
     public ConditionalBufferedReader(Path file) throws IOException {
         this(Files.newBufferedReader(file));
+    }
+
+    /**
+     * Crea un nuovo reader da un {@link java.io.InputStream}
+     *
+     * @param inputStream Stream da leggere con questo lettore
+     */
+    public ConditionalBufferedReader(InputStream inputStream) {
+        this(new BufferedReader(new InputStreamReader(inputStream)));
     }
 
     /**
@@ -139,6 +150,15 @@ public class ConditionalBufferedReader extends BufferedReader implements AutoClo
     }
 
     /**
+     * Leggi tutte le linee in uno {@link Stream} saltando le linee vuote.
+     *
+     * @return Stream delle linee
+     */
+    public Stream<String> readLines() {
+        return readLinesWhile(__ -> true);
+    }
+
+    /**
      * Leggi tutte le linee che soddisfano la condizione,
      * interrompendo lo {@link Stream} alla prima linea che non la soddisfa,
      * la quale non verrà inclusa nel risultato.
@@ -149,9 +169,8 @@ public class ConditionalBufferedReader extends BufferedReader implements AutoClo
      * @return Stream delle linee finchè la condizione è verificata
      */
     public Stream<String> readLinesWhile(Predicate<String> readCondition) {
-        Predicate<String> notNull = Objects::nonNull;
         return Stream.generate(() -> readLineOrNull(readCondition))
-                .takeWhile(notNull)
+                .takeWhile(Objects::nonNull)
                 .filter(s -> !s.isBlank());
     }
 

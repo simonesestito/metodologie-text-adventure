@@ -1,0 +1,7 @@
+guarda,guarda
+guarda,guarda,Oggetto
+apri,apri,Apribile
+prendi,prendi,Oggetto
+prendi,prendi,Oggetto,Contenitore
+inventario,mostraInventario
+vai,vai,Direction

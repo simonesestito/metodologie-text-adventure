@@ -1,25 +1,21 @@
 package com.simonesestito.metodologie.adventure.entita.pojo;
 
+import com.simonesestito.metodologie.adventure.engine.TextEngine;
 import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggio;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Link;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Oggetto;
 
 import java.util.*;
 
-public class Stanza extends Entity {
-    private final String description;
+public class Stanza extends DescribableEntity implements Contenitore {
     private final List<Oggetto> objects = new ArrayList<>();
     private final List<Personaggio> characters = new ArrayList<>();
     private final Map<Direction, Link> links = new HashMap<>();
 
     public Stanza(String name, String description) {
-        super(name);
-        this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
+        super(name, description);
     }
 
     public List<Oggetto> getObjects() {
@@ -50,11 +46,13 @@ public class Stanza extends Entity {
         links.put(direction, link);
     }
 
-    /* package-private */ void removeObject(Oggetto oggetto) {
-        objects.remove(oggetto);
+    @Override
+    public List<Oggetto> getOggettiContenuti() {
+        return getObjects();
     }
 
-    /* package-private */ void removeCharacter(Personaggio personaggio) {
-        characters.remove(personaggio);
+    @Override
+    public void prendiOggetto(Oggetto oggetto) {
+        objects.remove(oggetto);
     }
 }

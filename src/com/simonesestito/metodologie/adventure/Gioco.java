@@ -22,10 +22,7 @@ public class Gioco {
     public void play(Mondo mondo, BufferedReader input) throws IOException {
         // TODO, il loop deve essere interno, non nel main
         var line = input.readLine();
-        try {
-            new TextEngine().processInput(line).execute(mondo);
-        } catch (TextEngine.CommandException e) {
-            System.out.println(e.getMessage());
-        }
+        new TextEngine().processInput(line);
+        System.out.println();
     }
 }

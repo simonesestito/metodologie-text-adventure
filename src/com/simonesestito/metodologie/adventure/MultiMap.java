@@ -1,9 +1,6 @@
 package com.simonesestito.metodologie.adventure;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
@@ -29,6 +26,16 @@ public class MultiMap<K, V> {
     }
 
     /**
+     * Aggiungi nuovi valori alla multimappa
+     *
+     * @param key    Chiave su cui aggiungere i valori
+     * @param values Valori da aggiungere
+     */
+    public void add(K key, List<? extends V> values) {
+        map.computeIfAbsent(key, __ -> new LinkedList<>()).addAll(values);
+    }
+
+    /**
      * Rimuovi una chiave dalla multimappa, e tutti i valori ad essa associati
      *
      * @param key Chiave da rimuovere
@@ -37,6 +44,19 @@ public class MultiMap<K, V> {
      */
     public List<V> remove(K key) {
         return map.remove(key);
+    }
+
+    /**
+     * Ottieni una vista immutabile dei valori associati a una data chiave.
+     *
+     * @param key Chiave da cercare
+     * @return Valori associati
+     */
+    public List<V> get(K key) {
+        if (map.containsKey(key))
+            return Collections.unmodifiableList(map.get(key));
+        else
+            return List.of();
     }
 
     /**

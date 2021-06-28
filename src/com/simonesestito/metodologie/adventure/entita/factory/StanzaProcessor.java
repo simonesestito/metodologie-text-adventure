@@ -106,7 +106,7 @@ public class StanzaProcessor implements EntityProcessor {
         return Arrays.stream(line.split(","))
                 .map(directionString -> directionString.split(":"))
                 .map(directions -> new LinkDirectionPair(
-                        Direction.of(directions[0]),
+                        Direction.of(directions[0]).orElseThrow(),
                         directions[1]
                 ));
     }

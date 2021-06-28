@@ -11,11 +11,11 @@ public class Secchio extends Oggetto {
         return riempito;
     }
 
-    public void riempi() {
-        setRiempito(true);
-    }
-
     private void setRiempito(boolean riempito) {
         this.riempito = riempito;
+    }
+
+    public void riempi() {
+        setRiempito(true);
     }
 }

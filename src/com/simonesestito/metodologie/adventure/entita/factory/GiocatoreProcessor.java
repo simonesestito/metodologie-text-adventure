@@ -35,7 +35,7 @@ public class GiocatoreProcessor implements EntityProcessor {
 
         var playerLine = section.getLines().iterator().next();
         var name = playerLine.getKey();
-        var className = playerLine.getArgumentsString();
+        var className = getClassByTag(section, playerLine.getArgumentsString());
 
         var worldName = context.getGameFile()
                 .getSectionByTag(MondoProcessor.TAG_NAME)

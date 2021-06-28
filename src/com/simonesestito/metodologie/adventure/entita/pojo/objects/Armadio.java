@@ -1,10 +1,11 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
-public class Armadio extends Oggetto {
-    private final Oggetto contenuto;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
 
-    public Armadio(String name, Oggetto contenuto) {
-        super(name);
-        this.contenuto = contenuto;
+import java.util.List;
+
+public class Armadio extends OggettoContenitore {
+    public Armadio(String name, List<Oggetto> contenuto) {
+        super(name, contenuto);
     }
 }

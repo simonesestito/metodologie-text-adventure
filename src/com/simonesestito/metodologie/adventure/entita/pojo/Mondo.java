@@ -9,12 +9,7 @@ import java.nio.file.Path;
 /**
  * Classe immutabile che rappresenta il mondo di gioco
  */
-public class Mondo extends Entity {
-    /**
-     * Descrizione testuale del mondo
-     */
-    private final String description;
-
+public class Mondo extends DescribableEntity {
     /**
      * Stanza da cui inizia
      */
@@ -28,18 +23,8 @@ public class Mondo extends Entity {
      * @param start       Stanza da cui iniziare
      */
     public Mondo(String name, String description, Stanza start) {
-        super(name);
-        this.description = description;
+        super(name, description);
         this.start = start;
-    }
-
-    /**
-     * Ottieni una descrizione testuale del mondo
-     *
-     * @return Descrizione del mondo
-     */
-    public String getDescription() {
-        return description;
     }
 
     /**
