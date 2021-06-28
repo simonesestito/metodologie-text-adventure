@@ -48,6 +48,17 @@ public interface EntityProcessor {
     void registerDependencies(GameFile.Section section, BuildContext context) throws GameFile.ParseException;
 
     /**
+     * Metodo di utilità per ottenere il nome di una classe nel sotto-package
+     * prefissato dal nome del tag della sezione nel file .game
+     * @param section Sezione della nuova entità
+     * @param className Nome della classe dell'entità senza prefisso
+     * @return Nome della classe dell'entità con prefisso
+     */
+    default String getClassByTag(GameFile.Section section, String className) {
+        return section.getTag().getName() + "." + className;
+    }
+
+    /**
      * Ottieni il processor corrispondente per il tag del file di gioco.
      * <p>
      * La ricerca avviene mediante uso della reflection.
@@ -64,7 +75,7 @@ public interface EntityProcessor {
         try {
             return (EntityProcessor) ReflectionUtils.scanPackage(EntityProcessor.class.getPackageName())
                     .filter(c -> c.isAnnotationPresent(ForTag.class))
-                    .filter(c -> c.getAnnotation(ForTag.class).value().equals(tagName))
+                    .filter(c -> supportsTag(c.getAnnotation(ForTag.class), tagName))
                     .filter(EntityProcessor.class::isAssignableFrom)
                     .findAny()
                     .orElseThrow(() -> new ClassNotFoundException("Can't find a factory class for tag" + tagName))
@@ -73,6 +84,25 @@ public interface EntityProcessor {
         } catch (ReflectiveOperationException e) {
             throw new GameFile.ParseException("Unrecognized tag: " + tagName, e);
         }
+    }
+
+    /**
+     * Controlla se un processor con una data annotazione, supporta il tag richiesto
+     * @param annotation Annotazione del processor da controllare
+     * @param tag Tag richiesto
+     * @return <code>true</code> se il processor lo supporta
+     */
+    private static boolean supportsTag(ForTag annotation, String tag) {
+        if (annotation == null) {
+            return false;
+        }
+
+        for (String supportedTag : annotation.value()) {
+            if (supportedTag.equals(tag))
+                return true;
+        }
+
+        return false;
     }
 
     /**
@@ -247,16 +277,27 @@ public interface EntityProcessor {
 
                 var constructorValues = constructorValuesList.toArray(Object[]::new);
 
-                var constructor = ReflectionUtils.getMatchingCostructor(clazz, constructorValueTypes);
-                if (constructor.isPresent()) {
-                    return (Entity) constructor.get().newInstance(constructorValues);
+                // Usa il costruttore semplice
+                var simpleConstructor = ReflectionUtils.getMatchingCostructor(clazz, constructorValueTypes);
+                if (simpleConstructor.isPresent()) {
+                    return (Entity) simpleConstructor.get().newInstance(constructorValues);
                 }
 
+                // Usa il costruttore con la lista finale
+                var listConstructor = ReflectionUtils.getListCostructor(clazz, constructorValueTypes);
+                if (listConstructor.isPresent()) {
+                    return (Entity) listConstructor.get().newInstance(
+                            ReflectionUtils.getListConstructorParams(listConstructor.get(), constructorValuesList)
+                    );
+                }
+
+                // Usa il metodo di init() per singleton
                 var initMethod = ReflectionUtils.getInitMethod(clazz, constructorValueTypes);
                 if (initMethod.isPresent()) {
                     return (Entity) initMethod.get().invoke(null, constructorValues);
                 }
 
+                // Impossibile creare la dipendenza richiesta (ERRORE)
                 var dependenciesDisplayName = constructorValuesList.stream()
                         .map(Object::getClass)
                         .map(Class::getSimpleName)
@@ -365,6 +406,6 @@ public interface EntityProcessor {
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.TYPE)
     @interface ForTag {
-        String value();
+        String[] value();
     }
 }

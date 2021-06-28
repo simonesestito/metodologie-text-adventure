@@ -65,6 +65,9 @@ public final class ReflectionUtils {
      * <p>
      * L'ordine dei parametri viene tenuto tale, il controllo di applicabilità
      * è sul tipo dei parametri, che possono essere superclassi dei parametri attuali.
+     * <p>
+     * Se un costruttore ha ultimo parametro {@link List} e il numero di valori forniti è superiore al numero atteso,
+     * i parametri in eccesso verranno trasformati in una lista.
      *
      * @param clazz                 Classe su cui cercare il costruttore
      * @param constructorValueTypes Valori da voler passare al costruttore da cercare
@@ -74,6 +77,47 @@ public final class ReflectionUtils {
         return Arrays.stream(clazz.getConstructors())
                 .filter(c -> matchesTypes(c.getParameterTypes(), constructorValueTypes))
                 .findAny();
+    }
+
+    /**
+     * Ottieni un costruttore dalla classe data,
+     * che sia applicabile con i parametri forniti.
+     * <p>
+     * L'ultimo parametro deve essere una {@link List} e il numero di valori forniti deve essere
+     * superiore al numero atteso, cosi che i parametri in eccesso verranno trasformati in una lista.
+     *
+     * @param clazz                 Classe su cui cercare il costruttore
+     * @param constructorValueTypes Valori da voler passare al costruttore da cercare
+     * @return Costruttore corrispondente, se presente
+     */
+    public static Optional<Constructor<?>> getListCostructor(Class<?> clazz, List<? extends Class<?>> constructorValueTypes) {
+        return Arrays.stream(clazz.getConstructors())
+                .filter(c -> {
+                    var params = c.getParameterTypes();
+                    return params[params.length - 1] == List.class;
+                })
+                .filter(c -> {
+                    var params = c.getParameterTypes();
+                    return matchesTypes(
+                            Arrays.copyOf(params, params.length - 1),
+                            constructorValueTypes.subList(0, params.length - 1)
+                    );
+                })
+                .findAny();
+    }
+
+    /**
+     * Riunisci i parametri in overflow in una lista per un costruttore con lista alla fine.
+     *
+     * @param values Valori da voler passare al costruttore
+     * @return Parametri normalizzati per un costruttore con lista di trabocco
+     * @see ReflectionUtils#getListCostructor(Class, List)
+     */
+    public static Object[] getListConstructorParams(Constructor<?> constructor, List<?> values) {
+        var paramsLength = constructor.getParameterTypes().length;
+        var standardValues = values.subList(0, paramsLength - 1);
+        var overflowValues = values.subList(paramsLength - 1, values.size());
+        return Stream.concat(standardValues.stream(), Stream.of(overflowValues)).toArray(Object[]::new);
     }
 
     /**

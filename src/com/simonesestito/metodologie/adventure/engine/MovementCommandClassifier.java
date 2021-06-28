@@ -1,7 +1,7 @@
 package com.simonesestito.metodologie.adventure.engine;
 
 import com.simonesestito.metodologie.adventure.engine.commands.MovementCommand;
-import com.simonesestito.metodologie.adventure.entita.pojo.Direction;
+import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
 import com.simonesestito.metodologie.adventure.entita.pojo.Giocatore;
 
 import java.util.List;

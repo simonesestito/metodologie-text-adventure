@@ -1,4 +1,6 @@
-package com.simonesestito.metodologie.adventure.entita.pojo;
+package com.simonesestito.metodologie.adventure.entita.pojo.objects;
+
+import com.simonesestito.metodologie.adventure.entita.pojo.links.Botola;
 
 public class Vite extends Oggetto {
     private final Botola botola;

@@ -1,6 +1,8 @@
 package com.simonesestito.metodologie.adventure.entita.pojo;
 
 import com.simonesestito.metodologie.adventure.engine.TextEngine;
+import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggio;
+import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
 
 import java.util.Objects;
 

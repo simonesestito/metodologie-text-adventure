@@ -1,4 +1,4 @@
-package com.simonesestito.metodologie.adventure.entita.pojo;
+package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
 public class Salvadanaio extends Oggetto {
     private final Soldi soldi;

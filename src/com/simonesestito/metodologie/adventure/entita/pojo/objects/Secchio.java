@@ -1,4 +1,4 @@
-package com.simonesestito.metodologie.adventure.entita.pojo;
+package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
 public class Secchio extends Oggetto {
     private boolean riempito;

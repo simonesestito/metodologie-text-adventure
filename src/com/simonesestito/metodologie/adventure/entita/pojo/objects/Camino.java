@@ -1,10 +1,12 @@
-package com.simonesestito.metodologie.adventure.entita.pojo;
+package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
 public class Camino extends Oggetto {
     private boolean acceso = true;
+    private final Oggetto contenuto;
 
-    public Camino(String name) {
+    public Camino(String name, Oggetto contenuto) {
         super(name);
+        this.contenuto = contenuto;
     }
 
     public boolean isAcceso() {

@@ -1,4 +1,6 @@
-package com.simonesestito.metodologie.adventure.entita.pojo;
+package com.simonesestito.metodologie.adventure.entita.pojo.links;
+
+import com.simonesestito.metodologie.adventure.entita.pojo.Stanza;
 
 import java.util.Objects;
 

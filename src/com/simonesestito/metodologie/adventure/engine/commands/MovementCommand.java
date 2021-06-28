@@ -1,9 +1,9 @@
 package com.simonesestito.metodologie.adventure.engine.commands;
 
 import com.simonesestito.metodologie.adventure.engine.TextEngine;
-import com.simonesestito.metodologie.adventure.entita.pojo.Direction;
+import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
 import com.simonesestito.metodologie.adventure.entita.pojo.Mondo;
-import com.simonesestito.metodologie.adventure.entita.pojo.Posizionabile;
+import com.simonesestito.metodologie.adventure.entita.pojo.characters.features.Posizionabile;
 
 public class MovementCommand implements Command {
     private final Posizionabile subject;
