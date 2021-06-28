@@ -1,5 +1,6 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
+import com.simonesestito.metodologie.adventure.engine.CommandException;
 import com.simonesestito.metodologie.adventure.engine.TextEngine;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
@@ -26,9 +27,9 @@ public class Scrivania extends OggettoContenitore implements Apribile {
     }
 
     @Override
-    public void prendiOggetto(Oggetto oggetto) throws TextEngine.CommandException {
+    public void prendiOggetto(Oggetto oggetto) throws CommandException {
         if (!isAperto())
-            throw new TextEngine.CommandException("La scrivania è chiusa");
+            throw new CommandException("La scrivania è chiusa");
         super.prendiOggetto(oggetto);
     }
 }

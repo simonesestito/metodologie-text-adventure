@@ -1,7 +1,6 @@
 package com.simonesestito.metodologie.adventure.engine;
 
 import com.simonesestito.metodologie.adventure.ReflectionUtils;
-import com.simonesestito.metodologie.adventure.entita.pojo.Entity;
 import com.simonesestito.metodologie.adventure.entita.pojo.player.Giocatore;
 
 import java.lang.reflect.InvocationTargetException;
@@ -27,7 +26,7 @@ public class Command {
                         .filter(m -> m.getParameterCount() == commandParts.length - 2)
                         .findFirst()
                         // Unrecoverable exception
-                        .orElseThrow(() -> new RuntimeException("Comando non trovato, verifica la correttezza del file"))
+                        .orElseThrow(() -> new RuntimeException("Comando non trovato, verifica la correttezza del file: " + commandLine))
         );
     }
 
@@ -42,12 +41,12 @@ public class Command {
         );
     }
 
-    public void execute(List<?> arguments) throws TextEngine.CommandException {
+    public void execute(List<?> arguments) throws CommandException {
         try {
             mappingMethod.invoke(Giocatore.getInstance(), arguments.toArray(new Object[0]));
         } catch (InvocationTargetException e) {
-            if (e.getCause() != null && e.getCause() instanceof TextEngine.CommandException) {
-                throw (TextEngine.CommandException) e.getCause();
+            if (e.getCause() != null && e.getCause() instanceof CommandException) {
+                throw (CommandException) e.getCause();
             }
         } catch (ReflectiveOperationException e) {
             // TODO

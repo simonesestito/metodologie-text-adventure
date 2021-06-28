@@ -1,11 +1,12 @@
 package com.simonesestito.metodologie.adventure.engine;
 
 import com.simonesestito.metodologie.adventure.entita.pojo.Entity;
-import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
-import com.simonesestito.metodologie.adventure.entita.pojo.player.Giocatore;
+import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggio;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
+import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
+import com.simonesestito.metodologie.adventure.entita.pojo.links.Link;
+import com.simonesestito.metodologie.adventure.entita.pojo.player.Giocatore;
 
-import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -19,7 +20,30 @@ public class EntityResolver {
                 .or(() -> findEntityInInventory(name))
                 .or(() -> findEntityInCurrentRoom(name))
                 .or(() -> findEntityInContainers(name))
+                .or(() -> findEntityInLinks(name))
+                .or(() -> findEntityInCharacters(name))
                 .or(() -> Direction.of(name));
+    }
+
+    private Optional<Personaggio> findEntityInCharacters(String name) {
+        return Giocatore.getInstance()
+                .getCurrentLocation()
+                .getCharacters()
+                .stream()
+                .filter(p -> p.getName().equals(name))
+                .findAny();
+    }
+
+    private Optional<Link> findEntityInLinks(String name) {
+        return Giocatore.getInstance()
+                .getCurrentLocation()
+                .getLinks()
+                .values()
+                .stream()
+                .filter(link -> link instanceof Entity
+                        ? ((Entity) link).getName().equals(name)
+                        : link.toString().equals(name)
+                ).findAny();
     }
 
     private Optional<? extends Entity> findEntityInInventory(String name) {

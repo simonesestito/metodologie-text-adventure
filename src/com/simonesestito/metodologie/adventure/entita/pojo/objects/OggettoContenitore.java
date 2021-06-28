@@ -1,5 +1,6 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
+import com.simonesestito.metodologie.adventure.engine.CommandException;
 import com.simonesestito.metodologie.adventure.engine.TextEngine;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
@@ -24,7 +25,7 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
     }
 
     @Override
-    public void prendiOggetto(Oggetto oggetto) throws TextEngine.CommandException {
+    public void prendiOggetto(Oggetto oggetto) throws CommandException {
         contenuto.remove(oggetto);
     }
 

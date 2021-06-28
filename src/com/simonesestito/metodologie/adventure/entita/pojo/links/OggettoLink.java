@@ -4,7 +4,7 @@ import com.simonesestito.metodologie.adventure.entita.pojo.Stanza;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Link;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Oggetto;
 
-public class OggettoLink extends Oggetto implements Link {
+public abstract class OggettoLink extends Oggetto implements Link {
     private final Stanza stanzaA;
     private final Stanza stanzaB;
 

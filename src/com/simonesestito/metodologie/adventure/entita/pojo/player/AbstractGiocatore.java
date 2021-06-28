@@ -1,12 +1,12 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.player;
 
-import com.simonesestito.metodologie.adventure.engine.TextEngine;
+import com.simonesestito.metodologie.adventure.engine.CommandException;
 import com.simonesestito.metodologie.adventure.entita.pojo.Entity;
 import com.simonesestito.metodologie.adventure.entita.pojo.Stanza;
 import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggio;
-import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
-import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.*;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
+import com.simonesestito.metodologie.adventure.entita.pojo.objects.Chiave;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Oggetto;
 
 import java.util.ArrayList;
@@ -35,10 +35,10 @@ public abstract class AbstractGiocatore extends Personaggio {
         currentRoom = stanza;
     }
 
-    public void vai(Direction direction) throws TextEngine.CommandException {
+    public void vai(Direction direction) throws CommandException {
         var destination = getCurrentLocation().getLink(direction)
-                .map(l -> l.getDestinazione(getCurrentLocation()))
-                .orElseThrow(() -> new TextEngine.CommandException("Destinazione non trovata"));
+                .orElseThrow(() -> new CommandException("Destinazione non trovata"))
+                .attraversa(getCurrentLocation());
         vaiIn(destination);
         rispondiUtente("Ora sono in " + currentRoom);
     }
@@ -54,7 +54,7 @@ public abstract class AbstractGiocatore extends Personaggio {
             rispondiUtente("Non ci sono oggetti qui");
         } else {
             rispondiUtente("Qui intorno vedo " + currentRoom.getObjects().stream()
-                    .map(Object::toString)
+                    .map(Entity::getName)
                     .collect(Collectors.joining(", ")));
         }
 
@@ -71,16 +71,21 @@ public abstract class AbstractGiocatore extends Personaggio {
         rispondiUtente("Sto vedendo " + entity);
     }
 
-    public void apri(Apribile apribile) throws TextEngine.CommandException {
+    public void apri(Apribile apribile) throws CommandException {
         apribile.apri();
         rispondiUtente("Ho aperto " + apribile);
     }
 
-    public void prendi(Oggetto oggetto) throws TextEngine.CommandException {
+    public void apri(ApribileConChiave apribile, Chiave chiave) throws CommandException {
+        apribile.apri(chiave);
+        rispondiUtente("Ho aperto " + apribile);
+    }
+
+    public void prendi(Oggetto oggetto) throws CommandException {
         prendi(oggetto, currentRoom);
     }
 
-    public void prendi(Oggetto oggetto, Contenitore contenitore) throws TextEngine.CommandException {
+    public void prendi(Oggetto oggetto, Contenitore contenitore) throws CommandException {
         if (contenitore.getOggettiContenuti().contains(oggetto)) {
             contenitore.prendiOggetto(oggetto);
             inventario.add(oggetto);
@@ -97,5 +102,23 @@ public abstract class AbstractGiocatore extends Personaggio {
             rispondiUtente("Ci sta: " + getInventario().stream()
                     .map(Entity::getName)
                     .collect(Collectors.joining(", ")));
+    }
+
+    public void accarezza(Accarezzabile accarezzabile) {
+        accarezzabile.accarezza();
+    }
+
+    public void rompi(Rompibile rompibile, Rompitore rompitore) throws CommandException {
+        rompibile.rompi(rompitore);
+        rispondiUtente("Fatto!");
+        rispondiUtente(rompibile.toString());
+    }
+
+    public void rompi(Rompibile rompibile) throws CommandException {
+        rompibile.rompi(null);
+    }
+
+    public void usa(Rompitore rompitore, Rompibile rompibile) throws CommandException {
+        rompi(rompibile, rompitore);
     }
 }

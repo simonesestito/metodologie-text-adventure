@@ -1,5 +1,6 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
+import com.simonesestito.metodologie.adventure.engine.CommandException;
 import com.simonesestito.metodologie.adventure.engine.TextEngine;
 
 import java.util.List;
@@ -28,9 +29,9 @@ public class Camino extends OggettoContenitore {
     }
 
     @Override
-    public void prendiOggetto(Oggetto oggetto) throws TextEngine.CommandException {
+    public void prendiOggetto(Oggetto oggetto) throws CommandException {
         if (acceso)
-            throw new TextEngine.CommandException("Il camino è ancora acceso");
+            throw new CommandException("Il camino è ancora acceso");
         super.prendiOggetto(oggetto);
     }
 }

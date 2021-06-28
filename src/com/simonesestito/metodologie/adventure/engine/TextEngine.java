@@ -146,29 +146,5 @@ public class TextEngine {
 
         return entities;
     }
-
-    /**
-     * Errore generico nella comprensione del comando
-     */
-    public static class CommandException extends Exception {
-        public CommandException() {
-        }
-
-        public CommandException(String message) {
-            super(message);
-        }
-
-        public CommandException(String message, Throwable cause) {
-            super(message, cause);
-        }
-    }
-
-    /**
-     * Errore di riconoscimento del comando
-     */
-    public static class UnknownCommand extends CommandException {
-        public UnknownCommand(String userInput) {
-            super("Unknown command: " + userInput);
-        }
-    }
 }
+
