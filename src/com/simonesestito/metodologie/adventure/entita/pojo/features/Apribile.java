@@ -8,7 +8,11 @@ public interface Apribile<T> {
     }
 
     void apri(T oggetto) throws AperturaException;
-    void chiudi(T oggetto) throws ChiusuraException;
+
+    default void chiudi(T oggetto) throws ChiusuraException {
+        throw new ChiusuraException();
+    }
+
     boolean isAperto();
 
     class AperturaException extends CommandException {

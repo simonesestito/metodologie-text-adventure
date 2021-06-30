@@ -2,12 +2,10 @@ package com.simonesestito.metodologie.adventure.entita.pojo;
 
 import com.simonesestito.metodologie.adventure.engine.CommandException;
 import com.simonesestito.metodologie.adventure.engine.EntityResolver;
-import com.simonesestito.metodologie.adventure.entita.factory.EntityProcessor;
 import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggio;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.*;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Link;
-import com.simonesestito.metodologie.adventure.entita.pojo.objects.Chiave;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Oggetto;
 
 import java.io.PrintStream;
@@ -23,12 +21,11 @@ import java.util.stream.Collectors;
 public class Giocatore extends Personaggio {
     private static Giocatore INSTANCE;
     private Stanza currentRoom;
-    private final List<Oggetto> inventario;
+    private final List<Oggetto> inventario = new ArrayList<>();
     private final PrintStream userOutput; // Dove rispondere all'utente
 
     private Giocatore(String name, Stanza stanza, PrintStream userOutput) {
         super(name);
-        inventario = new ArrayList<>();
         this.userOutput = userOutput;
         vaiIn(stanza);
     }
@@ -113,13 +110,29 @@ public class Giocatore extends Personaggio {
         rispondiUtente("Ho aperto " + apribile);
     }
 
-    @EntityProcessor.ForTag({})
+    public void prendiDirezione(Link link) throws CommandException {
+        vaiIn(link.attraversa(getCurrentLocation()));
+    }
+
     public void prendi(Oggetto oggetto) throws CommandException {
-        // FIXME: priorità sui metodi
-        if (oggetto instanceof Link)
-            prendi(((Link) oggetto));
-        else
-            prendi(oggetto, currentRoom);
+        // Prova su ogni "contenitore" fornitore di oggetti
+        var containers = getCurrentLocation()
+                .getCharacters()
+                .stream()
+                .filter(p -> p instanceof Contenitore)
+                .map(p -> (Contenitore) p)
+                .iterator();
+
+        while (containers.hasNext()) {
+            try {
+                prendi(oggetto, containers.next());
+                return;
+            } catch (EntityResolver.UnresolvedEntityException ignored) {
+            }
+        }
+
+        // Prova nella stanza corrente
+        prendi(oggetto, getCurrentLocation());
     }
 
     public void prendi(Oggetto oggetto, Contenitore contenitore) throws CommandException {
@@ -163,7 +176,15 @@ public class Giocatore extends Personaggio {
         }
     }
 
-    public void prendi(Link link) throws CommandException {
-        vaiIn(link.attraversa(getCurrentLocation()));
+    public <T extends Oggetto, R extends Oggetto> void dai(T oggetto, Ricevitore<T, R> ricevitore) throws CommandException.Fatal {
+        if (!inventario.contains(oggetto))
+            throw new CommandException.Fatal("Non posseggo " + oggetto);
+
+        var ricevuto = ricevitore.ricevi(oggetto);
+        inventario.remove(oggetto);
+        rispondiUtente("Ricevuti: " + ricevuto.stream()
+                .map(Entity::toString)
+                .collect(Collectors.joining(", ")));
+        inventario.addAll(ricevuto);
     }
 }

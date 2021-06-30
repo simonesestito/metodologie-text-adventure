@@ -2,11 +2,14 @@ package com.simonesestito.metodologie.adventure.engine;
 
 import com.simonesestito.metodologie.adventure.entita.pojo.Entity;
 import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggio;
+import com.simonesestito.metodologie.adventure.entita.pojo.characters.Venditore;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Link;
 import com.simonesestito.metodologie.adventure.entita.pojo.Giocatore;
+import com.simonesestito.metodologie.adventure.entita.pojo.objects.Oggetto;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -22,7 +25,21 @@ public class EntityResolver {
                 .or(() -> findEntityInContainers(name))
                 .or(() -> findEntityInLinks(name))
                 .or(() -> findEntityInCharacters(name))
+                .or(() -> findEntityInVirtualReferences(name))
                 .or(() -> Direction.of(name));
+    }
+
+    private Optional<Oggetto> findEntityInVirtualReferences(String name) {
+        return Giocatore.getInstance()
+                .getCurrentLocation()
+                .getCharacters()
+                .stream()
+                .filter(p -> p instanceof Venditore)
+                .map(p -> (Venditore) p)
+                .map(Venditore::getOggettiContenuti)
+                .flatMap(List::stream)
+                .filter(o -> o.getName().equals(name))
+                .findAny();
     }
 
     private Optional<Personaggio> findEntityInCharacters(String name) {
@@ -40,7 +57,6 @@ public class EntityResolver {
                 .getLinks()
                 .values()
                 .stream()
-                .peek(System.out::println)
                 .filter(link -> link instanceof Entity
                         ? ((Entity) link).getName().equals(name)
                         : link.toString().equals(name)

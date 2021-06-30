@@ -4,6 +4,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class StreamUtils {
+    @SuppressWarnings("unchecked")
     public static <X extends Exception, T, R> void wrap(Consumer<StreamCheckedExecutor<X, T, R>> action) throws X {
         try {
             action.accept(body -> (argument) -> {

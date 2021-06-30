@@ -22,7 +22,7 @@ public class Command {
         this.mappingMethod = mappingMethod;
     }
 
-    public static Command of(String commandLine) throws TextEngine.CommandNotFoundException {
+    public static Command of(String commandLine) throws FileCommandException {
         if (commandLine.isEmpty())
             return EMPTY;
 
@@ -33,8 +33,7 @@ public class Command {
                         .filter(m -> m.getName().equals(commandParts[1]))
                         .filter(m -> m.getParameterCount() == commandParts.length - 2)
                         .findFirst()
-                        // Unrecoverable exception
-                        .orElseThrow(() -> new TextEngine.CommandNotFoundException("Comando non trovato, verifica la correttezza del file: " + commandLine))
+                        .orElseThrow(() -> new FileCommandException(commandLine))
         );
     }
 
@@ -64,5 +63,11 @@ public class Command {
     @Override
     public String toString() {
         return mappingMethod.toString();
+    }
+
+    public static class FileCommandException extends TextEngine.CommandNotFoundException {
+        public FileCommandException(String commandLine) {
+            super("Comando non trovato, verifica la correttezza del file: " + commandLine);
+        }
     }
 }
