@@ -1,29 +1,36 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
 import com.simonesestito.metodologie.adventure.engine.CommandException;
-import com.simonesestito.metodologie.adventure.engine.TextEngine;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
-import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.ApribileSemplice;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class Scrivania extends OggettoContenitore implements Apribile {
-    private boolean aperto = false;
+public class Scrivania extends OggettoContenitore implements Apribile<Object> {
+    private final ApribileSemplice apribileSemplice = new ApribileSemplice();
 
     public Scrivania(String name, List<Oggetto> contenuto) {
         super(name, contenuto);
     }
 
     @Override
-    public void apri() {
-        aperto = true;
+    public void apri() throws AperturaException {
+        apribileSemplice.apri();
+    }
+
+    @Override
+    public void apri(Object oggetto) throws AperturaException {
+        apribileSemplice.apri(oggetto);
+    }
+
+    @Override
+    public void chiudi(Object oggetto) throws ChiusuraException {
+        apribileSemplice.chiudi(oggetto);
     }
 
     @Override
     public boolean isAperto() {
-        return aperto;
+        return apribileSemplice.isAperto();
     }
 
     @Override

@@ -1,12 +1,9 @@
 package com.simonesestito.metodologie.adventure.entita.pojo;
 
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
-import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * Entità più generica di tutti gli elementi di gioco.
@@ -47,9 +44,9 @@ public abstract class Entity {
         List<String> descriptionParts = new LinkedList<>();
         descriptionParts.add(getName());
 
-        if (this instanceof Apribile) {
+        if (this instanceof Apribile<?>) {
             descriptionParts.add(
-                    ((Apribile) this).isAperto()
+                    ((Apribile<?>) this).isAperto()
                             ? "è aperto"
                             : "è chiuso"
             );

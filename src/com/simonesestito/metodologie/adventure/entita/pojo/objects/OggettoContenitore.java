@@ -1,7 +1,6 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
 import com.simonesestito.metodologie.adventure.engine.CommandException;
-import com.simonesestito.metodologie.adventure.engine.TextEngine;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
 
@@ -32,7 +31,7 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
     @Override
     public String toString() {
         String contentDescription;
-        if (this instanceof Apribile && !((Apribile) this).isAperto()) {
+        if (this instanceof Apribile<?> && !((Apribile<?>) this).isAperto()) {
             contentDescription = "c'è qualcosa dentro";
         } else if (((Contenitore) this).getOggettiContenuti().isEmpty()) {
             contentDescription = "dentro non c'è nulla";

@@ -1,19 +1,28 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.features;
 
-import com.simonesestito.metodologie.adventure.engine.CommandException;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Chiave;
 
-public interface ApribileConChiave extends Apribile {
+public class ApribileConChiave implements Apribile<Chiave> {
+    private Chiave chiave;
+    private boolean aperto = false;
+
     @Override
-    default void apri() throws CommandException {
-        throw new CommandException("Non si può aprire senza chiave");
+    public void apri(Chiave chiave) throws AperturaException {
+        if (chiave != this.chiave)
+            throw new AperturaException();
+        aperto = true;
     }
 
-    void apri(Chiave chiave) throws ChiaveErrataException;
+    @Override
+    public void chiudi(Chiave chiave) throws ChiusuraException {
+        if (this.chiave != null)
+            throw new ChiusuraException();
+        this.chiave = chiave;
+        aperto = false;
+    }
 
-    class ChiaveErrataException extends CommandException {
-        public ChiaveErrataException() {
-            super("Chiave errata per questo oggetto");
-        }
+    @Override
+    public boolean isAperto() {
+        return aperto;
     }
 }

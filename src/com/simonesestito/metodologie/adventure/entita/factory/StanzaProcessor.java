@@ -82,7 +82,7 @@ public class StanzaProcessor implements EntityProcessor {
 
         section.getLine(LINKS_LINE_KEY)
                 .map(l -> l.getArgument(this::parseDirectionsLine))
-                .orElse(Stream.of())
+                .orElse(Stream.empty())
                 .forEach(linkPair -> context.observeEntity(new BuildContext.DependencyObserver(
                         linkPair.linkName(),
                         providedLink -> {
@@ -92,7 +92,6 @@ public class StanzaProcessor implements EntityProcessor {
                             stanza.addLink(link, linkPair.direction());
                         }
                 )));
-
     }
 
     /**

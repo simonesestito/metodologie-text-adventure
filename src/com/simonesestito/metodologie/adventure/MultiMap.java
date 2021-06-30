@@ -71,4 +71,12 @@ public class MultiMap<K, V> {
         if (consumedValues != null)
             consumedValues.forEach(valueConsumer);
     }
+
+    public boolean isEmpty() {
+        return map.isEmpty();
+    }
+
+    public Set<K> keySet() {
+        return map.keySet();
+    }
 }

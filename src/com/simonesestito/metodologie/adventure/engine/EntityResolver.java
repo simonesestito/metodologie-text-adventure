@@ -5,7 +5,7 @@ import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggi
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Link;
-import com.simonesestito.metodologie.adventure.entita.pojo.player.Giocatore;
+import com.simonesestito.metodologie.adventure.entita.pojo.Giocatore;
 
 import java.util.Optional;
 
@@ -40,6 +40,7 @@ public class EntityResolver {
                 .getLinks()
                 .values()
                 .stream()
+                .peek(System.out::println)
                 .filter(link -> link instanceof Entity
                         ? ((Entity) link).getName().equals(name)
                         : link.toString().equals(name)
@@ -72,5 +73,18 @@ public class EntityResolver {
                 .flatMap(o -> ((Contenitore) o).getOggettiContenuti().stream())
                 .filter(o -> o.getName().equals(name))
                 .findAny();
+    }
+
+    public static class UnresolvedEntityException extends CommandException.Fatal {
+        public UnresolvedEntityException() {
+        }
+
+        public UnresolvedEntityException(String message) {
+            super(message);
+        }
+
+        public UnresolvedEntityException(String message, Throwable cause) {
+            super(message, cause);
+        }
     }
 }

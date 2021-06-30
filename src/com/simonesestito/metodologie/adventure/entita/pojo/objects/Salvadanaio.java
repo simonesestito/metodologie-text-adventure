@@ -1,6 +1,7 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
 import com.simonesestito.metodologie.adventure.engine.CommandException;
+import com.simonesestito.metodologie.adventure.entita.pojo.Entity;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Rompibile;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Rompitore;
@@ -17,15 +18,18 @@ public class Salvadanaio extends Oggetto implements Rompibile, Contenitore {
     }
 
     @Override
-    public void rompi(Rompitore rompitore) throws CommandException {
+    public List<? extends Oggetto> rompi(Rompitore rompitore) throws CommandException {
         if (rotto)
             throw new CommandException("Salvadanaio già rotto");
 
         if (rompitore == null)
             throw new CommandException("Serve un oggetto per rompere il salvadanaio");
 
-        // TODO Emana soldi
         rotto = true;
+
+        var contenuto = getOggettiContenuti();
+        prendiOggetto(soldi); // Restituisci i soldi contenuti, e prendili dal contenuto
+        return contenuto;
     }
 
     @Override

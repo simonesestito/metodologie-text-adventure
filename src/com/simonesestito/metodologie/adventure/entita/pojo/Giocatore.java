@@ -1,31 +1,60 @@
-package com.simonesestito.metodologie.adventure.entita.pojo.player;
+package com.simonesestito.metodologie.adventure.entita.pojo;
 
 import com.simonesestito.metodologie.adventure.engine.CommandException;
-import com.simonesestito.metodologie.adventure.entita.pojo.Entity;
-import com.simonesestito.metodologie.adventure.entita.pojo.Stanza;
+import com.simonesestito.metodologie.adventure.engine.EntityResolver;
+import com.simonesestito.metodologie.adventure.entita.factory.EntityProcessor;
 import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggio;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.*;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
+import com.simonesestito.metodologie.adventure.entita.pojo.links.Link;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Chiave;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Oggetto;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-public abstract class AbstractGiocatore extends Personaggio {
+/**
+ * Giocatore che si interfaccia con l'utente via CLI
+ */
+public class Giocatore extends Personaggio {
+    private static Giocatore INSTANCE;
     private Stanza currentRoom;
     private final List<Oggetto> inventario;
+    private final PrintStream userOutput; // Dove rispondere all'utente
 
-    protected AbstractGiocatore(String name, Stanza stanza) {
+    private Giocatore(String name, Stanza stanza, PrintStream userOutput) {
         super(name);
         inventario = new ArrayList<>();
+        this.userOutput = userOutput;
         vaiIn(stanza);
     }
 
-    // Template method design pattern
-    protected abstract void rispondiUtente(String messaggio);
+    private Giocatore(String name, Stanza stanza) {
+        this(name, stanza, System.out);
+    }
+
+    public static Giocatore init(String nome, Mondo mondo) {
+        return init(nome, mondo.getStart());
+    }
+
+    public static Giocatore init(String nome, Stanza stanza) {
+        if (INSTANCE != null)
+            throw new IllegalStateException("Giocatore già inizializzato!");
+        INSTANCE = new Giocatore(nome, stanza);
+        return getInstance();
+    }
+
+    public static Giocatore getInstance() {
+        return Objects.requireNonNull(INSTANCE);
+    }
+
+    private void rispondiUtente(String messaggio) {
+        userOutput.println(messaggio);
+    }
 
     public Stanza getCurrentLocation() {
         return currentRoom;
@@ -65,24 +94,32 @@ public abstract class AbstractGiocatore extends Personaggio {
                     .map(Object::toString)
                     .collect(Collectors.joining(", ")));
         }
+
+        rispondiUtente("Posso andare verso:");
+        currentRoom.getLinks().forEach((direction, link) -> rispondiUtente(direction.name() + " -> " + link));
     }
 
     public void guarda(Entity entity) {
         rispondiUtente("Sto vedendo " + entity);
     }
 
-    public void apri(Apribile apribile) throws CommandException {
+    public void apri(Apribile<?> apribile) throws CommandException {
         apribile.apri();
         rispondiUtente("Ho aperto " + apribile);
     }
 
-    public void apri(ApribileConChiave apribile, Chiave chiave) throws CommandException {
-        apribile.apri(chiave);
+    public <T> void apri(Apribile<T> apribile, T oggetto) throws CommandException {
+        apribile.apri(oggetto);
         rispondiUtente("Ho aperto " + apribile);
     }
 
+    @EntityProcessor.ForTag({})
     public void prendi(Oggetto oggetto) throws CommandException {
-        prendi(oggetto, currentRoom);
+        // FIXME: priorità sui metodi
+        if (oggetto instanceof Link)
+            prendi(((Link) oggetto));
+        else
+            prendi(oggetto, currentRoom);
     }
 
     public void prendi(Oggetto oggetto, Contenitore contenitore) throws CommandException {
@@ -91,7 +128,7 @@ public abstract class AbstractGiocatore extends Personaggio {
             inventario.add(oggetto);
             rispondiUtente("Ho preso " + oggetto);
         } else {
-            rispondiUtente("Non trovo " + oggetto.getName() + " in " + contenitore);
+            throw new EntityResolver.UnresolvedEntityException("Non trovo " + oggetto.getName() + " in " + contenitore);
         }
     }
 
@@ -109,16 +146,24 @@ public abstract class AbstractGiocatore extends Personaggio {
     }
 
     public void rompi(Rompibile rompibile, Rompitore rompitore) throws CommandException {
-        rompibile.rompi(rompitore);
-        rispondiUtente("Fatto!");
-        rispondiUtente(rompibile.toString());
+        rompibile.rompi(rompitore).forEach(getCurrentLocation()::addObject);
+        rispondiUtente("Fatto: " + rompibile);
     }
 
     public void rompi(Rompibile rompibile) throws CommandException {
-        rompibile.rompi(null);
+        rompibile.rompi(null).forEach(getCurrentLocation()::addObject);
     }
 
-    public void usa(Rompitore rompitore, Rompibile rompibile) throws CommandException {
-        rompi(rompibile, rompitore);
+    public <T> void usa(Usabile<T> soggetto, T oggetto) throws CommandException {
+        if (oggetto instanceof Rompibile) {
+            rompi((Rompibile) oggetto, (Rompitore) soggetto);
+        } else {
+            soggetto.usa(oggetto);
+            rispondiUtente("Ho usato " + soggetto + " su " + oggetto);
+        }
+    }
+
+    public void prendi(Link link) throws CommandException {
+        vaiIn(link.attraversa(getCurrentLocation()));
     }
 }

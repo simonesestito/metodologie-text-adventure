@@ -1,7 +1,6 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.links;
 
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,6 +19,13 @@ public enum Direction {
     public static Optional<Direction> of(String abbreviation) {
         return Arrays.stream(Direction.values())
                 .filter(d -> d.abbreviations.contains(abbreviation.toUpperCase()))
-                .findAny();
+                .findAny()
+                .or(() -> {
+                    try {
+                        return Optional.of(Direction.valueOf(abbreviation.toUpperCase()));
+                    } catch (IllegalArgumentException e) {
+                        return Optional.empty();
+                    }
+                });
     }
 }

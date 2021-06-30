@@ -50,7 +50,8 @@ public interface EntityProcessor {
     /**
      * Metodo di utilità per ottenere il nome di una classe nel sotto-package
      * prefissato dal nome del tag della sezione nel file .game
-     * @param section Sezione della nuova entità
+     *
+     * @param section   Sezione della nuova entità
      * @param className Nome della classe dell'entità senza prefisso
      * @return Nome della classe dell'entità con prefisso
      */
@@ -88,8 +89,9 @@ public interface EntityProcessor {
 
     /**
      * Controlla se un processor con una data annotazione, supporta il tag richiesto
+     *
      * @param annotation Annotazione del processor da controllare
-     * @param tag Tag richiesto
+     * @param tag        Tag richiesto
      * @return <code>true</code> se il processor lo supporta
      */
     private static boolean supportsTag(ForTag annotation, String tag) {
@@ -184,7 +186,11 @@ public interface EntityProcessor {
          * @param dependencyObserver Observer su un'entità
          */
         public void observeEntity(DependencyObserver dependencyObserver) {
-            softDependencies.add(dependencyObserver.dependency(), dependencyObserver);
+            if (resolvedEntities.containsKey(dependencyObserver.dependency())) {
+                dependencyObserver.callback().accept(resolvedEntities.get(dependencyObserver.dependency()));
+            } else {
+                softDependencies.add(dependencyObserver.dependency(), dependencyObserver);
+            }
         }
 
         /**
@@ -337,9 +343,9 @@ public interface EntityProcessor {
             /**
              * Crea una dipendenza senza valori aggiuntivi nel costruttore
              *
-             * @param className         Nome della classe dell'entità dipendente
-             * @param entityName        Nome logico dell'entità, usato dalle altre per riferirsi a questa come loro dipendenza
-             * @param dependencies      Elenco dei nomi delle dipendenze richieste, passate in fondo al costruttore.
+             * @param className    Nome della classe dell'entità dipendente
+             * @param entityName   Nome logico dell'entità, usato dalle altre per riferirsi a questa come loro dipendenza
+             * @param dependencies Elenco dei nomi delle dipendenze richieste, passate in fondo al costruttore.
              */
             public DependantEntity(String className,
                                    String entityName,
@@ -350,8 +356,8 @@ public interface EntityProcessor {
             /**
              * Crea una dipendenza passando al costruttore solo il nome dell'entità
              *
-             * @param className         Nome della classe dell'entità dipendente
-             * @param entityName        Nome logico dell'entità, usato dalle altre per riferirsi a questa come loro dipendenza
+             * @param className  Nome della classe dell'entità dipendente
+             * @param entityName Nome logico dell'entità, usato dalle altre per riferirsi a questa come loro dipendenza
              */
             public DependantEntity(String className, String entityName) {
                 this(className, entityName, List.of());
@@ -360,8 +366,9 @@ public interface EntityProcessor {
 
         /**
          * Descrizione di una dipendenza leggera usando l'<b>observer pattern</b>
+         *
          * @param dependency Nome della dipendenza da ascoltare
-         * @param callback Callback da eseguire quando la dipendenza sarà pronta
+         * @param callback   Callback da eseguire quando la dipendenza sarà pronta
          */
         public static record DependencyObserver(
                 String dependency,
@@ -374,6 +381,7 @@ public interface EntityProcessor {
         public static class DependencyException extends GameFile.ParseException {
             /**
              * Eccezione per errore sulle dipendenze, con motivazione, ma senza causa esplicita.
+             *
              * @param message Descrizione dell'errore
              */
             public DependencyException(String message) {
@@ -382,8 +390,9 @@ public interface EntityProcessor {
 
             /**
              * Eccezione per errore sulle dipendenze, con motivazione e causa
+             *
              * @param message Descrizione dell'errore
-             * @param cause Eccezione scatenante
+             * @param cause   Eccezione scatenante
              */
             public DependencyException(String message, Throwable cause) {
                 super(message, cause);
@@ -392,6 +401,7 @@ public interface EntityProcessor {
 
         /**
          * Ottieni il file di gioco attualmente in processing
+         *
          * @return File di gioco corrente
          */
         public GameFile getGameFile() {
@@ -404,7 +414,7 @@ public interface EntityProcessor {
      * individuare il tag processabile da ogni processor
      */
     @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.TYPE)
+    @Target({ElementType.TYPE, ElementType.METHOD})
     @interface ForTag {
         String[] value();
     }

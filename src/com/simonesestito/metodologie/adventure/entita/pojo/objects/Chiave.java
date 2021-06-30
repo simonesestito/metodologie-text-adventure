@@ -1,16 +1,10 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
-import com.simonesestito.metodologie.adventure.entita.pojo.features.ApribileConChiave;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
 
 public class Chiave extends Oggetto {
-    private final ApribileConChiave target;
-
-    public Chiave(String name, ApribileConChiave target) {
+    public Chiave(String name, Apribile<Chiave> target) throws Apribile.ChiusuraException {
         super(name);
-        this.target = target;
-    }
-
-    public ApribileConChiave getTarget() {
-        return target;
+        target.chiudi(this);
     }
 }

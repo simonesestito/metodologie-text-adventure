@@ -14,4 +14,17 @@ public class CommandException extends Exception {
     public CommandException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    public static class Fatal extends CommandException {
+        public Fatal() {
+        }
+
+        public Fatal(String message) {
+            super(message);
+        }
+
+        public Fatal(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
 }

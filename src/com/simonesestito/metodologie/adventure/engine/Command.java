@@ -1,7 +1,7 @@
 package com.simonesestito.metodologie.adventure.engine;
 
 import com.simonesestito.metodologie.adventure.ReflectionUtils;
-import com.simonesestito.metodologie.adventure.entita.pojo.player.Giocatore;
+import com.simonesestito.metodologie.adventure.entita.pojo.Giocatore;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,6 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Command {
+    public final static Command EMPTY = new Command("", null) {
+        @Override
+        public void execute(List<?> arguments) { /* Empty */ }
+    };
+
     private final String literalPrefix;
     private final Method mappingMethod;
 
@@ -17,7 +22,10 @@ public class Command {
         this.mappingMethod = mappingMethod;
     }
 
-    public static Command of(String commandLine) {
+    public static Command of(String commandLine) throws TextEngine.CommandNotFoundException {
+        if (commandLine.isEmpty())
+            return EMPTY;
+
         var commandParts = commandLine.split(",");
         return new Command(
                 commandParts[0],
@@ -26,7 +34,7 @@ public class Command {
                         .filter(m -> m.getParameterCount() == commandParts.length - 2)
                         .findFirst()
                         // Unrecoverable exception
-                        .orElseThrow(() -> new RuntimeException("Comando non trovato, verifica la correttezza del file: " + commandLine))
+                        .orElseThrow(() -> new TextEngine.CommandNotFoundException("Comando non trovato, verifica la correttezza del file: " + commandLine))
         );
     }
 
@@ -49,8 +57,12 @@ public class Command {
                 throw (CommandException) e.getCause();
             }
         } catch (ReflectiveOperationException e) {
-            // TODO
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString() {
+        return mappingMethod.toString();
     }
 }

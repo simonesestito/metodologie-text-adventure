@@ -38,6 +38,11 @@ public interface Link {
             public Stanza getStanzaB() {
                 return b;
             }
+
+            @Override
+            public String toString() {
+                return a + " <=> " + b;
+            }
         };
     }
 }

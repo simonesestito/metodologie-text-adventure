@@ -9,4 +9,5 @@ vai,vai,Direction
 accarezza,accarezza,Accarezzabile
 rompi,rompi,Rompibile,Rompitore
 rompi,rompi,Rompibile
-usa,usa,Rompitore,Rompibile
+usa,usa,Usabile,Object
+prendi,prendi,Link
