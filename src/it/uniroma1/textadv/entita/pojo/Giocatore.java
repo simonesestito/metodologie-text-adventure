@@ -125,11 +125,6 @@ public class Giocatore extends Personaggio {
         vaiIn(link.attraversa(getCurrentLocation()));
     }
 
-    public void vinci(Tesoro tesoro) throws CommandException {
-        if (tesoro != null)
-            throw new Gioco.GameOverException();
-    }
-
     public void prendi(Posizionabile oggetto) throws CommandException {
         oggetto.spostaIn(getInventario());
     }

@@ -2,7 +2,6 @@ guarda,guarda
 guarda,guarda,Oggetto
 apri,apri,Apribile
 apri,apri,ApribileConChiave,Chiave
-prendi,vinci,Tesoro
 prendi,prendiDirezione,Link
 prendi,prendi,Oggetto
 prendi,prendi,Oggetto,Contenitore
