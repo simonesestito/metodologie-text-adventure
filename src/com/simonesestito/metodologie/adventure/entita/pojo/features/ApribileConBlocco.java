@@ -1,7 +1,7 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.features;
 
 
-public class ApribileConBlocco implements Apribile<BloccoApertura> {
+public class ApribileConBlocco implements ApribileCon<BloccoApertura> {
     private BloccoApertura blocco;
 
     @Override

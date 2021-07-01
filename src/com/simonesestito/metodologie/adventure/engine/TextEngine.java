@@ -31,6 +31,7 @@ public class TextEngine {
             "il",
             "sulla",
             "dalla",
+            "nella",
             "da",
             "una",
             "un"
@@ -97,7 +98,7 @@ public class TextEngine {
         while (wordIndex < input.size()) {
             // Parsing del primo argomento in sequenza
             Object foundEntity = null;
-            for (int i = wordIndex; i < input.size(); i++) {
+            for (int i = input.size() - 1; i >= wordIndex; i--) {
                 var entityName = input.stream()
                         .skip(wordIndex)
                         .limit(i)

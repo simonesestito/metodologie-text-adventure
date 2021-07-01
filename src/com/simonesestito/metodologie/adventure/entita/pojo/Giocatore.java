@@ -27,7 +27,11 @@ public class Giocatore extends Personaggio {
     private Giocatore(String name, Stanza stanza, PrintStream userOutput) {
         super(name);
         this.userOutput = userOutput;
-        vaiIn(stanza);
+        try {
+            vaiIn(stanza);
+        } catch (UnreachableRoomException e) {
+            throw new IllegalArgumentException(e); // Irrecuperabile
+        }
     }
 
     private Giocatore(String name, Stanza stanza) {
@@ -49,7 +53,7 @@ public class Giocatore extends Personaggio {
         return Objects.requireNonNull(INSTANCE);
     }
 
-    private void rispondiUtente(String messaggio) {
+    public void rispondiUtente(String messaggio) {
         userOutput.println(messaggio);
     }
 
@@ -57,8 +61,12 @@ public class Giocatore extends Personaggio {
         return currentRoom;
     }
 
-    public void vaiIn(Stanza stanza) {
+    public void vaiIn(Stanza stanza) throws UnreachableRoomException {
+        if (stanza == null)
+            throw new UnreachableRoomException();
+
         currentRoom = stanza;
+        rispondiUtente("Ora sono in " + currentRoom);
     }
 
     public void vai(Direction direction) throws CommandException {
@@ -66,7 +74,6 @@ public class Giocatore extends Personaggio {
                 .orElseThrow(() -> new CommandException("Destinazione non trovata"))
                 .attraversa(getCurrentLocation());
         vaiIn(destination);
-        rispondiUtente("Ora sono in " + currentRoom);
     }
 
     public List<Oggetto> getInventario() {
@@ -100,12 +107,12 @@ public class Giocatore extends Personaggio {
         rispondiUtente("Sto vedendo " + entity);
     }
 
-    public void apri(Apribile<?> apribile) throws CommandException {
+    public void apri(ApribileCon<?> apribile) throws CommandException {
         apribile.apri();
         rispondiUtente("Ho aperto " + apribile);
     }
 
-    public <T> void apri(Apribile<T> apribile, T oggetto) throws CommandException {
+    public <T> void apri(ApribileCon<T> apribile, T oggetto) throws CommandException {
         apribile.apri(oggetto);
         rispondiUtente("Ho aperto " + apribile);
     }
@@ -114,15 +121,18 @@ public class Giocatore extends Personaggio {
         vaiIn(link.attraversa(getCurrentLocation()));
     }
 
-    public void prendi(Oggetto oggetto) throws CommandException {
-        // Prova su ogni "contenitore" fornitore di oggetti
-        var containers = getCurrentLocation()
-                .getCharacters()
-                .stream()
-                .filter(p -> p instanceof Contenitore)
-                .map(p -> (Contenitore) p)
-                .iterator();
+    /*
+    public void prendi(Spostabile spostabile) throws CommandException {
+        // TODO
+        spostabile.prendi();
+        spostabile.spostaIn(inventario);
+    }
+     */
 
+    public void prendi(Oggetto oggetto) throws CommandException {
+        // TODO Trova: oggetto.prendi();
+        // Prova su ogni "contenitore" fornitore di oggetti
+        var containers = getCurrentLocation().getContainers().iterator();
         while (containers.hasNext()) {
             try {
                 prendi(oggetto, containers.next());
@@ -139,9 +149,9 @@ public class Giocatore extends Personaggio {
         if (contenitore.getOggettiContenuti().contains(oggetto)) {
             contenitore.prendiOggetto(oggetto);
             inventario.add(oggetto);
-            rispondiUtente("Ho preso " + oggetto);
+            rispondiUtente("Ho preso " + oggetto + " da " + contenitore);
         } else {
-            throw new EntityResolver.UnresolvedEntityException("Non trovo " + oggetto.getName() + " in " + contenitore);
+            throw new EntityResolver.UnresolvedEntityException(oggetto, contenitore);
         }
     }
 
@@ -150,7 +160,7 @@ public class Giocatore extends Personaggio {
             rispondiUtente("Non ho nulla nell'inventario");
         else
             rispondiUtente("Ci sta: " + getInventario().stream()
-                    .map(Entity::getName)
+                    .map(Object::toString)
                     .collect(Collectors.joining(", ")));
     }
 
@@ -159,21 +169,21 @@ public class Giocatore extends Personaggio {
     }
 
     public void rompi(Rompibile rompibile, Rompitore rompitore) throws CommandException {
-        rompibile.rompi(rompitore).forEach(getCurrentLocation()::addObject);
+        rompibile.rompi(rompitore);
         rispondiUtente("Fatto: " + rompibile);
     }
 
     public void rompi(Rompibile rompibile) throws CommandException {
-        rompibile.rompi(null).forEach(getCurrentLocation()::addObject);
+        rompibile.rompi(null);
     }
 
-    public <T> void usa(Usabile<T> soggetto, T oggetto) throws CommandException {
-        if (oggetto instanceof Rompibile) {
-            rompi((Rompibile) oggetto, (Rompitore) soggetto);
-        } else {
-            soggetto.usa(oggetto);
-            rispondiUtente("Ho usato " + soggetto + " su " + oggetto);
-        }
+    public <T> void usa(T oggetto, UsabileCon<T> soggetto) throws CommandException {
+        soggetto.usaCon(oggetto);
+        rispondiUtente("Ho usato " + oggetto + " con " + soggetto);
+    }
+
+    public void usa(Usabile soggetto) throws CommandException {
+        soggetto.usa();
     }
 
     public <T extends Oggetto, R extends Oggetto> void dai(T oggetto, Ricevitore<T, R> ricevitore) throws CommandException.Fatal {
@@ -186,5 +196,23 @@ public class Giocatore extends Personaggio {
                 .map(Entity::toString)
                 .collect(Collectors.joining(", ")));
         inventario.addAll(ricevuto);
+    }
+
+    public void entra(Link link) throws CommandException {
+        prendiDirezione(link); // alias
+    }
+
+    public void parla(Parla parlatore) {
+        rispondiUtente(parlatore + " dice: " + parlatore.parla());
+    }
+
+    private static class UnreachableRoomException extends CommandException {
+        public UnreachableRoomException() {
+            this(null);
+        }
+
+        public UnreachableRoomException(String room) {
+            super("Stanza irraggiungibile" + (room == null ? "" : ": " + room));
+        }
     }
 }

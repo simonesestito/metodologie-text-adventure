@@ -1,11 +1,11 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.links;
 
 import com.simonesestito.metodologie.adventure.entita.pojo.Stanza;
-import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.ApribileCon;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.ApribileConBlocco;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.BloccoApertura;
 
-public class Botola extends OggettoLink implements Apribile<BloccoApertura> {
+public class Botola extends OggettoLink implements ApribileCon<BloccoApertura> {
     private final ApribileConBlocco apribileConBlocco = new ApribileConBlocco();
 
     public Botola(String name, Stanza stanzaB, Stanza stanzaA) {

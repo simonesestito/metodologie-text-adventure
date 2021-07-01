@@ -18,7 +18,7 @@ public class Salvadanaio extends Oggetto implements Rompibile, Contenitore {
     }
 
     @Override
-    public List<? extends Oggetto> rompi(Rompitore rompitore) throws CommandException {
+    public void rompi(Rompitore rompitore) throws CommandException {
         if (rotto)
             throw new CommandException("Salvadanaio già rotto");
 
@@ -26,10 +26,12 @@ public class Salvadanaio extends Oggetto implements Rompibile, Contenitore {
             throw new CommandException("Serve un oggetto per rompere il salvadanaio");
 
         rotto = true;
-
-        var contenuto = getOggettiContenuti();
-        prendiOggetto(soldi); // Restituisci i soldi contenuti, e prendili dal contenuto
-        return contenuto;
+        // TODO
+        //getStanza().ifPresent(stanza -> {
+        //    var contenuto = getOggettiContenuti();
+        //    contenuto.forEach(stanza::addObject);
+        //    soldi = null;
+        //});
     }
 
     @Override
@@ -39,7 +41,7 @@ public class Salvadanaio extends Oggetto implements Rompibile, Contenitore {
 
     @Override
     public List<Oggetto> getOggettiContenuti() {
-        return soldi == null ? List.of() : List.of(soldi);
+        return soldi == null || !rotto ? List.of() : List.of(soldi);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.simonesestito.metodologie.adventure.entita.pojo;
 
-import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.ApribileCon;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -44,9 +44,9 @@ public abstract class Entity {
         List<String> descriptionParts = new LinkedList<>();
         descriptionParts.add(getName());
 
-        if (this instanceof Apribile<?>) {
+        if (this instanceof ApribileCon<?>) {
             descriptionParts.add(
-                    ((Apribile<?>) this).isAperto()
+                    ((ApribileCon<?>) this).isAperto()
                             ? "è aperto"
                             : "è chiuso"
             );

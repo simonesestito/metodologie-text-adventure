@@ -1,11 +1,10 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
-import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
-import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.ApribileCon;
 
 import java.util.List;
 
-public class Armadio extends OggettoContenitore implements Apribile<Tronchesi> {
+public class Armadio extends OggettoContenitore implements ApribileCon<Tronchesi> {
     private boolean aperto = true;
 
     public Armadio(String name, List<Oggetto> contenuto) {

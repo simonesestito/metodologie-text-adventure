@@ -7,6 +7,7 @@ import com.simonesestito.metodologie.adventure.entita.pojo.links.Link;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Oggetto;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Stanza extends DescribableEntity implements Contenitore {
     private final List<Oggetto> objects = new ArrayList<>();
@@ -35,6 +36,7 @@ public class Stanza extends DescribableEntity implements Contenitore {
 
     public void addObject(Oggetto oggetto) {
         objects.add(oggetto);
+        // FIXME oggetto.spostaIn(this);
     }
 
     public void addCharacter(Personaggio personaggio) {
@@ -53,5 +55,12 @@ public class Stanza extends DescribableEntity implements Contenitore {
     @Override
     public void prendiOggetto(Oggetto oggetto) {
         objects.remove(oggetto);
+    }
+
+    public Stream<Contenitore> getContainers() {
+        return Stream.concat(
+                objects.stream(),
+                characters.stream()
+        ).filter(p -> p instanceof Contenitore).map(p -> (Contenitore) p);
     }
 }

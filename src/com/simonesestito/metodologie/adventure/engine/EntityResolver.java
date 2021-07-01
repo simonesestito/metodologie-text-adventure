@@ -22,9 +22,9 @@ public class EntityResolver {
         return Optional.empty()
                 .or(() -> findEntityInInventory(name))
                 .or(() -> findEntityInCurrentRoom(name))
-                .or(() -> findEntityInContainers(name))
                 .or(() -> findEntityInLinks(name))
                 .or(() -> findEntityInCharacters(name))
+                .or(() -> findEntityInContainers(name))
                 .or(() -> findEntityInVirtualReferences(name))
                 .or(() -> Direction.of(name));
     }
@@ -57,10 +57,11 @@ public class EntityResolver {
                 .getLinks()
                 .values()
                 .stream()
-                .filter(link -> link instanceof Entity
-                        ? ((Entity) link).getName().equals(name)
-                        : link.toString().equals(name)
-                ).findAny();
+                .filter(link -> {
+                    if (link instanceof Entity)
+                        return ((Entity) link).getName().equals(name);
+                    return link.getRooms().anyMatch(s -> s.getName().equals(name));
+                }).findAny();
     }
 
     private Optional<? extends Entity> findEntityInInventory(String name) {
@@ -95,12 +96,8 @@ public class EntityResolver {
         public UnresolvedEntityException() {
         }
 
-        public UnresolvedEntityException(String message) {
-            super(message);
-        }
-
-        public UnresolvedEntityException(String message, Throwable cause) {
-            super(message, cause);
+        public UnresolvedEntityException(Oggetto oggetto, Contenitore contenitore) {
+            super("Non trovo " + oggetto.getName() + " in  " + contenitore);
         }
     }
 }

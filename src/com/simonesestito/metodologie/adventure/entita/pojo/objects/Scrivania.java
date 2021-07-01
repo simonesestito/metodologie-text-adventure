@@ -1,12 +1,12 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
 import com.simonesestito.metodologie.adventure.engine.CommandException;
-import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.ApribileCon;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.ApribileSemplice;
 
 import java.util.List;
 
-public class Scrivania extends OggettoContenitore implements Apribile<Object> {
+public class Scrivania extends OggettoContenitore implements ApribileCon<Object> {
     private final ApribileSemplice apribileSemplice = new ApribileSemplice();
 
     public Scrivania(String name, List<Oggetto> contenuto) {

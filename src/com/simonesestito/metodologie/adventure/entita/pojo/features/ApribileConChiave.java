@@ -2,7 +2,7 @@ package com.simonesestito.metodologie.adventure.entita.pojo.features;
 
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Chiave;
 
-public class ApribileConChiave implements Apribile<Chiave> {
+public class ApribileConChiave implements ApribileCon<Chiave> {
     private Chiave chiave;
     private boolean aperto = false;
 

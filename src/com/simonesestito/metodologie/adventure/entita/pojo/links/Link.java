@@ -5,6 +5,9 @@ import com.simonesestito.metodologie.adventure.engine.TextEngine;
 import com.simonesestito.metodologie.adventure.entita.pojo.Stanza;
 
 import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 public interface Link {
     Stanza getStanzaA();
@@ -44,5 +47,9 @@ public interface Link {
                 return a + " <=> " + b;
             }
         };
+    }
+
+    default Stream<Stanza> getRooms() {
+        return Stream.of(getStanzaA(), getStanzaB()).filter(Objects::nonNull);
     }
 }

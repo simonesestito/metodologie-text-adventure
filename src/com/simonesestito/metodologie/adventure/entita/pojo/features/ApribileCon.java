@@ -2,7 +2,7 @@ package com.simonesestito.metodologie.adventure.entita.pojo.features;
 
 import com.simonesestito.metodologie.adventure.engine.CommandException;
 
-public interface Apribile<T> {
+public interface ApribileCon<T> extends UsabileCon<T> {
     default void apri() throws AperturaException {
         apri(null);
     }
@@ -14,6 +14,11 @@ public interface Apribile<T> {
     }
 
     boolean isAperto();
+
+    @Override
+    default void usaCon(T oggetto) throws CommandException {
+        apri(oggetto);
+    }
 
     class AperturaException extends CommandException {
         public AperturaException() {

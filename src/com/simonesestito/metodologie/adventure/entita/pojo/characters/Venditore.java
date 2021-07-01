@@ -16,7 +16,9 @@ public class Venditore extends Personaggio implements Contenitore, Ricevitore<So
 
     public Venditore(String name, List<Oggetto> oggettiVenduti) {
         super(name);
-        this.oggettiVenduti = new ArrayList<>(oggettiVenduti);
+        this.oggettiVenduti =oggettiVenduti.stream()
+                //.peek(o -> o.spostaIn(this))
+                .toList();
     }
 
     @Override

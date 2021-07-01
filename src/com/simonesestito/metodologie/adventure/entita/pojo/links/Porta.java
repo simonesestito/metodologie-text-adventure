@@ -1,11 +1,11 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.links;
 
 import com.simonesestito.metodologie.adventure.entita.pojo.Stanza;
-import com.simonesestito.metodologie.adventure.entita.pojo.features.Apribile;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.ApribileCon;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.ApribileConChiave;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Chiave;
 
-public class Porta extends OggettoLink implements Apribile<Chiave> {
+public class Porta extends OggettoLink implements ApribileCon<Chiave> {
     private final ApribileConChiave apertura = new ApribileConChiave();
 
     public Porta(String name, Stanza stanzaB, Stanza stanzaA) {
