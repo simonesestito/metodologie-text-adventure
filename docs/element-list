@@ -1,4 +1,9 @@
-com.simonesestito.metodologie.adventure
-com.simonesestito.metodologie.adventure.entita.factory
-com.simonesestito.metodologie.adventure.entita.parser
-com.simonesestito.metodologie.adventure.entita.pojo
+it.uniroma1.textadv
+it.uniroma1.textadv.engine
+it.uniroma1.textadv.entita.factory
+it.uniroma1.textadv.entita.parser
+it.uniroma1.textadv.entita.pojo
+it.uniroma1.textadv.entita.pojo.characters
+it.uniroma1.textadv.entita.pojo.features
+it.uniroma1.textadv.entita.pojo.links
+it.uniroma1.textadv.entita.pojo.objects
