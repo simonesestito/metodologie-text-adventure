@@ -12,12 +12,17 @@ import java.util.List;
 
 public class Venditore extends Personaggio implements Contenitore, Ricevitore<Soldi, Oggetto> {
     private final List<Oggetto> oggettiVenduti;
-    private final List<Oggetto> carrello = new ArrayList<>();
+    private List<Oggetto> carrello = new ArrayList<>();
+    private Soldi soldiRicevuti;
 
     public Venditore(String name, List<Oggetto> oggettiVenduti) {
         super(name);
-        this.oggettiVenduti =oggettiVenduti.stream()
-                //.peek(o -> o.spostaIn(this))
+        this.oggettiVenduti = oggettiVenduti.stream()
+                .peek(o -> {
+                    try {
+                        o.spostaIn(this);
+                    } catch (CommandException ignored) { }
+                })
                 .toList();
     }
 
@@ -27,22 +32,28 @@ public class Venditore extends Personaggio implements Contenitore, Ricevitore<So
     }
 
     @Override
-    public void prendiOggetto(Oggetto oggetto) throws CommandException {
-        carrello.add(oggetto);
-        throw new InVenditaException(oggetto.toString());
+    public void prendiOggetto(Oggetto oggetto) throws InVenditaException {
+        if (soldiRicevuti == null) {
+            carrello.add(oggetto);
+            throw new InVenditaException();
+        }
     }
 
     @Override
-    public List<Oggetto> ricevi(Soldi oggetto) {
-        if (oggetto == null)
+    public List<Oggetto> ricevi(Soldi soldi) {
+        if (soldi == null) {
             return List.of();
-        else
-            return carrello;
+        }
+
+        soldiRicevuti = soldi;
+        var articoli = carrello;
+        carrello = new ArrayList<>();
+        return articoli;
     }
 
     public static class InVenditaException extends CommandException {
-        public InVenditaException(String message) {
-            super(message);
+        public InVenditaException() {
+            super("Dovrai comprare l'articolo per prenderlo");
         }
     }
 }

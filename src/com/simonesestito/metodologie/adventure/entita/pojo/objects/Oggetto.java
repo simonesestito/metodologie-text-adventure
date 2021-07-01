@@ -1,49 +1,39 @@
 package com.simonesestito.metodologie.adventure.entita.pojo.objects;
 
+import com.simonesestito.metodologie.adventure.engine.CommandException;
 import com.simonesestito.metodologie.adventure.entita.pojo.Entity;
+import com.simonesestito.metodologie.adventure.entita.pojo.Stanza;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.ContenitoreAggiungibile;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.Posizionabile;
 
 import java.util.Objects;
 import java.util.Optional;
 
-public abstract class Oggetto extends Entity {
+public abstract class Oggetto extends Entity implements Posizionabile {
     private Contenitore posizione;
 
     public Oggetto(String name) {
         super(name);
     }
 
-    /*
-    @Override
-
-    public void spostaIn(Contenitore contenitore) {
-        if (Objects.equals(contenitore, posizione))
+    public void spostaIn(Contenitore contenitore) throws CommandException {
+        if (Objects.equals(contenitore, posizione)) {
+            System.out.println("Inutile spostare da " + contenitore + " a " + posizione);
             return;
+        }
 
         if (this.posizione != null)
             this.posizione.prendiOggetto(this);
         this.posizione = contenitore;
 
-        if (contenitore == null) {
-            getStanza().ifPresent(s -> s.addObject(this));
-        }
+        System.out.println("getPosizioneAggiungibile() = " + getPosizioneAggiungibile());
+        
+        getPosizioneAggiungibile().ifPresent(s -> s.aggiungiOggetto(this));
     }
 
     @Override
-    public Optional<Contenitore<? super Spostabile>> getPosizione() {
-        return Optional.ofNullable(posizione);
+    public Contenitore getPosizione() {
+        return posizione;
     }
-
-    @Override
-    public void spostaIn(Contenitore<?> stanza) {
-        if (stanza instanceof Contenitore<? super Spostabile> && !Objects.equals(stanza, this.posizione)) {
-            this.posizione = (Contenitore<? super Spostabile>) stanza;
-        }
-    }
-
-    public Optional<Contenitore<? super Spostabile>> getStanza() {
-        return getPosizione().map(p -> p instanceof Stanza)
-    }
-
-     */
 }

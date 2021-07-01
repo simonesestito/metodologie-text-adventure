@@ -6,22 +6,25 @@ import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggi
 import com.simonesestito.metodologie.adventure.entita.pojo.features.*;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Link;
+import com.simonesestito.metodologie.adventure.entita.pojo.objects.Inventario;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Oggetto;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
  * Giocatore che si interfaccia con l'utente via CLI
+ *
+ * @see Giocatore#rispondiUtente(String)
+ * @see Giocatore#userOutput
  */
+@SuppressWarnings("unused")
 public class Giocatore extends Personaggio {
     private static Giocatore INSTANCE;
     private Stanza currentRoom;
-    private final List<Oggetto> inventario = new ArrayList<>();
+    private final Inventario inventario = new Inventario();
     private final PrintStream userOutput; // Dove rispondere all'utente
 
     private Giocatore(String name, Stanza stanza, PrintStream userOutput) {
@@ -77,7 +80,7 @@ public class Giocatore extends Personaggio {
     }
 
     public List<Oggetto> getInventario() {
-        return Collections.unmodifiableList(inventario);
+        return inventario.getOggettiContenuti();
     }
 
     public void guarda() {
@@ -121,34 +124,26 @@ public class Giocatore extends Personaggio {
         vaiIn(link.attraversa(getCurrentLocation()));
     }
 
-    /*
-    public void prendi(Spostabile spostabile) throws CommandException {
-        // TODO
-        spostabile.prendi();
-        spostabile.spostaIn(inventario);
-    }
-     */
-
     public void prendi(Oggetto oggetto) throws CommandException {
+        oggetto.spostaIn(inventario);
         // TODO Trova: oggetto.prendi();
         // Prova su ogni "contenitore" fornitore di oggetti
-        var containers = getCurrentLocation().getContainers().iterator();
-        while (containers.hasNext()) {
-            try {
-                prendi(oggetto, containers.next());
-                return;
-            } catch (EntityResolver.UnresolvedEntityException ignored) {
-            }
-        }
-
-        // Prova nella stanza corrente
-        prendi(oggetto, getCurrentLocation());
+        // var containers = getCurrentLocation().getContainers().iterator();
+        // while (containers.hasNext()) {
+        //     try {
+        //         prendi(oggetto, containers.next());
+        //         return;
+        //     } catch (EntityResolver.UnresolvedEntityException ignored) {
+        //     }
+        // }
+//
+        // // Prova nella stanza corrente
+        // prendi(oggetto, getCurrentLocation());
     }
 
     public void prendi(Oggetto oggetto, Contenitore contenitore) throws CommandException {
         if (contenitore.getOggettiContenuti().contains(oggetto)) {
-            contenitore.prendiOggetto(oggetto);
-            inventario.add(oggetto);
+            oggetto.spostaIn(inventario);
             rispondiUtente("Ho preso " + oggetto + " da " + contenitore);
         } else {
             throw new EntityResolver.UnresolvedEntityException(oggetto, contenitore);
@@ -186,16 +181,15 @@ public class Giocatore extends Personaggio {
         soggetto.usa();
     }
 
-    public <T extends Oggetto, R extends Oggetto> void dai(T oggetto, Ricevitore<T, R> ricevitore) throws CommandException.Fatal {
-        if (!inventario.contains(oggetto))
-            throw new CommandException.Fatal("Non posseggo " + oggetto);
-
+    public <T extends Oggetto, R extends Oggetto> void dai(T oggetto, Ricevitore<T, R> ricevitore) throws CommandException {
+        inventario.prendiOggetto(oggetto);
         var ricevuto = ricevitore.ricevi(oggetto);
-        inventario.remove(oggetto);
-        rispondiUtente("Ricevuti: " + ricevuto.stream()
-                .map(Entity::toString)
-                .collect(Collectors.joining(", ")));
-        inventario.addAll(ricevuto);
+
+        rispondiUtente("Oggetti ricevuti:");
+        for (var oggettoRicevuto : ricevuto) {
+            rispondiUtente(oggettoRicevuto.getName());
+            oggettoRicevuto.spostaIn(inventario);
+        }
     }
 
     public void entra(Link link) throws CommandException {

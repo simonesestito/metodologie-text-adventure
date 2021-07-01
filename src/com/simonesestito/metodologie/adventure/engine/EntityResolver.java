@@ -19,6 +19,7 @@ import java.util.Optional;
  */
 public class EntityResolver {
     public Optional<?> resolveEntity(String name) {
+        System.out.println("name = " + name);
         return Optional.empty()
                 .or(() -> findEntityInInventory(name))
                 .or(() -> findEntityInCurrentRoom(name))
@@ -93,9 +94,6 @@ public class EntityResolver {
     }
 
     public static class UnresolvedEntityException extends CommandException.Fatal {
-        public UnresolvedEntityException() {
-        }
-
         public UnresolvedEntityException(Oggetto oggetto, Contenitore contenitore) {
             super("Non trovo " + oggetto.getName() + " in  " + contenitore);
         }

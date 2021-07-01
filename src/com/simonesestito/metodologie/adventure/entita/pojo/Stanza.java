@@ -2,6 +2,7 @@ package com.simonesestito.metodologie.adventure.entita.pojo;
 
 import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggio;
 import com.simonesestito.metodologie.adventure.entita.pojo.features.Contenitore;
+import com.simonesestito.metodologie.adventure.entita.pojo.features.ContenitoreAggiungibile;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Direction;
 import com.simonesestito.metodologie.adventure.entita.pojo.links.Link;
 import com.simonesestito.metodologie.adventure.entita.pojo.objects.Oggetto;
@@ -9,7 +10,7 @@ import com.simonesestito.metodologie.adventure.entita.pojo.objects.Oggetto;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class Stanza extends DescribableEntity implements Contenitore {
+public class Stanza extends DescribableEntity implements ContenitoreAggiungibile {
     private final List<Oggetto> objects = new ArrayList<>();
     private final List<Personaggio> characters = new ArrayList<>();
     private final Map<Direction, Link> links = new HashMap<>();
@@ -34,9 +35,9 @@ public class Stanza extends DescribableEntity implements Contenitore {
         return Optional.ofNullable(links.get(direction));
     }
 
-    public void addObject(Oggetto oggetto) {
+    @Override
+    public void aggiungiOggetto(Oggetto oggetto) {
         objects.add(oggetto);
-        // FIXME oggetto.spostaIn(this);
     }
 
     public void addCharacter(Personaggio personaggio) {

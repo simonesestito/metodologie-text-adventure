@@ -1,5 +1,6 @@
 package com.simonesestito.metodologie.adventure.entita.factory;
 
+import com.simonesestito.metodologie.adventure.engine.CommandException;
 import com.simonesestito.metodologie.adventure.entita.parser.GameFile;
 import com.simonesestito.metodologie.adventure.entita.pojo.*;
 import com.simonesestito.metodologie.adventure.entita.pojo.characters.Personaggio;
@@ -69,7 +70,13 @@ public class StanzaProcessor implements EntityProcessor {
                 .orElse(Stream.of())
                 .forEach(objectName -> context.observeEntity(new BuildContext.DependencyObserver(
                         objectName,
-                        object -> stanza.addObject((Oggetto) object)
+                        object -> {
+                            try {
+                                ((Oggetto) object).spostaIn(stanza);
+                            } catch (CommandException e) {
+                                throw new IllegalStateException(e);
+                            }
+                        }
                 )));
 
         section.getLine(CHARACTERS_LINE_KEY)
