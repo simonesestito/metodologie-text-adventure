@@ -9,6 +9,7 @@ import it.uniroma1.textadv.entita.pojo.links.Link;
 import it.uniroma1.textadv.entita.pojo.Giocatore;
 import it.uniroma1.textadv.entita.pojo.objects.Oggetto;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +38,7 @@ public class EntityResolver {
                 .filter(p -> p instanceof Venditore)
                 .map(p -> (Venditore) p)
                 .map(Venditore::getOggettiContenuti)
-                .flatMap(List::stream)
+                .flatMap(Collection::stream)
                 .filter(o -> findEntity(o, name))
                 .findAny();
     }

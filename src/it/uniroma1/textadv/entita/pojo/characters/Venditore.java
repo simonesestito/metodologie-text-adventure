@@ -7,12 +7,10 @@ import it.uniroma1.textadv.entita.pojo.features.Ricevitore;
 import it.uniroma1.textadv.entita.pojo.objects.Oggetto;
 import it.uniroma1.textadv.entita.pojo.objects.Soldi;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Venditore extends Personaggio implements Contenitore, Ricevitore<Soldi, Posizionabile> {
-    private List<Posizionabile> carrello = new ArrayList<>();
+    private Set<Posizionabile> carrello = new HashSet<>();
     private Soldi soldiRicevuti;
 
     public Venditore(String name, List<Oggetto> oggettiVenduti) {
@@ -26,7 +24,7 @@ public class Venditore extends Personaggio implements Contenitore, Ricevitore<So
     }
 
     @Override
-    public List<Posizionabile> getOggettiContenuti() {
+    public Set<Posizionabile> getOggettiContenuti() {
         return getInventario().getOggettiContenuti();
     }
 
@@ -39,14 +37,14 @@ public class Venditore extends Personaggio implements Contenitore, Ricevitore<So
     }
 
     @Override
-    public List<Posizionabile> ricevi(Soldi soldi) {
+    public Set<Posizionabile> ricevi(Soldi soldi) {
         if (soldi == null) {
-            return List.of();
+            return Set.of();
         }
 
         soldiRicevuti = soldi;
         var articoli = carrello;
-        carrello = new ArrayList<>();
+        carrello = new HashSet<>();
         return articoli;
     }
 

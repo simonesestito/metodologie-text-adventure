@@ -23,17 +23,4 @@ public class ApribileConBlocco implements ApribileCon<BloccoApertura> {
     public boolean isAperto() {
         return !blocco.isBloccato();
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ApribileConBlocco that = (ApribileConBlocco) o;
-        return Objects.equals(blocco, that.blocco);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(blocco);
-    }
 }

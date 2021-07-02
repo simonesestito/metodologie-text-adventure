@@ -12,6 +12,7 @@ import it.uniroma1.textadv.entita.pojo.objects.Tesoro;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -63,7 +64,7 @@ public class Giocatore extends Personaggio {
         return currentRoom;
     }
 
-    public List<Posizionabile> getElementiInventario() {
+    public Set<Posizionabile> getElementiInventario() {
         return getInventario().getOggettiContenuti();
     }
 

@@ -27,7 +27,9 @@ public class PosizionabileUnico implements Posizionabile {
             this.posizione.prendiOggetto(oggetto);
         this.posizione = contenitore;
 
-        getPosizioneAggiungibile().ifPresent(s -> s.aggiungiOggetto(oggetto));
+        var posizione = getPosizioneAggiungibile();
+        if (posizione.isPresent())
+            posizione.get().aggiungiOggetto(oggetto);
     }
 
     @Override

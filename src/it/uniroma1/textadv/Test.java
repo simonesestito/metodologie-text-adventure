@@ -10,6 +10,6 @@ public class Test
         Gioco g = new Gioco();
         Mondo m = Mondo.fromFile("minizak.game");
         Path scriptDiGioco = Paths.get("minizak.ff");
-        g.play(m);//, scriptDiGioco);
+        g.play(m, scriptDiGioco);
     }
 }

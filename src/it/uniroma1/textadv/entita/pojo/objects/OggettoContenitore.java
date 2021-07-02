@@ -6,18 +6,15 @@ import it.uniroma1.textadv.entita.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entita.pojo.features.Contenitore;
 import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class OggettoContenitore extends Oggetto implements Contenitore {
-    protected final List<Posizionabile> contenuto;
+    protected final Set<Posizionabile> contenuto;
 
     public OggettoContenitore(String name, List<? extends Oggetto> contenuto) {
         super(name);
-        this.contenuto = new ArrayList<>(contenuto);
+        this.contenuto = new HashSet<>(contenuto);
         for (var oggetto : contenuto) {
             try {
                 oggetto.spostaIn(this);
@@ -26,8 +23,8 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
     }
 
     @Override
-    public List<Posizionabile> getOggettiContenuti() {
-        return Collections.unmodifiableList(contenuto);
+    public Set<Posizionabile> getOggettiContenuti() {
+        return Collections.unmodifiableSet(contenuto);
     }
 
     @Override

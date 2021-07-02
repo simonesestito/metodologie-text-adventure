@@ -5,18 +5,15 @@ import it.uniroma1.textadv.engine.EntityResolver;
 import it.uniroma1.textadv.entita.pojo.features.ContenitoreAggiungibile;
 import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class Inventario implements ContenitoreAggiungibile {
-    private final List<Posizionabile> inventario = new ArrayList<>();
+    private final Set<Posizionabile> inventario = new HashSet<>();
 
     @Override
-    public List<Posizionabile> getOggettiContenuti() {
-        return Collections.unmodifiableList(inventario);
+    public Set<Posizionabile> getOggettiContenuti() {
+        return Collections.unmodifiableSet(inventario);
     }
 
     @Override
@@ -27,7 +24,8 @@ public class Inventario implements ContenitoreAggiungibile {
     }
 
     @Override
-    public void aggiungiOggetto(Posizionabile oggetto) {
+    public void aggiungiOggetto(Posizionabile oggetto) throws CommandException {
+        oggetto.spostaIn(this);
         inventario.add(oggetto);
     }
 

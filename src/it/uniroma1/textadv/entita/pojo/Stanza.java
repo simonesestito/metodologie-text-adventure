@@ -12,20 +12,20 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class Stanza extends DescribableEntity implements ContenitoreAggiungibile {
-    private final List<Oggetto> objects = new ArrayList<>();
-    private final List<Personaggio> characters = new ArrayList<>();
+    private final Set<Oggetto> objects = new HashSet<>();
+    private final Set<Personaggio> characters = new HashSet<>();
     private final Map<Direction, Link> links = new HashMap<>();
 
     public Stanza(String name, String description) {
         super(name, description);
     }
 
-    public List<Oggetto> getObjects() {
-        return Collections.unmodifiableList(objects);
+    public Set<Oggetto> getObjects() {
+        return Collections.unmodifiableSet(objects);
     }
 
-    public List<Personaggio> getCharacters() {
-        return Collections.unmodifiableList(characters);
+    public Set<Personaggio> getCharacters() {
+        return Collections.unmodifiableSet(characters);
     }
 
     public Map<Direction, Link> getLinks() {
@@ -51,7 +51,7 @@ public class Stanza extends DescribableEntity implements ContenitoreAggiungibile
     }
 
     @Override
-    public List<Oggetto> getOggettiContenuti() {
+    public Set<Oggetto> getOggettiContenuti() {
         return getObjects();
     }
 

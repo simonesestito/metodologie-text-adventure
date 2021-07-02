@@ -33,17 +33,4 @@ public class Gatto extends Personaggio implements Accarezzabile, Parla, Posizion
     public void spostaIn(Contenitore contenitore) throws CommandException {
         posizionabileUnico.spostaIn(contenitore);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Gatto gatto = (Gatto) o;
-        return Objects.equals(posizionabileUnico, gatto.posizionabileUnico);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(posizionabileUnico);
-    }
 }

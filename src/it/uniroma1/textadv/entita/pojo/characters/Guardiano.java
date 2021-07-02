@@ -9,6 +9,7 @@ import it.uniroma1.textadv.entita.pojo.features.Ricevitore;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Guardiano extends Personaggio implements Ricevitore<Entity, Object>, Contenitore {
     private final Posizionabile distrazione;
@@ -25,14 +26,14 @@ public class Guardiano extends Personaggio implements Ricevitore<Entity, Object>
     }
 
     @Override
-    public List<Object> ricevi(Entity oggetto) {
+    public Set<Object> ricevi(Entity oggetto) {
         distratto = Objects.equals(oggetto, distrazione);
-        return List.of(); // Il guardiano non restituisce alcun oggetto, è solo distratto
+        return Set.of(); // Il guardiano non restituisce alcun oggetto, è solo distratto
     }
 
     @Override
-    public List<? extends Posizionabile> getOggettiContenuti() {
-        return distratto ? List.of(distrazione) : List.of();
+    public Set<? extends Posizionabile> getOggettiContenuti() {
+        return distratto ? Set.of(distrazione) : Set.of();
     }
 
     @Override
@@ -45,12 +46,13 @@ public class Guardiano extends Personaggio implements Ricevitore<Entity, Object>
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Guardiano guardiano = (Guardiano) o;
         return isDistratto() == guardiano.isDistratto() && Objects.equals(distrazione, guardiano.distrazione);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(distrazione, isDistratto());
+        return Objects.hash(super.hashCode(), distrazione, isDistratto());
     }
 }
