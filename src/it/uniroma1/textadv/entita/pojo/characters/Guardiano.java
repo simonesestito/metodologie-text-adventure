@@ -40,4 +40,17 @@ public class Guardiano extends Personaggio implements Ricevitore<Entity, Object>
         if (Objects.equals(oggetto, distrazione))
             distratto = false;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Guardiano guardiano = (Guardiano) o;
+        return isDistratto() == guardiano.isDistratto() && Objects.equals(distrazione, guardiano.distrazione);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(distrazione, isDistratto());
+    }
 }

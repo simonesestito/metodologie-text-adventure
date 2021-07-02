@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 
 public class Gioco {
     public static final String CLI_INPUT_PREFIX = "> ";
@@ -96,5 +97,18 @@ public class Gioco {
         public GameOverException() {
             super("Gioco concluso. Hai vinto, complimenti!");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Gioco gioco = (Gioco) o;
+        return Objects.equals(textEngine, gioco.textEngine);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(textEngine);
     }
 }

@@ -215,6 +215,19 @@ public class GameFile implements Iterable<GameFile.Section> {
         public Iterator<Line> iterator() {
             return getLines().iterator();
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Section lines1 = (Section) o;
+            return Objects.equals(getTag(), lines1.getTag()) && Objects.equals(getLines(), lines1.getLines());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getTag(), getLines());
+        }
     }
 
     /**
@@ -301,6 +314,19 @@ public class GameFile implements Iterable<GameFile.Section> {
          */
         public Optional<String> getArgument() {
             return Optional.ofNullable(argument);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Tag tag = (Tag) o;
+            return Objects.equals(getName(), tag.getName()) && Objects.equals(getArgument(), tag.getArgument());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getName(), getArgument());
         }
     }
 
@@ -446,6 +472,19 @@ public class GameFile implements Iterable<GameFile.Section> {
         public String toString() {
             return getText();
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Line line = (Line) o;
+            return Objects.equals(getText(), line.getText());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getText());
+        }
     }
 
     /**
@@ -476,5 +515,18 @@ public class GameFile implements Iterable<GameFile.Section> {
         public ParseException(String message, Throwable cause) {
             super(message, cause);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameFile sections1 = (GameFile) o;
+        return Objects.equals(getSections(), sections1.getSections());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSections());
     }
 }

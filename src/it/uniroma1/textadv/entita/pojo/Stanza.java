@@ -67,4 +67,18 @@ public class Stanza extends DescribableEntity implements ContenitoreAggiungibile
                 characters.stream()
         ).filter(p -> p instanceof Contenitore).map(p -> (Contenitore) p);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Stanza stanza = (Stanza) o;
+        return Objects.equals(getObjects(), stanza.getObjects()) && Objects.equals(getCharacters(), stanza.getCharacters()) && Objects.equals(getLinks(), stanza.getLinks());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getObjects(), getCharacters(), getLinks());
+    }
 }

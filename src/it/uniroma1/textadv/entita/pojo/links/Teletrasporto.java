@@ -8,6 +8,8 @@ import it.uniroma1.textadv.entita.pojo.features.ApribileConChiave;
 import it.uniroma1.textadv.entita.pojo.features.Usabile;
 import it.uniroma1.textadv.entita.pojo.objects.Chiave;
 
+import java.util.Objects;
+
 public class Teletrasporto extends OggettoLink implements ApribileCon<Chiave>, Usabile {
     private final ApribileConChiave apertura = new ApribileConChiave();
 
@@ -47,5 +49,19 @@ public class Teletrasporto extends OggettoLink implements ApribileCon<Chiave>, U
     @Override
     public void usa() throws CommandException {
         Giocatore.getInstance().entra(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Teletrasporto that = (Teletrasporto) o;
+        return Objects.equals(apertura, that.apertura);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), apertura);
     }
 }

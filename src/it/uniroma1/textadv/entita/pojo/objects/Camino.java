@@ -5,6 +5,7 @@ import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
 import it.uniroma1.textadv.entita.pojo.features.UsabileCon;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Camino extends OggettoContenitore implements UsabileCon<Secchio> {
     private boolean acceso = true;
@@ -40,5 +41,19 @@ public class Camino extends OggettoContenitore implements UsabileCon<Secchio> {
     public void usaCon(Secchio secchio) {
         if (secchio.isRiempito())
             spegni();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Camino camino = (Camino) o;
+        return isAcceso() == camino.isAcceso();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), isAcceso());
     }
 }

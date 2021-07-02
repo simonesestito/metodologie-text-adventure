@@ -5,6 +5,7 @@ import it.uniroma1.textadv.entita.pojo.objects.Oggetto;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.BooleanSupplier;
 
 public class ObservableObject extends Oggetto implements Observable {
@@ -30,5 +31,18 @@ public class ObservableObject extends Oggetto implements Observable {
         if (!canTake)
             throw new LockedObjectException();
         super.spostaIn(contenitore);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ObservableObject that = (ObservableObject) o;
+        return Objects.equals(observers, that.observers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(observers);
     }
 }

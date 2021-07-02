@@ -117,6 +117,17 @@ public class StanzaProcessor implements EntityProcessor {
                 ));
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return obj != null && obj.getClass() == getClass();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     /**
      * Record per rappresentare un link con la sua direzione.
      * <p>

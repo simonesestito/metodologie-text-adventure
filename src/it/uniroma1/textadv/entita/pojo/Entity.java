@@ -4,6 +4,7 @@ import it.uniroma1.textadv.entita.pojo.features.ApribileCon;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Entità più generica di tutti gli elementi di gioco.
@@ -53,5 +54,18 @@ public abstract class Entity {
         }
 
         return String.join(", ", descriptionParts);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Entity entity = (Entity) o;
+        return Objects.equals(getName(), entity.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }

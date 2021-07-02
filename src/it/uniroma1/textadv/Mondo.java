@@ -7,6 +7,7 @@ import it.uniroma1.textadv.entita.pojo.Stanza;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Objects;
 
 /**
  * Classe immutabile che rappresenta il mondo di gioco
@@ -60,5 +61,19 @@ public class Mondo extends DescribableEntity {
      */
     public static Mondo fromFile(String file) throws IOException, GameFile.ParseException {
         return Mondo.fromFile(Path.of(file));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Mondo mondo = (Mondo) o;
+        return Objects.equals(getStart(), mondo.getStart());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getStart());
     }
 }

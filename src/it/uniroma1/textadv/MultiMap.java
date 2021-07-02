@@ -79,4 +79,17 @@ public class MultiMap<K, V> {
     public Set<K> keySet() {
         return map.keySet();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MultiMap<?, ?> multiMap = (MultiMap<?, ?>) o;
+        return Objects.equals(map, multiMap.map);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(map);
+    }
 }

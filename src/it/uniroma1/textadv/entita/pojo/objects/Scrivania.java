@@ -6,6 +6,7 @@ import it.uniroma1.textadv.entita.pojo.features.ApribileSemplice;
 import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Scrivania extends OggettoContenitore implements ApribileCon<Object> {
     private final ApribileSemplice apribileSemplice = new ApribileSemplice();
@@ -39,5 +40,19 @@ public class Scrivania extends OggettoContenitore implements ApribileCon<Object>
         if (!isAperto())
             throw new CommandException("La scrivania è chiusa");
         super.prendiOggetto(oggetto);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Scrivania scrivania = (Scrivania) o;
+        return Objects.equals(apribileSemplice, scrivania.apribileSemplice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), apribileSemplice);
     }
 }

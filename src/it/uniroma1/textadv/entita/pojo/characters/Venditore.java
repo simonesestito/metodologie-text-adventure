@@ -9,6 +9,7 @@ import it.uniroma1.textadv.entita.pojo.objects.Soldi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Venditore extends Personaggio implements Contenitore, Ricevitore<Soldi, Posizionabile> {
     private List<Posizionabile> carrello = new ArrayList<>();
@@ -53,5 +54,19 @@ public class Venditore extends Personaggio implements Contenitore, Ricevitore<So
         public InVenditaException() {
             super("Dovrai comprare l'articolo per prenderlo");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Venditore venditore = (Venditore) o;
+        return Objects.equals(carrello, venditore.carrello) && Objects.equals(soldiRicevuti, venditore.soldiRicevuti);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), carrello, soldiRicevuti);
     }
 }

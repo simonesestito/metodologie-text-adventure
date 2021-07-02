@@ -201,4 +201,17 @@ public class ConditionalBufferedReader extends BufferedReader implements AutoClo
     public void close() throws IOException {
         sourceReader.close();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ConditionalBufferedReader that = (ConditionalBufferedReader) o;
+        return Objects.equals(sourceReader, that.sourceReader) && Objects.equals(previousLine, that.previousLine);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sourceReader, previousLine);
+    }
 }

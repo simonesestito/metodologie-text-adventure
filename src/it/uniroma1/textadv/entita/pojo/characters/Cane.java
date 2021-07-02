@@ -11,4 +11,15 @@ public class Cane extends Personaggio implements Accarezzabile {
     public void accarezza() {
         System.out.println("Bau");
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return obj != null && obj.getClass() == getClass();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

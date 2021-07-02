@@ -1,6 +1,8 @@
 package it.uniroma1.textadv.entita.pojo.features;
 
 
+import java.util.Objects;
+
 public class ApribileConBlocco implements ApribileCon<BloccoApertura> {
     private BloccoApertura blocco;
 
@@ -20,5 +22,18 @@ public class ApribileConBlocco implements ApribileCon<BloccoApertura> {
     @Override
     public boolean isAperto() {
         return !blocco.isBloccato();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ApribileConBlocco that = (ApribileConBlocco) o;
+        return Objects.equals(blocco, that.blocco);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(blocco);
     }
 }

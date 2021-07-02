@@ -5,6 +5,8 @@ import it.uniroma1.textadv.entita.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entita.pojo.features.ApribileConBlocco;
 import it.uniroma1.textadv.entita.pojo.features.BloccoApertura;
 
+import java.util.Objects;
+
 public class Botola extends OggettoLink implements ApribileCon<BloccoApertura> {
     private final ApribileConBlocco apribileConBlocco = new ApribileConBlocco();
 
@@ -35,5 +37,18 @@ public class Botola extends OggettoLink implements ApribileCon<BloccoApertura> {
     @Override
     public boolean isAttraversabile() {
         return isAperto();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Botola botola = (Botola) o;
+        return Objects.equals(apribileConBlocco, botola.apribileConBlocco);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(apribileConBlocco);
     }
 }

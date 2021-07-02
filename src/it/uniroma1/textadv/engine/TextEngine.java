@@ -8,10 +8,7 @@ import it.uniroma1.textadv.entita.pojo.Entity;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -63,6 +60,19 @@ public class TextEngine {
 
         public TextEngine build() throws IOException, CommandNotFoundException {
             return new TextEngine(commandsFile, stopWordsFile);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Builder builder = (Builder) o;
+            return Objects.equals(commandsFile, builder.commandsFile) && Objects.equals(stopWordsFile, builder.stopWordsFile);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(commandsFile, stopWordsFile);
         }
     }
 
@@ -133,6 +143,19 @@ public class TextEngine {
         }
 
         return entities;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TextEngine that = (TextEngine) o;
+        return Objects.equals(entityResolver, that.entityResolver) && Objects.equals(stopWords, that.stopWords) && Objects.equals(commands, that.commands);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(entityResolver, stopWords, commands);
     }
 
     public static class CommandNotFoundException extends CommandException.Fatal {

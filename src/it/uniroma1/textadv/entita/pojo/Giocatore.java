@@ -149,7 +149,7 @@ public class Giocatore extends Personaggio {
 
     public void rompi(Rompibile rompibile, Rompitore rompitore) throws CommandException {
         rompibile.rompi(rompitore);
-        rispondiUtente("Fatto: " + rompibile);
+        rispondiUtente("Rotto: " + rompibile);
     }
 
     public void rompi(Rompibile rompibile) throws CommandException {
@@ -184,6 +184,20 @@ public class Giocatore extends Personaggio {
 
     public void parla(Parla parlatore) {
         rispondiUtente(parlatore + " dice: " + parlatore.parla());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Giocatore giocatore = (Giocatore) o;
+        return Objects.equals(userOutput, giocatore.userOutput) && Objects.equals(currentRoom, giocatore.currentRoom);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), userOutput, currentRoom);
     }
 
     private static class UnreachableRoomException extends CommandException {

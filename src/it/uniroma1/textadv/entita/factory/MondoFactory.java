@@ -39,4 +39,15 @@ public class MondoFactory {
                 .getResolvedDependency(Mondo.class)
                 .orElseThrow(() -> new GameFile.ParseException("World not found in this file"));
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return obj != null && obj.getClass() == getClass();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

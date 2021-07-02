@@ -8,6 +8,7 @@ import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class Inventario implements ContenitoreAggiungibile {
@@ -41,5 +42,18 @@ public class Inventario implements ContenitoreAggiungibile {
     @Override
     public String toString() {
         return "inventario";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Inventario that = (Inventario) o;
+        return Objects.equals(inventario, that.inventario);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(inventario);
     }
 }

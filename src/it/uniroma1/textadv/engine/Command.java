@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Command {
     public final static Command EMPTY = new Command("", null) {
@@ -58,6 +59,19 @@ public class Command {
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Command command = (Command) o;
+        return Objects.equals(getLiteralPrefix(), command.getLiteralPrefix()) && Objects.equals(mappingMethod, command.mappingMethod);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLiteralPrefix(), mappingMethod);
     }
 
     @Override

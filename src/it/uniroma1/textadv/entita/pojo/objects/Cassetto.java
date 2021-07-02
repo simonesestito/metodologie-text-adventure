@@ -4,6 +4,7 @@ import it.uniroma1.textadv.entita.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entita.pojo.features.ApribileSemplice;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Cassetto extends OggettoContenitore implements ApribileCon<Object> {
     private final ApribileSemplice apribileSemplice = new ApribileSemplice();
@@ -25,5 +26,19 @@ public class Cassetto extends OggettoContenitore implements ApribileCon<Object> 
     @Override
     public boolean isAperto() {
         return apribileSemplice.isAperto();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Cassetto cassetto = (Cassetto) o;
+        return Objects.equals(apribileSemplice, cassetto.apribileSemplice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), apribileSemplice);
     }
 }

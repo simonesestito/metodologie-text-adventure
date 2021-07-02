@@ -98,6 +98,17 @@ public class EntityResolver {
         return object.toString().equals(name);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return obj != null && obj.getClass() == getClass();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public static class UnresolvedEntityException extends CommandException.Fatal {
         public UnresolvedEntityException(Oggetto oggetto, Contenitore contenitore) {
             this(oggetto.getName(), contenitore);

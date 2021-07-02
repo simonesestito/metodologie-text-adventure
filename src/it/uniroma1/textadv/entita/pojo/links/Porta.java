@@ -5,6 +5,8 @@ import it.uniroma1.textadv.entita.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entita.pojo.features.ApribileConChiave;
 import it.uniroma1.textadv.entita.pojo.objects.Chiave;
 
+import java.util.Objects;
+
 public class Porta extends OggettoLink implements ApribileCon<Chiave> {
     private final ApribileConChiave apertura = new ApribileConChiave();
 
@@ -35,5 +37,19 @@ public class Porta extends OggettoLink implements ApribileCon<Chiave> {
     @Override
     public boolean isAttraversabile() {
         return isAperto();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Porta porta = (Porta) o;
+        return Objects.equals(apertura, porta.apertura);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), apertura);
     }
 }
