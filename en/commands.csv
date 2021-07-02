@@ -1,0 +1,17 @@
+look,guarda
+look,guarda,Oggetto
+open,apri,Apribile
+open,apri,ApribileConChiave,Chiave
+take,prendiDirezione,Link
+take,prendi,Oggetto
+take,prendi,Oggetto,Contenitore
+inventary,mostraInventario
+go,vai,Direction
+caress,accarezza,Accarezzabile
+break,rompi,Rompibile,Rompitore
+break,rompi,Rompibile
+use,usa,Usabile,Object
+give,dai,Entity,Ricevitore
+enter,entra,Link
+use,usa,Usabile
+talk,parla,Parla

@@ -11,15 +11,23 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 public class Gioco {
+    public static final Lingua DEFAULT_LANGUAGE = Lingua.IT;
     public static final String CLI_INPUT_PREFIX = "> ";
-    private final TextEngine textEngine;
+    private Lazy<TextEngine, IOException> textEngine = new Lazy<>(() -> new TextEngine.Builder().build());
 
-    public Gioco() throws IOException, TextEngine.CommandNotFoundException {
-        this(new TextEngine.Builder().build());
-    }
+    public enum Lingua {
+        EN("en/"),
+        IT("");
 
-    public Gioco(TextEngine textEngine) {
-        this.textEngine = textEngine;
+        private final String filePrefix;
+
+        Lingua(String filePrefix) {
+            this.filePrefix = filePrefix;
+        }
+
+        public String getFilePrefix() {
+            return filePrefix;
+        }
     }
 
     public void play(Mondo mondo) {
@@ -46,7 +54,7 @@ public class Gioco {
         while ((line = input.readLine()) != null) {
             try {
                 handler.handleCommandEcho(line);
-                textEngine.processInput(line).execute();
+                textEngine.get().processInput(line).execute();
             } catch (GameOverException e) {
                 System.out.println(e.getMessage());
                 return;
@@ -58,6 +66,16 @@ public class Gioco {
             System.out.println();
             System.out.print(CLI_INPUT_PREFIX);
         }
+    }
+
+    public void localizza(Lingua lingua) throws IOException {
+        textEngine = new Lazy<>(
+                () -> new TextEngine.Builder()
+                        .setCommandsFile(lingua.getFilePrefix() + TextEngine.COMMANDS_FILENAME)
+                        .setStopWordsFile(lingua.getFilePrefix() + TextEngine.STOPWORDS_FILENAME)
+                        .build()
+        );
+        textEngine.get();
     }
 
     private interface GameModeHandler {

@@ -38,6 +38,7 @@ public class Stanza extends DescribableEntity implements ContenitoreAggiungibile
 
     @Override
     public void aggiungiOggetto(Posizionabile oggetto) {
+        System.out.println(oggetto  + " in " + this);
         if (oggetto instanceof Oggetto)
             objects.add((Oggetto) oggetto);
     }

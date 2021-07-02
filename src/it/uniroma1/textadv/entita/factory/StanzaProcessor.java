@@ -60,7 +60,7 @@ public class StanzaProcessor implements EntityProcessor {
 
         var description = section.getLine(DESCRIPTION_LINE_KEY)
                 .map(GameFile.Line::getArgumentsString)
-                .orElseThrow(() -> new GameFile.ParseException("Room without a description found"));
+                .orElseThrow(() -> new GameFile.ParseException("Room without a description found: " + name));
 
         var stanza = new Stanza(name, description);
         context.addResolvedDependency(stanza);

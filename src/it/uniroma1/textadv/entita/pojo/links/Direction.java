@@ -5,14 +5,16 @@ import java.util.Optional;
 import java.util.Set;
 
 public enum Direction {
-    NORD("N"),
-    SUD("S"),
-    OVEST("O", "W"),
-    EST("E");
+    NORD("↑", "N"),
+    SUD("↓", "S"),
+    OVEST("←", "O", "W"),
+    EST("→", "E");
 
+    private final String symbol;
     private final Set<String> abbreviations;
 
-    Direction(String... abbreviations) {
+    Direction(String symbol, String... abbreviations) {
+        this.symbol = symbol;
         this.abbreviations = Set.of(abbreviations);
     }
 
@@ -27,5 +29,10 @@ public enum Direction {
                         return Optional.empty();
                     }
                 });
+    }
+
+    @Override
+    public String toString() {
+        return symbol;
     }
 }

@@ -105,7 +105,7 @@ public class Giocatore extends Personaggio {
         }
 
         rispondiUtente("Posso andare verso:");
-        currentRoom.getLinks().forEach((direction, link) -> rispondiUtente(direction.name() + " -> " + link));
+        currentRoom.getLinks().forEach((direction, link) -> rispondiUtente(direction.toString() + " -> " + link));
     }
 
     public void guarda(Entity entity) {

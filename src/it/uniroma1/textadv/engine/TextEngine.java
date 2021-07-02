@@ -1,8 +1,8 @@
 package it.uniroma1.textadv.engine;
 
+import it.uniroma1.textadv.Gioco;
 import it.uniroma1.textadv.MultiMap;
 import it.uniroma1.textadv.StreamUtils;
-import it.uniroma1.textadv.entita.parser.ConditionalBufferedReader;
 import it.uniroma1.textadv.entita.pojo.Entity;
 
 import java.io.IOException;
@@ -15,6 +15,10 @@ import java.util.stream.Collectors;
  * Elabora l'input utente e capisce i comandi
  */
 public class TextEngine {
+    public static final String COMMANDS_FILENAME = "commands.csv";
+    public static final String STOPWORDS_FILENAME = "stopwords.txt";
+    public static final String DEFAULT_COMMANDS_FILE = Gioco.DEFAULT_LANGUAGE.getFilePrefix() + COMMANDS_FILENAME;
+    public static final String DEFAULT_STOPWORDS_FILE = Gioco.DEFAULT_LANGUAGE.getFilePrefix() + STOPWORDS_FILENAME;
     private final EntityResolver entityResolver = new EntityResolver();
     private final Set<String> stopWords;
 
@@ -32,48 +36,6 @@ public class TextEngine {
                 .skip(1)
                 .collect(Collectors.toSet());
 
-    }
-
-    public static class Builder {
-        public static final String DEFAULT_COMMANDS_FILE = "commands.csv";
-        public static final String DEFAULT_STOPWORDS_FILE = "stopwords.txt";
-        private Path commandsFile = Path.of(DEFAULT_COMMANDS_FILE);
-        private Path stopWordsFile = Path.of(DEFAULT_STOPWORDS_FILE);
-
-        public Builder setCommandsFile(Path commandsFile) {
-            this.commandsFile = commandsFile;
-            return this;
-        }
-
-        public Builder setCommandsFile(String commandsFile) {
-            return setCommandsFile(Path.of(commandsFile));
-        }
-
-        public Builder setStopWordsFile(Path stopWordsFile) {
-            this.stopWordsFile = stopWordsFile;
-            return this;
-        }
-
-        public Builder setStopWordsFile(String stopWordsFile) {
-            return setStopWordsFile(Path.of(stopWordsFile));
-        }
-
-        public TextEngine build() throws IOException, CommandNotFoundException {
-            return new TextEngine(commandsFile, stopWordsFile);
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Builder builder = (Builder) o;
-            return Objects.equals(commandsFile, builder.commandsFile) && Objects.equals(stopWordsFile, builder.stopWordsFile);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(commandsFile, stopWordsFile);
-        }
     }
 
     /**
@@ -156,6 +118,50 @@ public class TextEngine {
     @Override
     public int hashCode() {
         return Objects.hash(entityResolver, stopWords, commands);
+    }
+
+    public static class Builder {
+        private Path commandsFile = Path.of(DEFAULT_COMMANDS_FILE);
+        private Path stopWordsFile = Path.of(DEFAULT_STOPWORDS_FILE);
+
+        public Builder setCommandsFile(Path commandsFile) {
+            this.commandsFile = commandsFile;
+            return this;
+        }
+
+        public Builder setCommandsFile(String commandsFile) {
+            return setCommandsFile(Path.of(commandsFile));
+        }
+
+        public Builder setStopWordsFile(Path stopWordsFile) {
+            this.stopWordsFile = stopWordsFile;
+            return this;
+        }
+
+        public Builder setStopWordsFile(String stopWordsFile) {
+            return setStopWordsFile(Path.of(stopWordsFile));
+        }
+
+        public TextEngine build() throws IOException {
+            try {
+                return new TextEngine(commandsFile, stopWordsFile);
+            } catch (CommandNotFoundException e) {
+                throw new IOException(e);
+            }
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Builder builder = (Builder) o;
+            return Objects.equals(commandsFile, builder.commandsFile) && Objects.equals(stopWordsFile, builder.stopWordsFile);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(commandsFile, stopWordsFile);
+        }
     }
 
     public static class CommandNotFoundException extends CommandException.Fatal {
