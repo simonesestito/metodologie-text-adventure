@@ -4,6 +4,8 @@ import it.uniroma1.textadv.engine.CommandException;
 import it.uniroma1.textadv.entita.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entita.pojo.features.ApribileSemplice;
 import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
 import java.util.List;
 import java.util.Objects;
@@ -38,7 +40,7 @@ public class Scrivania extends OggettoContenitore implements ApribileCon<Object>
     @Override
     public void prendiOggetto(Posizionabile oggetto) throws CommandException {
         if (!isAperto())
-            throw new CommandException("La scrivania è chiusa");
+            throw new CommandException(Strings.of(StringId.DESK_CLOSED));
         super.prendiOggetto(oggetto);
     }
 

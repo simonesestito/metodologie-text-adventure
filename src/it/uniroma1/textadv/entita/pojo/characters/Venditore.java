@@ -6,6 +6,8 @@ import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
 import it.uniroma1.textadv.entita.pojo.features.Ricevitore;
 import it.uniroma1.textadv.entita.pojo.objects.Oggetto;
 import it.uniroma1.textadv.entita.pojo.objects.Soldi;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
 import java.util.*;
 
@@ -50,7 +52,7 @@ public class Venditore extends Personaggio implements Contenitore, Ricevitore<So
 
     public static class InVenditaException extends CommandException {
         public InVenditaException() {
-            super("Dovrai comprare l'articolo per prenderlo");
+            super(Strings.of(StringId.ITEM_ADDED_TO_CART));
         }
     }
 

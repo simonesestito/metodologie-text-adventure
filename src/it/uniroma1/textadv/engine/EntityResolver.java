@@ -8,6 +8,8 @@ import it.uniroma1.textadv.entita.pojo.links.Direction;
 import it.uniroma1.textadv.entita.pojo.links.Link;
 import it.uniroma1.textadv.entita.pojo.Giocatore;
 import it.uniroma1.textadv.entita.pojo.objects.Oggetto;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
 import java.util.Collection;
 import java.util.List;
@@ -116,7 +118,7 @@ public class EntityResolver {
         }
 
         public UnresolvedEntityException(Object nome, Contenitore contenitore) {
-            super("Non trovo " + nome + " in  " + contenitore);
+            super(Strings.of(StringId.ENTITY_NOT_FOUND, nome.toString(), contenitore.toString()));
         }
     }
 }

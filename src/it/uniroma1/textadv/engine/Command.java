@@ -1,6 +1,8 @@
 package it.uniroma1.textadv.engine;
 
-import it.uniroma1.textadv.ReflectionUtils;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
+import it.uniroma1.textadv.utils.ReflectionUtils;
 import it.uniroma1.textadv.entita.pojo.Giocatore;
 
 import java.lang.reflect.InvocationTargetException;
@@ -81,7 +83,7 @@ public class Command {
 
     public static class FileCommandException extends TextEngine.CommandNotFoundException {
         public FileCommandException(String commandLine) {
-            super("Comando non trovato, verifica la correttezza del file: " + commandLine);
+            super(Strings.of(StringId.COMMAND_NOT_FOUND, commandLine));
         }
     }
 }

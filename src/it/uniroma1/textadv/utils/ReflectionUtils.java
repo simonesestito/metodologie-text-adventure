@@ -1,4 +1,4 @@
-package it.uniroma1.textadv;
+package it.uniroma1.textadv.utils;
 
 import java.io.File;
 import java.io.IOException;

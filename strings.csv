@@ -1,0 +1,39 @@
+COMMAND_NOT_FOUND,Comando non trovato, verifica la correttezza del file: %s
+ENTITY_NOT_FOUND,Non trovo %s in %s
+ARGUMENT_COMMAND_NOT_FOUND,Non ho capito a che ti riferisci con %s
+ACTION_NOT_ALLOWED,Non posso eseguire questa azione senza nulla
+ACTION_ARGS_NOT_ALLOWED,Non posso eseguire questa azione con %s
+ACTION_UNKNOWN,Non ho capito cosa fare
+ACTION_ARGS_UNKNOWN,Non ho capito cosa fare con %s
+ITEM_ADDED_TO_CART,Dovrai comprare l'articolo per prenderlo
+LINK_NOT_USABLE,Collegamento non attraversabile: %s
+FIREPLACE_LIT,Il camino è ancora acceso
+INVENTARY_NAME,inventario
+CONTAINER_HAS_HIDDEN_CONTENT,c'è qualcosa dentro
+CONTAINER_HAS_NO_CONTENT,dentro non c'è nulla
+CONTAINER_HAS_VISIBLE_CONTENT,dentro c'è: %s
+OBJECT_BROKEN,%s è già rotto
+UNABLE_TO_BREAK,Serve un oggetto per rompere %s
+OBJECT_BROKEN_STATUS_SUFFIX, (rotto)
+OBJECT_UNBROKEN,%s è ancora intero
+DESK_CLOSED,La scrivania è chiusa
+ENTITY_OPEN,%s è aperto
+ENTITY_CLOSED,%s è chiuso
+PLAYER_CURRENT_LOCATION,Ora sono in %s
+DESTINATION_NOT_FOUND,Destinazione non trovata
+PLAYER_NO_OBJECTS_SEEN,Non vedo alcun oggetto qui
+PLAYER_OBJECTS_SEEN,Qui attorno vedo %s
+PLAYER_NO_PLAYERS_SEEN,Sono da solo in questo posto
+PLAYER_PLAYERS_SEEN,C'è anche %s
+PLAYER_DIRECTIONS,Posso andare verso:
+PLAYER_ENTITY_SEEN,Sto vedendo %s
+PLAYER_ACTION_OPEN,Ho aperto %s
+PLAYER_ACTION_TAKE,Ho preso %s da %s
+PLAYER_ACTION_BREAK,Ho rotto %s
+PLAYER_ACTION_USE,Ho usato %s con %s
+PLAYER_ACTION_RECEIVE,Ho ricevuto queste cose:
+PLAYER_ACTION_LISTEN_SPOKEN,%s dice: %s
+PLAYER_EMPTY_INVENTARY,Non ho nulla nell'inventario
+PLAYER_INVENTARY_CONTENT,Nell'inventario ho raccolto:
+UNREACHABLE_ROOM_ERROR,Stanza irraggiungibile
+GAME_OVER,Gioco concluso. Hai vinto, complimenti!

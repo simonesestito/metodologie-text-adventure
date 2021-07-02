@@ -2,6 +2,8 @@ package it.uniroma1.textadv.entita.pojo.links;
 
 import it.uniroma1.textadv.engine.CommandException;
 import it.uniroma1.textadv.entita.pojo.Stanza;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -12,7 +14,7 @@ public interface Link {
 
     default Stanza attraversa(Stanza da) throws CommandException {
         if (!isAttraversabile())
-            throw new CommandException("Collegamento non attraversabile: " + this);
+            throw new CommandException(Strings.of(StringId.LINK_NOT_USABLE, toString()));
 
         if (Objects.equals(getStanzaA(), da)) {
             return getStanzaB();

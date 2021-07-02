@@ -2,6 +2,9 @@ package it.uniroma1.textadv;
 
 import it.uniroma1.textadv.engine.CommandException;
 import it.uniroma1.textadv.engine.TextEngine;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
+import it.uniroma1.textadv.utils.Lazy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +16,7 @@ import java.util.Objects;
 public class Gioco {
     public static final Lingua DEFAULT_LANGUAGE = Lingua.IT;
     public static final String CLI_INPUT_PREFIX = "> ";
-    private Lazy<TextEngine, IOException> textEngine = new Lazy<>(() -> new TextEngine.Builder().build());
+    private Lazy<TextEngine, IOException> textEngine;
 
     public enum Lingua {
         EN("en/"),
@@ -27,6 +30,14 @@ public class Gioco {
 
         public String getFilePrefix() {
             return filePrefix;
+        }
+    }
+
+    {
+        try {
+            localizza(DEFAULT_LANGUAGE);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -69,6 +80,8 @@ public class Gioco {
     }
 
     public void localizza(Lingua lingua) throws IOException {
+        Strings.localizza(lingua);
+
         textEngine = new Lazy<>(
                 () -> new TextEngine.Builder()
                         .setCommandsFile(lingua.getFilePrefix() + TextEngine.COMMANDS_FILENAME)
@@ -113,7 +126,7 @@ public class Gioco {
 
     public static class GameOverException extends CommandException {
         public GameOverException() {
-            super("Gioco concluso. Hai vinto, complimenti!");
+            super(Strings.of(StringId.GAME_OVER));
         }
     }
 

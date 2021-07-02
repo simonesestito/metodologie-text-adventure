@@ -1,16 +1,15 @@
 package it.uniroma1.textadv.entita.pojo;
 
-import it.uniroma1.textadv.Gioco;
 import it.uniroma1.textadv.Mondo;
 import it.uniroma1.textadv.engine.CommandException;
 import it.uniroma1.textadv.entita.pojo.characters.Personaggio;
 import it.uniroma1.textadv.entita.pojo.features.*;
 import it.uniroma1.textadv.entita.pojo.links.Direction;
 import it.uniroma1.textadv.entita.pojo.links.Link;
-import it.uniroma1.textadv.entita.pojo.objects.Tesoro;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
 import java.io.PrintStream;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -47,7 +46,7 @@ public class Giocatore extends Personaggio {
 
     public static Giocatore init(String nome, Stanza stanza) {
         if (INSTANCE != null)
-            throw new IllegalStateException("Giocatore già inizializzato!");
+            throw new IllegalStateException();
         INSTANCE = new Giocatore(nome, stanza);
         return getInstance();
     }
@@ -73,53 +72,55 @@ public class Giocatore extends Personaggio {
             throw new UnreachableRoomException();
 
         if (currentRoom != null)
-            rispondiUtente("Ora sono in " + stanza);
+            rispondiUtente(Strings.of(StringId.PLAYER_CURRENT_LOCATION, stanza.toString()));
 
         currentRoom = stanza;
     }
 
     public void vai(Direction direction) throws CommandException {
         var destination = getCurrentLocation().getLink(direction)
-                .orElseThrow(() -> new CommandException("Destinazione non trovata"))
+                .orElseThrow(() -> new CommandException(Strings.of(StringId.DESTINATION_NOT_FOUND)))
                 .attraversa(getCurrentLocation());
         vaiIn(destination);
     }
 
     public void guarda() {
-        rispondiUtente("Sono in " + currentRoom);
+        rispondiUtente(Strings.of(StringId.PLAYER_CURRENT_LOCATION, currentRoom.toString()));
 
         if (currentRoom.getObjects().isEmpty()) {
-            rispondiUtente("Non ci sono oggetti qui");
+            rispondiUtente(Strings.of(StringId.PLAYER_NO_OBJECTS_SEEN));
         } else {
-            rispondiUtente("Qui intorno vedo " + currentRoom.getObjects().stream()
+            var objects = currentRoom.getObjects().stream()
                     .map(Entity::getName)
-                    .collect(Collectors.joining(", ")));
+                    .collect(Collectors.joining(", "));
+            rispondiUtente(Strings.of(StringId.PLAYER_OBJECTS_SEEN, currentRoom.toString()));
         }
 
         if (currentRoom.getCharacters().isEmpty()) {
-            rispondiUtente("Sono da solo in questo posto");
+            rispondiUtente(Strings.of(StringId.PLAYER_NO_PLAYERS_SEEN));
         } else {
-            rispondiUtente("Vedo anche " + currentRoom.getCharacters().stream()
+            var coPlayers = currentRoom.getCharacters().stream()
                     .map(Object::toString)
-                    .collect(Collectors.joining(", ")));
+                    .collect(Collectors.joining(", "));
+            rispondiUtente(Strings.of(StringId.PLAYER_PLAYERS_SEEN, currentRoom.toString()));
         }
 
-        rispondiUtente("Posso andare verso:");
-        currentRoom.getLinks().forEach((direction, link) -> rispondiUtente(direction.toString() + " -> " + link));
+        rispondiUtente(Strings.of(StringId.PLAYER_DIRECTIONS));
+        currentRoom.getLinks().forEach((direction, link) -> rispondiUtente(direction.toString() + " " + link));
     }
 
     public void guarda(Entity entity) {
-        rispondiUtente("Sto vedendo " + entity);
+        rispondiUtente(Strings.of(StringId.PLAYER_ENTITY_SEEN, entity.toString()));
     }
 
     public void apri(ApribileCon<?> apribile) throws CommandException {
         apribile.apri();
-        rispondiUtente("Ho aperto " + apribile);
+        rispondiUtente(Strings.of(StringId.PLAYER_ACTION_OPEN, apribile.toString()));
     }
 
     public <T> void apri(ApribileCon<T> apribile, T oggetto) throws CommandException {
         apribile.apri(oggetto);
-        rispondiUtente("Ho aperto " + apribile);
+        rispondiUtente(Strings.of(StringId.PLAYER_ACTION_OPEN, apribile.toString()));
     }
 
     public void prendiDirezione(Link link) throws CommandException {
@@ -132,16 +133,18 @@ public class Giocatore extends Personaggio {
 
     public void prendi(Posizionabile oggetto, Contenitore contenitore) throws CommandException {
         oggetto.spostaIn(getInventario());
-        rispondiUtente("Ho preso " + oggetto + " da " + contenitore);
+        rispondiUtente(Strings.of(StringId.PLAYER_ACTION_TAKE, oggetto.toString(), contenitore.toString()));
     }
 
     public void mostraInventario() {
-        if (getInventario().isEmpty())
-            rispondiUtente("Non ho nulla nell'inventario");
-        else
-            rispondiUtente("Ci sta: " + getInventario().stream()
+        if (getInventario().isEmpty()) {
+            rispondiUtente(Strings.of(StringId.PLAYER_EMPTY_INVENTARY));
+        } else {
+            var objects = getInventario().stream()
                     .map(Object::toString)
-                    .collect(Collectors.joining(", ")));
+                    .collect(Collectors.joining(", "));
+            rispondiUtente(Strings.of(StringId.PLAYER_INVENTARY_CONTENT, objects));
+        }
     }
 
     public void accarezza(Accarezzabile accarezzabile) {
@@ -150,7 +153,7 @@ public class Giocatore extends Personaggio {
 
     public void rompi(Rompibile rompibile, Rompitore rompitore) throws CommandException {
         rompibile.rompi(rompitore);
-        rispondiUtente("Rotto: " + rompibile);
+        rispondiUtente(Strings.of(StringId.PLAYER_ACTION_BREAK, rompibile.toString()));
     }
 
     public void rompi(Rompibile rompibile) throws CommandException {
@@ -159,7 +162,7 @@ public class Giocatore extends Personaggio {
 
     public <T> void usa(T oggetto, UsabileCon<T> soggetto) throws CommandException {
         soggetto.usaCon(oggetto);
-        rispondiUtente("Ho usato " + oggetto + " con " + soggetto);
+        rispondiUtente(Strings.of(StringId.PLAYER_ACTION_USE, oggetto, soggetto));
     }
 
     public void usa(Usabile soggetto) throws CommandException {
@@ -171,7 +174,7 @@ public class Giocatore extends Personaggio {
         var ricevuto = ricevitore.ricevi(oggetto);
 
         if (!ricevuto.isEmpty()) {
-            rispondiUtente("Oggetti ricevuti:");
+            rispondiUtente(Strings.of(StringId.PLAYER_ACTION_RECEIVE));
             for (var oggettoRicevuto : ricevuto) {
                 rispondiUtente(oggettoRicevuto.getName());
                 oggettoRicevuto.spostaIn(getInventario());
@@ -184,7 +187,7 @@ public class Giocatore extends Personaggio {
     }
 
     public void parla(Parla parlatore) {
-        rispondiUtente(parlatore + " dice: " + parlatore.parla());
+        rispondiUtente(Strings.of(StringId.PLAYER_ACTION_LISTEN_SPOKEN, parlatore, parlatore.parla()));
     }
 
     @Override
@@ -207,7 +210,7 @@ public class Giocatore extends Personaggio {
         }
 
         public UnreachableRoomException(String room) {
-            super("Stanza irraggiungibile" + (room == null ? "" : ": " + room));
+            super(Strings.of(StringId.UNREACHABLE_ROOM_ERROR) + (room == null ? "" : ": " + room));
         }
     }
 }

@@ -1,7 +1,7 @@
 package it.uniroma1.textadv.entita.factory;
 
-import it.uniroma1.textadv.MultiMap;
-import it.uniroma1.textadv.ReflectionUtils;
+import it.uniroma1.textadv.utils.MultiMap;
+import it.uniroma1.textadv.utils.ReflectionUtils;
 import it.uniroma1.textadv.entita.parser.GameFile;
 import it.uniroma1.textadv.entita.pojo.Entity;
 

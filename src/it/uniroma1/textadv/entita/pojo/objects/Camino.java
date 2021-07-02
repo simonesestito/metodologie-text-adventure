@@ -3,6 +3,8 @@ package it.uniroma1.textadv.entita.pojo.objects;
 import it.uniroma1.textadv.engine.CommandException;
 import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
 import it.uniroma1.textadv.entita.pojo.features.UsabileCon;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
 import java.util.List;
 import java.util.Objects;
@@ -33,7 +35,7 @@ public class Camino extends OggettoContenitore implements UsabileCon<Secchio> {
     @Override
     public void prendiOggetto(Posizionabile oggetto) throws CommandException {
         if (acceso)
-            throw new CommandException("Il camino è ancora acceso");
+            throw new CommandException(Strings.of(StringId.FIREPLACE_LIT));
         super.prendiOggetto(oggetto);
     }
 

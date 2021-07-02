@@ -5,6 +5,8 @@ import it.uniroma1.textadv.engine.EntityResolver;
 import it.uniroma1.textadv.entita.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entita.pojo.features.Contenitore;
 import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -42,14 +44,15 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
     public String toString() {
         String contentDescription;
         if (isContentHidden()) {
-            contentDescription = "c'è qualcosa dentro";
+            contentDescription = Strings.of(StringId.CONTAINER_HAS_HIDDEN_CONTENT);
         } else if (getOggettiContenuti().isEmpty()) {
-            contentDescription = "dentro non c'è nulla";
+            contentDescription = Strings.of(StringId.CONTAINER_HAS_NO_CONTENT);
         } else {
-            contentDescription = "dentro c'è: " + getOggettiContenuti()
+            var objects = getOggettiContenuti()
                     .stream()
                     .map(Objects::toString)
                     .collect(Collectors.joining(", "));
+            contentDescription = Strings.of(StringId.CONTAINER_HAS_VISIBLE_CONTENT, objects);
         }
         return super.toString() + ", " + contentDescription;
     }

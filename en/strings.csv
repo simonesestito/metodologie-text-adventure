@@ -1,0 +1,39 @@
+COMMAND_NOT_FOUND,Command not found, check the correctness of the file: %s
+ENTITY_NOT_FOUND,I can't find %s in %s
+ARGUMENT_COMMAND_NOT_FOUND,I can't understand what you're talking about with %s
+ACTION_NOT_ALLOWED,I can't perform this action without anything
+ACTION_ARGS_NOT_ALLOWED,I can't perform this action with %s
+ACTION_UNKNOWN,I can't understand what I'm supposed to do
+ACTION_ARGS_UNKNOWN,I can't understand what I'm supposed to do with %s
+ITEM_ADDED_TO_CART,You'll need to pay for this item to actually get it
+LINK_NOT_USABLE,I can't enter this link: %s
+FIREPLACE_LIT,The fireplace is still burning
+INVENTARY_NAME,inventary
+CONTAINER_HAS_HIDDEN_CONTENT,there's something inside
+CONTAINER_HAS_NO_CONTENT,there's nothing inside
+CONTAINER_HAS_VISIBLE_CONTENT,I can see %s inside
+OBJECT_BROKEN,%s is already broken
+UNABLE_TO_BREAK,I need an object to break %s
+OBJECT_BROKEN_STATUS_SUFFIX, (broken)
+OBJECT_UNBROKEN,%s is still unbroken
+DESK_CLOSED,The desk is closed
+ENTITY_OPEN,%s is open
+ENTITY_CLOSED,%s is closed
+PLAYER_CURRENT_LOCATION,I'm inside %s
+DESTINATION_NOT_FOUND,I don't know how to reach this destination
+PLAYER_NO_OBJECTS_SEEN,I can't see any object here
+PLAYER_OBJECTS_SEEN,I see %s
+PLAYER_NO_PLAYERS_SEEN,I feel like I'm alone here
+PLAYER_PLAYERS_SEEN,There's also %s
+PLAYER_DIRECTIONS,I can go to:
+PLAYER_ENTITY_SEEN,I'm looking at %s
+PLAYER_ACTION_OPEN,I've opened %s
+PLAYER_ACTION_TAKE,I've taken %s da %s
+PLAYER_ACTION_BREAK,I've broken %s
+PLAYER_ACTION_USE,I've used %s against %s
+PLAYER_ACTION_RECEIVE,I received these things:
+PLAYER_ACTION_LISTEN_SPOKEN,%s says: %s
+PLAYER_EMPTY_INVENTARY,I've nothing in the inventary
+PLAYER_INVENTARY_CONTENT,In the inventary, I'm keeping:
+UNREACHABLE_ROOM_ERROR,Sorry, this room is unreachable
+GAME_OVER,Game over. You won, congratulations!

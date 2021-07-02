@@ -1,9 +1,9 @@
 package it.uniroma1.textadv.entita.pojo;
 
 import it.uniroma1.textadv.entita.pojo.features.ApribileCon;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -42,18 +42,13 @@ public abstract class Entity {
      */
     @Override
     public String toString() {
-        List<String> descriptionParts = new LinkedList<>();
-        descriptionParts.add(getName());
-
         if (this instanceof ApribileCon<?>) {
-            descriptionParts.add(
-                    ((ApribileCon<?>) this).isAperto()
-                            ? "è aperto"
-                            : "è chiuso"
-            );
+            return ((ApribileCon<?>) this).isAperto()
+                    ? Strings.of(StringId.ENTITY_OPEN, getName())
+                    : Strings.of(StringId.ENTITY_CLOSED, getName());
+        } else {
+            return getName();
         }
-
-        return String.join(", ", descriptionParts);
     }
 
     @Override

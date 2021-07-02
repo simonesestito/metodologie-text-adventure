@@ -4,6 +4,8 @@ import it.uniroma1.textadv.engine.CommandException;
 import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
 import it.uniroma1.textadv.entita.pojo.features.Rompibile;
 import it.uniroma1.textadv.entita.pojo.features.Rompitore;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +20,7 @@ public class Salvadanaio extends OggettoContenitore implements Rompibile {
 
     @Override
     public void rompi(Rompitore rompitore) throws CommandException {
-        if (rotto)
-            throw new CommandException("Salvadanaio già rotto");
-
-        if (rompitore == null)
-            throw new CommandException("Serve un oggetto per rompere il salvadanaio");
+        Rompibile.super.rompi(rompitore);
 
         rotto = true;
 
@@ -34,19 +32,24 @@ public class Salvadanaio extends OggettoContenitore implements Rompibile {
     }
 
     @Override
+    public boolean isRotto() {
+        return rotto;
+    }
+
+    @Override
     protected boolean isContentHidden() {
         return !rotto;
     }
 
     @Override
     public String toString() {
-        return super.toString() + (rotto ? " (rotto)" : "");
+        return super.toString() + (rotto ? Strings.of(StringId.OBJECT_BROKEN_STATUS_SUFFIX) : "");
     }
 
     @Override
     public void prendiOggetto(Posizionabile oggetto) throws CommandException {
         if (!rotto) {
-            throw new CommandException("Salvadanaio ancora intero");
+            throw new ObjectUnbrokenException(getName());
         }
 
         super.prendiOggetto(oggetto);

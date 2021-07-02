@@ -4,6 +4,8 @@ import it.uniroma1.textadv.engine.CommandException;
 import it.uniroma1.textadv.engine.EntityResolver;
 import it.uniroma1.textadv.entita.pojo.features.ContenitoreAggiungibile;
 import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -39,7 +41,7 @@ public class Inventario implements ContenitoreAggiungibile {
 
     @Override
     public String toString() {
-        return "inventario";
+        return Strings.of(StringId.INVENTARY_NAME);
     }
 
     @Override

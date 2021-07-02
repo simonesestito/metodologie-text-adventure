@@ -1,9 +1,11 @@
 package it.uniroma1.textadv.engine;
 
 import it.uniroma1.textadv.Gioco;
-import it.uniroma1.textadv.MultiMap;
-import it.uniroma1.textadv.StreamUtils;
 import it.uniroma1.textadv.entita.pojo.Entity;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
+import it.uniroma1.textadv.utils.MultiMap;
+import it.uniroma1.textadv.utils.StreamUtils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -170,9 +172,11 @@ public class TextEngine {
         }
 
         public CommandNotFoundException(List<?> arguments) {
-            this("Non ho capito cosa fare" + (
-                    arguments.size() > 0 ? " con " + getArgumentsName(arguments) : ""
-            ));
+            this(
+                    arguments.size() > 0
+                            ? Strings.of(StringId.ACTION_ARGS_UNKNOWN, CommandNotFoundException.getArgumentsName(arguments))
+                            : Strings.of(StringId.ACTION_UNKNOWN)
+            );
         }
 
         private static String getArgumentsName(List<?> arguments) {
@@ -184,7 +188,7 @@ public class TextEngine {
 
     public static class ParseArgumentsException extends CommandNotFoundException {
         public ParseArgumentsException(String input) {
-            super("Non ho capito a che ti riferisci con " + input);
+            super(Strings.of(StringId.ARGUMENT_COMMAND_NOT_FOUND, input));
         }
 
         public ParseArgumentsException(List<String> input) {
@@ -194,11 +198,11 @@ public class TextEngine {
 
     public static class WrongArgumentsException extends CommandNotFoundException {
         public WrongArgumentsException(List<?> arguments) {
-            super("Non posso eseguire questa azione " + (
+            super(
                     arguments.size() > 0
-                            ? "con " + CommandNotFoundException.getArgumentsName(arguments)
-                            : "senza nulla"
-            ));
+                            ? Strings.of(StringId.ACTION_ARGS_NOT_ALLOWED, CommandNotFoundException.getArgumentsName(arguments))
+                            : Strings.of(StringId.ACTION_NOT_ALLOWED)
+            );
         }
     }
 }

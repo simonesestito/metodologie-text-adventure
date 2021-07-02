@@ -1,4 +1,4 @@
-package it.uniroma1.textadv;
+package it.uniroma1.textadv.utils;
 
 public class Lazy<T, X extends Throwable> {
     private final Builder<T, X> supplier;
