@@ -12,6 +12,6 @@ break,rompi,Rompibile,Rompitore
 break,rompi,Rompibile
 use,usa,Usabile,Object
 give,dai,Entity,Ricevitore
-enter,entra,Link
+enter,prendiDirezione,Link
 use,usa,Usabile
 talk,parla,Parla

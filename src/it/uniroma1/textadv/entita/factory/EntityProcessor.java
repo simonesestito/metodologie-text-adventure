@@ -114,6 +114,10 @@ public interface EntityProcessor {
     @Retention(RetentionPolicy.RUNTIME)
     @Target({ElementType.TYPE, ElementType.METHOD})
     @interface ForTag {
+        /**
+         * Nomi dei tag degli header delle sezioni di propria responsabilità
+         * @return Intestazioni gestite
+         */
         String[] value();
     }
 
@@ -234,6 +238,7 @@ public interface EntityProcessor {
          * In caso ne siano presenti più di una, ne restituisce una senza criteri.
          *
          * @param clazz Classe dell'entità cercata
+         * @param <T> Tipo della dipendenza da risolvere
          * @return Entità trovata, se presente
          */
         public <T> Optional<? extends T> getResolvedDependency(Class<T> clazz) {

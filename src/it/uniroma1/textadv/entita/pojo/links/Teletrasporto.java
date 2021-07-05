@@ -10,18 +10,41 @@ import it.uniroma1.textadv.entita.pojo.objects.Chiave;
 
 import java.util.Objects;
 
+/**
+ * Teletrasporto come collegamento tra stanze, chiuso a chiave
+ */
 public class Teletrasporto extends OggettoLink implements ApribileCon<Chiave>, Usabile {
+    /**
+     * Implementazione parametrizzata (Strategy) dell'apertura
+     */
     private final ApribileConChiave apertura = new ApribileConChiave();
 
-    public Teletrasporto(String name, Stanza stanzaB, Stanza stanzaA) {
-        super(name, stanzaB, stanzaA);
+    /**
+     * Crea un nuovo teletrasporto
+     *
+     * @param name    Nome del teletrasporto
+     * @param stanzaA Stanza collegata
+     * @param stanzaB Stanza collegata
+     */
+    public Teletrasporto(String name, Stanza stanzaA, Stanza stanzaB) {
+        super(name, stanzaA, stanzaB);
     }
 
+    /**
+     * Apri il teletraporto senza alcun oggetto
+     *
+     * @throws AperturaException Errore nell'apertura
+     */
     @Override
     public void apri() throws AperturaException {
         apertura.apri();
     }
 
+    /**
+     * Apri il teletraporto con la chiave
+     *
+     * @throws AperturaException Errore nell'apertura
+     */
     @Override
     public void apri(Chiave oggetto) throws AperturaException {
         apertura.apri(oggetto);
@@ -36,21 +59,42 @@ public class Teletrasporto extends OggettoLink implements ApribileCon<Chiave>, U
         }
     }
 
+    /**
+     * Chiudi il teletraporto con la chiave
+     *
+     * @throws ChiusuraException Errore nell'apertura
+     */
     @Override
     public void chiudi(Chiave oggetto) throws ChiusuraException {
         apertura.chiudi(oggetto);
     }
 
+    /**
+     * Controlla se il teletrasporto è attualmente aperto
+     *
+     * @return <code>true</code> se è aperto
+     */
     @Override
     public boolean isAperto() {
         return apertura.isAperto();
     }
 
+    /**
+     * Usa il teletrasporto, quindi entra al suo interno il protagonista
+     *
+     * @throws CommandException Errore nell'utilizzo
+     * @see Giocatore#prendiDirezione(Link)
+     */
     @Override
     public void usa() throws CommandException {
-        Giocatore.getInstance().entra(this);
+        Giocatore.getInstance().prendiDirezione(this);
     }
 
+    /**
+     * Controlla se i due teletrasporti sono uguali
+     * @param o Altro oggetto
+     * @return <code>true</code> se sono uguali
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,10 +102,5 @@ public class Teletrasporto extends OggettoLink implements ApribileCon<Chiave>, U
         if (!super.equals(o)) return false;
         Teletrasporto that = (Teletrasporto) o;
         return Objects.equals(apertura, that.apertura);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), apertura);
     }
 }

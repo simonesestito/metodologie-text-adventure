@@ -12,6 +12,7 @@ rompi,rompi,Rompibile,Rompitore
 rompi,rompi,Rompibile
 usa,usa,Usabile,Object
 dai,dai,Entity,Ricevitore
-entra,entra,Link
+entra,prendiDirezione,Link
 usa,usa,Usabile
 parla,parla,Parla
+,vai,Direction

@@ -60,6 +60,16 @@ public class MultiMap<K, V> {
     }
 
     /**
+     * Controlla se una chiave è presente nella mappa
+     *
+     * @param key Chiave da cercare
+     * @return <code>true</code> se la chiave è presente
+     */
+    public boolean containsKey(K key) {
+        return map.containsKey(key);
+    }
+
+    /**
      * Rimuovi una chiave dalla multimappa,
      * consumando i propri valori, se la chiave era presente e non vuota.
      *
@@ -72,14 +82,28 @@ public class MultiMap<K, V> {
             consumedValues.forEach(valueConsumer);
     }
 
+    /**
+     * Verifica se la mappa è vuota
+     * @return <code>true</code> se la mappa è vuota
+     */
     public boolean isEmpty() {
         return map.isEmpty();
     }
 
+    /**
+     * Ottieni l'insieme delle chiavi della multimappa
+     * @return Insieme delle chiavi
+     * @see Map#keySet()
+     */
     public Set<K> keySet() {
         return map.keySet();
     }
 
+    /**
+     * Controlla se l'oggetto corrente e quello dato sono due multimappe uguali
+     * @param o Altro oggetto
+     * @return <code>true</code> se sono due multimappe uguali
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,8 +112,12 @@ public class MultiMap<K, V> {
         return Objects.equals(map, multiMap.map);
     }
 
+    /**
+     * Calcola l'hash in base alla mappa sottostante
+     * @return Hash della multimappa
+     */
     @Override
     public int hashCode() {
-        return Objects.hash(map);
+        return map.hashCode();
     }
 }

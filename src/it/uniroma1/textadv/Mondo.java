@@ -63,6 +63,11 @@ public class Mondo extends DescribableEntity {
         return Mondo.fromFile(Path.of(file));
     }
 
+    /**
+     * Controlla se l'oggetto corrente e quello dato sono due mondi uguali
+     * @param o Altro oggetto
+     * @return <code>true</code> se sono due mondi uguali
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,6 +77,10 @@ public class Mondo extends DescribableEntity {
         return Objects.equals(getStart(), mondo.getStart());
     }
 
+    /**
+     * Calcola l'hash del mondo di gioco
+     * @return hash del mondo
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), getStart());

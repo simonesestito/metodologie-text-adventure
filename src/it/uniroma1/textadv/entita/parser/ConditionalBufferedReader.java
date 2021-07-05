@@ -138,6 +138,7 @@ public class ConditionalBufferedReader extends BufferedReader implements AutoClo
      * Inoltre, viene applicata una condizione di lettura, restituendo <code>null</code>
      * se non soddisfatta.
      *
+     * @param readCondition Condizione affinchè prosegui la lettura
      * @return Prossima linea che soddisfa la condizione, o <code>null</code>
      * @see ConditionalBufferedReader#readLine(Predicate)
      */
@@ -202,6 +203,11 @@ public class ConditionalBufferedReader extends BufferedReader implements AutoClo
         sourceReader.close();
     }
 
+    /**
+     * Controlla se i due reader sono uguali
+     * @param o Altro reader, od oggetto, da controllare
+     * @return <code>true</code> se i reader sono uguali
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -210,6 +216,10 @@ public class ConditionalBufferedReader extends BufferedReader implements AutoClo
         return Objects.equals(sourceReader, that.sourceReader) && Objects.equals(previousLine, that.previousLine);
     }
 
+    /**
+     * Calcola l'hash dell'oggetto
+     * @return Hash
+     */
     @Override
     public int hashCode() {
         return Objects.hash(sourceReader, previousLine);

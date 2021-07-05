@@ -38,3 +38,5 @@ PLAYER_INVENTARY_CONTENT,In the inventary, I'm keeping:
 UNREACHABLE_ROOM_ERROR,Sorry, this room is unreachable
 GAME_OVER,Game over. You won, congratulations!
 OBJECT_LOCKED,I can't take this object...
+UNABLE_TO_OPEN,Oh no, I can't open it
+UNABLE_TO_CLOSE,Oh no, I can't close it

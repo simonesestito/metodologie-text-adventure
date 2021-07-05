@@ -51,6 +51,11 @@ public abstract class Entity {
         }
     }
 
+    /**
+     * Controlla se l'oggetto corrente e quello dato sono due entità uguali
+     * @param o Altro oggetto
+     * @return <code>true</code> se sono due entità uguali
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,6 +64,10 @@ public abstract class Entity {
         return Objects.equals(getName(), entity.getName());
     }
 
+    /**
+     * Calcola l'hash in base al nome dell'entità
+     * @return Hash calcolato
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getName());

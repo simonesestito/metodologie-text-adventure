@@ -5,11 +5,23 @@ import it.uniroma1.textadv.entita.pojo.Giocatore;
 import it.uniroma1.textadv.entita.pojo.Stanza;
 import it.uniroma1.textadv.entita.pojo.features.Contenitore;
 
+/**
+ * Rappresentazione dei soldi nel gioco
+ */
 public class Soldi extends Oggetto {
+    /**
+     * Crea nuovi soldi
+     * @param name Nome dei soldi creati
+     */
     public Soldi(String name) {
         super(name);
     }
 
+    /**
+     * Sposta i soldi altrove
+     * @param contenitore Nuovo contenitore dove stare
+     * @throws CommandException Errore nello spostamento
+     */
     @Override
     public void spostaIn(Contenitore contenitore) throws CommandException {
         super.spostaIn(contenitore);

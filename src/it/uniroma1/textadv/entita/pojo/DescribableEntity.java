@@ -6,6 +6,9 @@ import java.util.Objects;
  * Entità che fornisce anche una descrizione
  */
 public class DescribableEntity extends Entity {
+    /**
+     * Descrizione dell'entità
+     */
     private final String description;
 
     /**
@@ -19,15 +22,28 @@ public class DescribableEntity extends Entity {
         this.description = description;
     }
 
+    /**
+     * Ottieni la descrizione dell'entità
+     * @return Descrizione dell'entità
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Rappresentazione come stringa dell'entità, includendo la descrizione fornita
+     * @return Rappresentazione testuale
+     */
     @Override
     public String toString() {
         return super.toString() + " (" + description + ")";
     }
 
+    /**
+     * Controlla se l'oggetto corrente e quello dato sono due entità uguali
+     * @param o Altro oggetto
+     * @return <code>true</code> se sono due entità uguali
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,6 +53,10 @@ public class DescribableEntity extends Entity {
         return Objects.equals(getDescription(), that.getDescription());
     }
 
+    /**
+     * Calcola l'hash in base anche alla descrizione
+     * @return Hash calcolato
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), getDescription());

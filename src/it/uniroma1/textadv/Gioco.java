@@ -13,25 +13,24 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 
+/**
+ * Rappresentazione del gioco principale
+ */
 public class Gioco {
+    /**
+     * Lingua di default
+     */
     public static final Lingua DEFAULT_LANGUAGE = Lingua.IT;
+
+    /**
+     * Prefisso da stampare per accettare un input utente
+     */
     public static final String CLI_INPUT_PREFIX = "> ";
+
+    /**
+     * Text engine che verrà caricato lazily
+     */
     private Lazy<TextEngine, IOException> textEngine;
-
-    public enum Lingua {
-        EN("en/"),
-        IT("");
-
-        private final String filePrefix;
-
-        Lingua(String filePrefix) {
-            this.filePrefix = filePrefix;
-        }
-
-        public String getFilePrefix() {
-            return filePrefix;
-        }
-    }
 
     {
         try {
@@ -41,6 +40,11 @@ public class Gioco {
         }
     }
 
+    /**
+     * Gioca in un mondo dato, prendendo l'input da {@link System#in} in modalità interattiva
+     *
+     * @param mondo Mondo da giocare
+     */
     public void play(Mondo mondo) {
         try {
             play(mondo, new BufferedReader(new InputStreamReader(System.in)), GameModeHandler.INTERACTIVE);
@@ -49,6 +53,12 @@ public class Gioco {
         }
     }
 
+    /**
+     * Gioca in un mondo dato, prendendo l'input da file in modalità non interattiva (fast-forward)
+     *
+     * @param mondo  Mondo da giocare
+     * @param script File da cui prendere i comandi
+     */
     public void play(Mondo mondo, Path script) {
         try {
             play(mondo, Files.newBufferedReader(script), GameModeHandler.NON_INTERACTIVE);
@@ -57,6 +67,15 @@ public class Gioco {
         }
     }
 
+    /**
+     * Gioca in un mondo, prendendo i comandi da un input generico
+     *
+     * @param mondo   Mondo da giocare
+     * @param input   Fonte dei comandi
+     * @param handler Strategy pattern applicato alle situazioni di gioco interattivo/non interattivo
+     * @throws IOException            Errore nella lettura dei file
+     * @throws CommandException.Fatal Errore di tipo fatale nel senso del fast-forward
+     */
     private void play(Mondo mondo, BufferedReader input, GameModeHandler handler) throws IOException, CommandException.Fatal {
         System.out.println(mondo);
 
@@ -79,6 +98,12 @@ public class Gioco {
         }
     }
 
+    /**
+     * Localizza il gioco intero cambiando la lingua ovunque
+     *
+     * @param lingua Lingua da usare
+     * @throws IOException Errore nella lettura dei file di lingua
+     */
     public void localizza(Lingua lingua) throws IOException {
         Strings.localizza(lingua);
 
@@ -91,7 +116,76 @@ public class Gioco {
         textEngine.get();
     }
 
+    /**
+     * Controlla se l'oggetto corrente e quello dato sono due giochi uguali
+     *
+     * @param o Altro oggetto
+     * @return <code>true</code> se sono due giochi uguali
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Gioco gioco = (Gioco) o;
+        return Objects.equals(textEngine, gioco.textEngine);
+    }
+
+    /**
+     * Calcola l'hash del gioco
+     *
+     * @return hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(textEngine);
+    }
+
+    /**
+     * Lingua del gioco
+     */
+    public enum Lingua {
+        /**
+         * Inglese
+         */
+        EN("en/"),
+
+        /**
+         * Italiano
+         */
+        IT("");
+
+        /**
+         * Prefisso della cartella dove trovare i file
+         */
+        private final String filePrefix;
+
+        /**
+         * Crea una lingua dell'enum con il prefisso per le cartelle
+         *
+         * @param filePrefix Prefisso dei file
+         */
+        Lingua(String filePrefix) {
+            this.filePrefix = filePrefix;
+        }
+
+        /**
+         * Ottieni il prefisso per tutti i file in questa lingua
+         *
+         * @return Prefisso della lingua
+         */
+        public String getFilePrefix() {
+            return filePrefix;
+        }
+    }
+
+    /**
+     * Strategy pattern applicato alle diverse situazioni di gioco,
+     * interattivo o fast-forward
+     */
     private interface GameModeHandler {
+        /**
+         * Implementazione dei comportamenti in modalità interattiva
+         */
         GameModeHandler INTERACTIVE = new GameModeHandler() {
             @Override
             public void handleCommandEcho(String command) {
@@ -105,6 +199,9 @@ public class Gioco {
             }
         };
 
+        /**
+         * Implementazione dei comportamenti in modalità fast-forward
+         */
         GameModeHandler NON_INTERACTIVE = new GameModeHandler() {
             @Override
             public void handleCommandEcho(String command) {
@@ -119,15 +216,32 @@ public class Gioco {
             }
         };
 
+        /**
+         * Gestisci l'output di un comando ricevuto
+         *
+         * @param command Comando utente
+         */
         void handleCommandEcho(String command);
 
+        /**
+         * Gestisci la situazione di errore considerata grave
+         *
+         * @param e Errore accaduto
+         * @throws CommandException.Fatal In caso serva rilanciare lo stesso errore
+         */
         void handleFatalError(CommandException.Fatal e) throws CommandException.Fatal;
     }
 
+    /**
+     * Eccezione che causa la fine del gioco
+     */
     public static class GameOverException extends CommandException {
+        /**
+         * Crea l'eccezione con il messaggio di default
+         */
         public GameOverException() {
             super("""
-                    
+                                        
                     -----------------------------------------------------
                        _                             .-.
                       / )  .-.    ___          __   (   )
@@ -144,25 +258,12 @@ public class Gioco {
                                     \\  |    \\ \\__             )    )
                                   ___\\ |     \\___;           /  , /
                                  /  ___)                    (  ( (
-                      PN         '.'                         ) ;) ;
+                                 '.'                         ) ;) ;
                                                             (_/(_/
                     ----------------------------------------------------
-                    
-                    
+                                        
+                                        
                     """ + Strings.of(StringId.GAME_OVER));
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Gioco gioco = (Gioco) o;
-        return Objects.equals(textEngine, gioco.textEngine);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(textEngine);
     }
 }

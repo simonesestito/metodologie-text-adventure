@@ -1,9 +1,12 @@
 package it.uniroma1.textadv.entita.pojo.characters;
 
-import it.uniroma1.textadv.entita.pojo.features.Accarezzabile;
-import it.uniroma1.textadv.entita.pojo.features.Parla;
-
-public class Cane extends Personaggio implements Accarezzabile, Parla {
+/**
+ * Cane, personaggio animale nel gioco
+ */
+public class Cane extends Animale {
+    /**
+     * Stringa che rappresenta il verso del cane
+     */
     private static final String ABBAIO = """
                                         __
                  ,                    ," e`--o  BAU
@@ -14,26 +17,40 @@ public class Cane extends Personaggio implements Accarezzabile, Parla {
                 (( (               (( (
                  ``-'               ``-'
             """;
+
+    /**
+     * Crea un nuovo cane con un nome
+     * @param name Nome del cane
+     */
     public Cane(String name) {
         super(name);
     }
 
+    /**
+     * Verso del cane
+     * @return Verso del cane
+     */
     @Override
-    public void accarezza() {
-        System.out.println(ABBAIO);
-    }
-
-    @Override
-    public String parla() {
+    public String getVerso() {
         return ABBAIO;
     }
 
+    /**
+     * Controlla se i due cani sono uguali
+     * @param obj Altro oggetto da controllare
+     * @return <code>true</code> se i cani sono uguali
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        return obj != null && obj.getClass() == getClass();
+        if (!super.equals(obj)) return false;
+        return obj.getClass() == getClass();
     }
 
+    /**
+     * Calcola l'hash dell'oggetto
+     * @return Hash
+     */
     @Override
     public int hashCode() {
         return super.hashCode();

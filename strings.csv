@@ -38,3 +38,5 @@ PLAYER_INVENTARY_CONTENT,Nell'inventario ho raccolto: %s
 UNREACHABLE_ROOM_ERROR,Stanza irraggiungibile
 GAME_OVER,Gioco concluso. Hai vinto, complimenti!
 OBJECT_LOCKED,Non è possibile prendere l'oggetto
+UNABLE_TO_OPEN,Oh no, non si apre
+UNABLE_TO_CLOSE,Oh no, non si chiude

@@ -21,6 +21,11 @@ import java.util.Optional;
  * e gli oggetti in essa contenuta che contengono altri oggetti.
  */
 public class EntityResolver {
+    /**
+     * Metodo esterno per la risoluzione di un'entità dal suo nome
+     * @param name Nome dell'entità richiesta
+     * @return Entità risolta, o <code>Optional.empty()</code>
+     */
     public Optional<?> resolveEntity(String name) {
         return Optional.empty()
                 .or(() -> findEntityInInventory(name))
@@ -28,23 +33,14 @@ public class EntityResolver {
                 .or(() -> findEntityInLinks(name))
                 .or(() -> findEntityInCharacters(name))
                 .or(() -> findEntityInContainers(name))
-                .or(() -> findEntityInVirtualReferences(name))
                 .or(() -> Direction.of(name));
     }
 
-    private Optional<?> findEntityInVirtualReferences(String name) {
-        return Giocatore.getInstance()
-                .getCurrentLocation()
-                .getCharacters()
-                .stream()
-                .filter(p -> p instanceof Venditore)
-                .map(p -> (Venditore) p)
-                .map(Venditore::getOggettiContenuti)
-                .flatMap(Collection::stream)
-                .filter(o -> findEntity(o, name))
-                .findAny();
-    }
-
+    /**
+     * Cerca questa entità come personaggio della stanza corrente.
+     * @param name Nome dell'entità richiesta
+     * @return Entità risolta, o <code>Optional.empty()</code>
+     */
     private Optional<Personaggio> findEntityInCharacters(String name) {
         return Giocatore.getInstance()
                 .getCurrentLocation()
@@ -54,6 +50,12 @@ public class EntityResolver {
                 .findAny();
     }
 
+    /**
+     * Cerca questa entità come link della stanza corrente.
+     * Sia come nome dell'oggetto link, che come stanza.
+     * @param name Nome dell'entità richiesta
+     * @return Entità risolta, o <code>Optional.empty()</code>
+     */
     private Optional<Link> findEntityInLinks(String name) {
         return Giocatore.getInstance()
                 .getCurrentLocation()
@@ -67,6 +69,11 @@ public class EntityResolver {
                 }).findAny();
     }
 
+    /**
+     * Cerca questa entità come oggetto nell'inventario del protagonista.
+     * @param name Nome dell'entità richiesta
+     * @return Entità risolta, o <code>Optional.empty()</code>
+     */
     private Optional<?> findEntityInInventory(String name) {
         return Giocatore.getInstance()
                 .getElementiInventario()
@@ -75,50 +82,63 @@ public class EntityResolver {
                 .findAny();
     }
 
+    /**
+     * Cerca questa entità come oggetto nella stanza corrente.
+     * @param name Nome dell'entità richiesta
+     * @return Entità risolta, o <code>Optional.empty()</code>
+     */
     private Optional<? extends Entity> findEntityInCurrentRoom(String name) {
         return Giocatore.getInstance()
                 .getCurrentLocation()
-                .getObjects()
+                .getOggettiContenuti()
                 .stream()
                 .filter(o -> o.getName().equals(name))
                 .findAny();
     }
 
+    /**
+     * Cerca questa entità come oggetto nei contenitori della stanza corrente.
+     * @param name Nome dell'entità richiesta
+     * @return Entità risolta, o <code>Optional.empty()</code>
+     */
     private Optional<?> findEntityInContainers(String name) {
         return Giocatore.getInstance()
                 .getCurrentLocation()
-                .getObjects()
-                .stream()
-                .filter(o -> o instanceof Contenitore)
-                .flatMap(o -> ((Contenitore) o).getOggettiContenuti().stream())
+                .getContainers()
+                .flatMap(o -> o.getOggettiContenuti().stream())
                 .filter(o -> findEntity(o, name))
                 .findAny();
     }
 
+    /**
+     * Controlla se un'entità combacia con il nome richiesto.
+     * @param object Oggetto da verificare
+     * @param name Nome richiesto
+     * @return <code>true</code> se l'oggetto dato è l'entità richiesta
+     */
     private boolean findEntity(Object object, String name) {
         if (object instanceof Entity)
             return ((Entity) object).getName().equals(name);
         return object.toString().equals(name);
     }
 
+    /**
+     * Controlla se due oggetti sono considerati uguali
+     * @param obj Altro oggetto
+     * @return <code>true</code> se i due oggetti sono uguali
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         return obj != null && obj.getClass() == getClass();
     }
 
+    /**
+     * Calcola l'hash dell'oggetto
+     * @return Hash
+     */
     @Override
     public int hashCode() {
         return super.hashCode();
-    }
-
-    public static class UnresolvedEntityException extends CommandException.Fatal {
-        public UnresolvedEntityException(Oggetto oggetto, Contenitore contenitore) {
-            this(oggetto.getName(), contenitore);
-        }
-
-        public UnresolvedEntityException(Object nome, Contenitore contenitore) {
-            super(Strings.of(StringId.ENTITY_NOT_FOUND, nome.toString(), contenitore.toString()));
-        }
     }
 }
