@@ -1,18 +1,11 @@
 package it.uniroma1.textadv.engine;
 
-import it.uniroma1.textadv.entita.pojo.Entity;
-import it.uniroma1.textadv.entita.pojo.characters.Personaggio;
-import it.uniroma1.textadv.entita.pojo.characters.Venditore;
-import it.uniroma1.textadv.entita.pojo.features.Contenitore;
-import it.uniroma1.textadv.entita.pojo.links.Direction;
-import it.uniroma1.textadv.entita.pojo.links.Link;
-import it.uniroma1.textadv.entita.pojo.Giocatore;
-import it.uniroma1.textadv.entita.pojo.objects.Oggetto;
-import it.uniroma1.textadv.locale.StringId;
-import it.uniroma1.textadv.locale.Strings;
+import it.uniroma1.textadv.entity.pojo.Entity;
+import it.uniroma1.textadv.entity.pojo.characters.Personaggio;
+import it.uniroma1.textadv.entity.pojo.links.Direction;
+import it.uniroma1.textadv.entity.pojo.links.Link;
+import it.uniroma1.textadv.entity.pojo.Giocatore;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 /**

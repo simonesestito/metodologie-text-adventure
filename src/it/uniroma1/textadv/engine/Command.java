@@ -1,6 +1,6 @@
 package it.uniroma1.textadv.engine;
 
-import it.uniroma1.textadv.entita.pojo.Giocatore;
+import it.uniroma1.textadv.entity.pojo.Giocatore;
 import it.uniroma1.textadv.locale.StringId;
 import it.uniroma1.textadv.locale.Strings;
 import it.uniroma1.textadv.utils.ReflectionUtils;

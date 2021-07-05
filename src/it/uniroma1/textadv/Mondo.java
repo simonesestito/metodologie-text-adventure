@@ -1,9 +1,9 @@
 package it.uniroma1.textadv;
 
-import it.uniroma1.textadv.entita.factory.MondoFactory;
-import it.uniroma1.textadv.entita.parser.GameFile;
-import it.uniroma1.textadv.entita.pojo.DescribableEntity;
-import it.uniroma1.textadv.entita.pojo.Stanza;
+import it.uniroma1.textadv.entity.factory.MondoFactory;
+import it.uniroma1.textadv.entity.parser.GameFile;
+import it.uniroma1.textadv.entity.pojo.DescribableEntity;
+import it.uniroma1.textadv.entity.pojo.Stanza;
 
 import java.io.IOException;
 import java.nio.file.Path;

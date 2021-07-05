@@ -1,7 +1,7 @@
 package it.uniroma1.textadv.engine;
 
 import it.uniroma1.textadv.Gioco;
-import it.uniroma1.textadv.entita.pojo.Entity;
+import it.uniroma1.textadv.entity.pojo.Entity;
 import it.uniroma1.textadv.locale.StringId;
 import it.uniroma1.textadv.locale.Strings;
 import it.uniroma1.textadv.utils.MultiMap;

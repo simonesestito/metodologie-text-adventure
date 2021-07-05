@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="dc.created" content="2021-07-05">
-<meta name="description" content="declaration: package: it.uniroma1.textadv.entita.factory, interface: EntityProcessor">
+<meta name="description" content="declaration: package: it.uniroma1.textadv.entity.factory, interface: EntityProcessor">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -71,13 +71,13 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">it.uniroma1.textadv.entita.factory</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">it.uniroma1.textadv.entity.factory</a></div>
 <h1 title="Interface EntityProcessor" class="title">Interface EntityProcessor</h1>
 </div>
 <section class="description">
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="GiocatoreProcessor.html" title="class in it.uniroma1.textadv.entita.factory">GiocatoreProcessor</a></code>, <code><a href="MondoProcessor.html" title="class in it.uniroma1.textadv.entita.factory">MondoProcessor</a></code>, <code><a href="SingleLineEntityProcessor.html" title="class in it.uniroma1.textadv.entita.factory">SingleLineEntityProcessor</a></code>, <code><a href="StanzaProcessor.html" title="class in it.uniroma1.textadv.entita.factory">StanzaProcessor</a></code></dd>
+<dd><code><a href="GiocatoreProcessor.html" title="class in it.uniroma1.textadv.entity.factory">GiocatoreProcessor</a></code>, <code><a href="MondoProcessor.html" title="class in it.uniroma1.textadv.entity.factory">MondoProcessor</a></code>, <code><a href="SingleLineEntityProcessor.html" title="class in it.uniroma1.textadv.entity.factory">SingleLineEntityProcessor</a></code>, <code><a href="StanzaProcessor.html" title="class in it.uniroma1.textadv.entity.factory">StanzaProcessor</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">EntityProcessor</span></div>
@@ -94,11 +94,11 @@ loadScripts(document, 'script');</script>
  ma bensì ne rende nota l'esistenza e successivamente lo crea realmente.
  <p>
  Può essere visto come un componente di una factory più grande per l'intero mondo,
- come utilizzato in <a href="MondoFactory.html" title="class in it.uniroma1.textadv.entita.factory"><code>MondoFactory</code></a></div>
+ come utilizzato in <a href="MondoFactory.html" title="class in it.uniroma1.textadv.entity.factory"><code>MondoFactory</code></a></div>
 <dl class="notes">
 <dt>See Also:</dt>
-<dd><a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entita.parser"><code>GameFile</code></a>, 
-<a href="MondoFactory.html" title="class in it.uniroma1.textadv.entita.factory"><code>MondoFactory</code></a></dd>
+<dd><a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entity.parser"><code>GameFile</code></a>,
+<a href="MondoFactory.html" title="class in it.uniroma1.textadv.entity.factory"><code>MondoFactory</code></a></dd>
 </dl>
 </section>
 <section class="summary">
@@ -113,12 +113,12 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Interface</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static class&nbsp;</code></div>
-<div class="col-second even-row-color"><code><span class="member-name-link"><a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext</a></span></code></div>
+<div class="col-second even-row-color"><code><span class="member-name-link"><a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext</a></span></code></div>
 <div class="col-last even-row-color">
 <div class="block">Contesto condiviso tra tutti i processor.</div>
 </div>
 <div class="col-first odd-row-color"><code>static interface&nbsp;</code></div>
-<div class="col-second odd-row-color"><code><span class="member-name-link"><a href="EntityProcessor.ForTag.html" title="annotation in it.uniroma1.textadv.entita.factory">EntityProcessor.ForTag</a></span></code></div>
+<div class="col-second odd-row-color"><code><span class="member-name-link"><a href="EntityProcessor.ForTag.html" title="annotation in it.uniroma1.textadv.entity.factory">EntityProcessor.ForTag</a></span></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Annotazione usata tramite reflection per
  individuare il tag processabile da ogni processor</div>
@@ -137,27 +137,27 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table-tab1 method-summary-table"><code>static <a href="EntityProcessor.html" title="interface in it.uniroma1.textadv.entita.factory">EntityProcessor</a></code></div>
+<div class="col-first even-row-color method-summary-table-tab1 method-summary-table"><code>static <a href="EntityProcessor.html" title="interface in it.uniroma1.textadv.entity.factory">EntityProcessor</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab1 method-summary-table"><code><span class="member-name-link"><a href="#forTag(java.lang.String)">forTag</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tagName)</code></div>
 <div class="col-last even-row-color method-summary-table-tab1 method-summary-table">
 <div class="block">Ottieni il processor corrispondente per il tag del file di gioco.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab5 method-summary-table"><code>default <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab5 method-summary-table"><code><span class="member-name-link"><a href="#getClassByTag(it.uniroma1.textadv.entita.parser.GameFile.Section,java.lang.String)">getClassByTag</a></span>&#8203;(<a href="../parser/GameFile.Section.html" title="class in it.uniroma1.textadv.entita.parser">GameFile.Section</a>&nbsp;section,
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab5 method-summary-table"><code><span class="member-name-link"><a href="#getClassByTag(it.uniroma1.textadv.entita.parser.GameFile.Section,java.lang.String)">getClassByTag</a></span>&#8203;(<a href="../parser/GameFile.Section.html" title="class in it.uniroma1.textadv.entity.parser">GameFile.Section</a>&nbsp;section,
  <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;className)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab5 method-summary-table">
 <div class="block">Metodo di utilità per ottenere il nome di una classe nel sotto-package
  prefissato dal nome del tag della sezione nel file .game</div>
 </div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#registerDependencies(it.uniroma1.textadv.entita.parser.GameFile.Section,it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext)">registerDependencies</a></span>&#8203;(<a href="../parser/GameFile.Section.html" title="class in it.uniroma1.textadv.entita.parser">GameFile.Section</a>&nbsp;section,
- <a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext</a>&nbsp;context)</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#registerDependencies(it.uniroma1.textadv.entita.parser.GameFile.Section,it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext)">registerDependencies</a></span>&#8203;(<a href="../parser/GameFile.Section.html" title="class in it.uniroma1.textadv.entity.parser">GameFile.Section</a>&nbsp;section,
+ <a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext</a>&nbsp;context)</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
 <div class="block">Processa una singola sezione del file di gioco,
  validandone il contenuto e creando (o registrando) gli oggetti da creare.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table-tab1 method-summary-table"><code>private static boolean</code></div>
-<div class="col-second odd-row-color method-summary-table-tab1 method-summary-table"><code><span class="member-name-link"><a href="#supportsTag(it.uniroma1.textadv.entita.factory.EntityProcessor.ForTag,java.lang.String)">supportsTag</a></span>&#8203;(<a href="EntityProcessor.ForTag.html" title="annotation in it.uniroma1.textadv.entita.factory">EntityProcessor.ForTag</a>&nbsp;annotation,
+<div class="col-second odd-row-color method-summary-table-tab1 method-summary-table"><code><span class="member-name-link"><a href="#supportsTag(it.uniroma1.textadv.entita.factory.EntityProcessor.ForTag,java.lang.String)">supportsTag</a></span>&#8203;(<a href="EntityProcessor.ForTag.html" title="annotation in it.uniroma1.textadv.entity.factory">EntityProcessor.ForTag</a>&nbsp;annotation,
  <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tag)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab1 method-summary-table">
 <div class="block">Controlla se un processor con una data annotazione, supporta il tag richiesto</div>
@@ -179,20 +179,20 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="forTag(java.lang.String)">
 <h3>forTag</h3>
-<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type"><a href="EntityProcessor.html" title="interface in it.uniroma1.textadv.entita.factory">EntityProcessor</a></span>&nbsp;<span class="element-name">forTag</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tagName)</span>
-                       throws <span class="exceptions"><a href="../parser/GameFile.ParseException.html" title="class in it.uniroma1.textadv.entita.parser">GameFile.ParseException</a></span></div>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type"><a href="EntityProcessor.html" title="interface in it.uniroma1.textadv.entity.factory">EntityProcessor</a></span>&nbsp;<span class="element-name">forTag</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tagName)</span>
+                       throws <span class="exceptions"><a href="../parser/GameFile.ParseException.html" title="class in it.uniroma1.textadv.entity.parser">GameFile.ParseException</a></span></div>
 <div class="block">Ottieni il processor corrispondente per il tag del file di gioco.
  <p>
  La ricerca avviene mediante uso della reflection.
  Il processor associato deve essere nello <b>stesso package</b> e
- deve essere <b>annotato</b> con <a href="EntityProcessor.ForTag.html" title="annotation in it.uniroma1.textadv.entita.factory"><code>EntityProcessor.ForTag</code></a> a segnalazione del tag di cui si occupa.</div>
+ deve essere <b>annotato</b> con <a href="EntityProcessor.ForTag.html" title="annotation in it.uniroma1.textadv.entity.factory"><code>EntityProcessor.ForTag</code></a> a segnalazione del tag di cui si occupa.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>tagName</code> - Nome del tag di cui ottenere un processor</dd>
 <dt>Returns:</dt>
 <dd>Processor associato trovato</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../parser/GameFile.ParseException.html" title="class in it.uniroma1.textadv.entita.parser">GameFile.ParseException</a></code> - Se non viene trovato alcun processor,
+<dd><code><a href="../parser/GameFile.ParseException.html" title="class in it.uniroma1.textadv.entity.parser">GameFile.ParseException</a></code> - Se non viene trovato alcun processor,
                                  quindi il file viene considerato invalido,
                                  in quanto il tag non è supportato / conosciuto.</dd>
 </dl>
@@ -201,7 +201,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="supportsTag(it.uniroma1.textadv.entita.factory.EntityProcessor.ForTag,java.lang.String)">
 <h3>supportsTag</h3>
-<div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">supportsTag</span>&#8203;<span class="parameters">(<a href="EntityProcessor.ForTag.html" title="annotation in it.uniroma1.textadv.entita.factory">EntityProcessor.ForTag</a>&nbsp;annotation,
+<div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">supportsTag</span>&#8203;<span class="parameters">(<a href="EntityProcessor.ForTag.html" title="annotation in it.uniroma1.textadv.entity.factory">EntityProcessor.ForTag</a>&nbsp;annotation,
  <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tag)</span></div>
 <div class="block">Controlla se un processor con una data annotazione, supporta il tag richiesto</div>
 <dl class="notes">
@@ -216,27 +216,27 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="registerDependencies(it.uniroma1.textadv.entita.parser.GameFile.Section,it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext)">
 <h3>registerDependencies</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">registerDependencies</span>&#8203;<span class="parameters">(<a href="../parser/GameFile.Section.html" title="class in it.uniroma1.textadv.entita.parser">GameFile.Section</a>&nbsp;section,
- <a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext</a>&nbsp;context)</span>
-                   throws <span class="exceptions"><a href="../parser/GameFile.ParseException.html" title="class in it.uniroma1.textadv.entita.parser">GameFile.ParseException</a></span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">registerDependencies</span>&#8203;<span class="parameters">(<a href="../parser/GameFile.Section.html" title="class in it.uniroma1.textadv.entity.parser">GameFile.Section</a>&nbsp;section,
+ <a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext</a>&nbsp;context)</span>
+                   throws <span class="exceptions"><a href="../parser/GameFile.ParseException.html" title="class in it.uniroma1.textadv.entity.parser">GameFile.ParseException</a></span></div>
 <div class="block">Processa una singola sezione del file di gioco,
  validandone il contenuto e creando (o registrando) gli oggetti da creare.
  <p>
- Gli oggetti creati, registrati, vanno tutti segnalati al context <a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entita.factory"><code>EntityProcessor.BuildContext</code></a>
+ Gli oggetti creati, registrati, vanno tutti segnalati al context <a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entity.factory"><code>EntityProcessor.BuildContext</code></a>
  condiviso tra i Processor, a permettere una comunicazione controllata.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>section</code> - Sezione da processare</dd>
 <dd><code>context</code> - Context condiviso tra i processor</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../parser/GameFile.ParseException.html" title="class in it.uniroma1.textadv.entita.parser">GameFile.ParseException</a></code> - In caso di errori nel parsing del file di gioco</dd>
+<dd><code><a href="../parser/GameFile.ParseException.html" title="class in it.uniroma1.textadv.entity.parser">GameFile.ParseException</a></code> - In caso di errori nel parsing del file di gioco</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getClassByTag(it.uniroma1.textadv.entita.parser.GameFile.Section,java.lang.String)">
 <h3>getClassByTag</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getClassByTag</span>&#8203;<span class="parameters">(<a href="../parser/GameFile.Section.html" title="class in it.uniroma1.textadv.entita.parser">GameFile.Section</a>&nbsp;section,
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getClassByTag</span>&#8203;<span class="parameters">(<a href="../parser/GameFile.Section.html" title="class in it.uniroma1.textadv.entity.parser">GameFile.Section</a>&nbsp;section,
  <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;className)</span></div>
 <div class="block">Metodo di utilità per ottenere il nome di una classe nel sotto-package
  prefissato dal nome del tag della sezione nel file .game</div>

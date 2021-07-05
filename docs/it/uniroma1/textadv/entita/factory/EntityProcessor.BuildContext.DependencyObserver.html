@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="dc.created" content="2021-07-05">
-<meta name="description" content="declaration: package: it.uniroma1.textadv.entita.factory, interface: EntityProcessor, class: BuildContext, record: DependencyObserver">
+<meta name="description" content="declaration: package: it.uniroma1.textadv.entity.factory, interface: EntityProcessor, class: BuildContext, record: DependencyObserver">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -71,12 +71,12 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">it.uniroma1.textadv.entita.factory</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">it.uniroma1.textadv.entity.factory</a></div>
 <h1 title="Record Class EntityProcessor.BuildContext.DependencyObserver" class="title">Record Class EntityProcessor.BuildContext.DependencyObserver</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
 <div class="inheritance"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">java.lang.Record</a>
-<div class="inheritance">it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext.DependencyObserver</div>
+<div class="inheritance">it.uniroma1.textadv.entity.factory.EntityProcessor.BuildContext.DependencyObserver</div>
 </div>
 </div>
 <section class="description">
@@ -87,10 +87,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <dl class="notes">
 <dt>Enclosing class:</dt>
-<dd><a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext</a></dd>
+<dd><a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext</a></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">EntityProcessor.BuildContext.DependencyObserver</span>(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;dependency, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;&nbsp;callback)
+<div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">EntityProcessor.BuildContext.DependencyObserver</span>(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;dependency, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;&nbsp;callback)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
 <div class="block">Descrizione di una dipendenza leggera usando l'<b>observer pattern</b></div>
 </section>
@@ -105,7 +105,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;</code></div>
+<div class="col-first even-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#callback">callback</a></span></code></div>
 <div class="col-last even-row-color">
 <div class="block">The field for the <a href="#param-callback"><code>callback</code></a> record component.</div>
@@ -127,7 +127,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><span class="member-name-link"><a href="#%3Cinit%3E(java.lang.String,java.util.function.Consumer)">DependencyObserver</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;dependency,
- <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;&nbsp;callback)</code></div>
+ <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;&nbsp;callback)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates an instance of a <code>DependencyObserver</code> record class.</div>
 </div>
@@ -145,7 +145,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#callback()">callback</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Returns the value of the <a href="#param-callback"><code>callback</code></a> record component.</div>
@@ -197,7 +197,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="callback">
 <h3>callback</h3>
-<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;</span>&nbsp;<span class="element-name">callback</span></div>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;</span>&nbsp;<span class="element-name">callback</span></div>
 <div class="block">The field for the <a href="#param-callback"><code>callback</code></a> record component.</div>
 </section>
 </li>
@@ -213,7 +213,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(java.lang.String,java.util.function.Consumer)">
 <h3>DependencyObserver</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DependencyObserver</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;dependency,
- <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;&nbsp;callback)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;&nbsp;callback)</span></div>
 <div class="block">Creates an instance of a <code>DependencyObserver</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -285,7 +285,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="callback()">
 <h3>callback</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;</span>&nbsp;<span class="element-name">callback</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;</span>&nbsp;<span class="element-name">callback</span>()</div>
 <div class="block">Returns the value of the <a href="#param-callback"><code>callback</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>

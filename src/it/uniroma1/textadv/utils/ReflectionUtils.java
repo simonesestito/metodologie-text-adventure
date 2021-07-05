@@ -33,6 +33,7 @@ public final class ReflectionUtils {
      * @return Stream delle classi trovate
      */
     public static Stream<? extends Class<?>> scanPackage(String packageName) {
+        System.out.println("packageName = " + packageName);
         var packageResource = ReflectionUtils.class
                 .getClassLoader()
                 .getResource(packageName.replace('.', File.separatorChar));

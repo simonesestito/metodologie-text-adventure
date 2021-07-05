@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="dc.created" content="2021-07-05">
-<meta name="description" content="declaration: package: it.uniroma1.textadv.entita.factory, interface: EntityProcessor, class: BuildContext">
+<meta name="description" content="declaration: package: it.uniroma1.textadv.entity.factory, interface: EntityProcessor, class: BuildContext">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -71,25 +71,25 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">it.uniroma1.textadv.entita.factory</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">it.uniroma1.textadv.entity.factory</a></div>
 <h1 title="Class EntityProcessor.BuildContext" class="title">Class EntityProcessor.BuildContext</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext</div>
+<div class="inheritance">it.uniroma1.textadv.entity.factory.EntityProcessor.BuildContext</div>
 </div>
 <section class="description">
 <dl class="notes">
 <dt>Enclosing interface:</dt>
-<dd><a href="EntityProcessor.html" title="interface in it.uniroma1.textadv.entita.factory">EntityProcessor</a></dd>
+<dd><a href="EntityProcessor.html" title="interface in it.uniroma1.textadv.entity.factory">EntityProcessor</a></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public static class </span><span class="element-name type-name-label">EntityProcessor.BuildContext</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
 <div class="block">Contesto condiviso tra tutti i processor.
  <p>
- Contiene il <a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entita.parser"><code>GameFile</code></a> che si sta processando in generale.
+ Contiene il <a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entity.parser"><code>GameFile</code></a> che si sta processando in generale.
  <p>
- Simula un <b>grafo delle dipendenze</b> tra tutte le <a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo"><code>Entity</code></a> di gioco,
+ Simula un <b>grafo delle dipendenze</b> tra tutte le <a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo"><code>Entity</code></a> di gioco,
  suddividendo le dipendenze su 2 livelli:
  <ul>
      <li><u>Hard dependency</u>: dipendenze indispensabili al momento della creazione di un oggetto</li>
@@ -97,7 +97,7 @@ loadScripts(document, 'script');</script>
  </ul>
  <p>
  Avere un solo livello di dipendenze rigide "hard", significava avere situazioni di impossibilità
- a creare le <a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo"><code>Entity</code></a> a causa delle <b>dipendenze circolari</b>.
+ a creare le <a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo"><code>Entity</code></a> a causa delle <b>dipendenze circolari</b>.
  <p>
  Esempio:
  <p>
@@ -117,17 +117,17 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Class</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static class&nbsp;</code></div>
-<div class="col-second even-row-color"><code><span class="member-name-link"><a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependantEntity</a></span></code></div>
+<div class="col-second even-row-color"><code><span class="member-name-link"><a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependantEntity</a></span></code></div>
 <div class="col-last even-row-color">
 <div class="block">Record descrivente le dipendenze di un'entità</div>
 </div>
 <div class="col-first odd-row-color"><code>static class&nbsp;</code></div>
-<div class="col-second odd-row-color"><code><span class="member-name-link"><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyException</a></span></code></div>
+<div class="col-second odd-row-color"><code><span class="member-name-link"><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyException</a></span></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Eccezione in caso di errore sulle dipendenze o loro risoluzione.</div>
 </div>
 <div class="col-first even-row-color"><code>static class&nbsp;</code></div>
-<div class="col-second even-row-color"><code><span class="member-name-link"><a href="EntityProcessor.BuildContext.DependencyObserver.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyObserver</a></span></code></div>
+<div class="col-second even-row-color"><code><span class="member-name-link"><a href="EntityProcessor.BuildContext.DependencyObserver.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyObserver</a></span></code></div>
 <div class="col-last even-row-color">
 <div class="block">Descrizione di una dipendenza leggera usando l'<b>observer pattern</b></div>
 </div>
@@ -143,23 +143,23 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>private <a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entita.parser">GameFile</a></code></div>
+<div class="col-first even-row-color"><code>private <a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entity.parser">GameFile</a></code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#gameFile">gameFile</a></span></code></div>
 <div class="col-last even-row-color">
 <div class="block">File di gioco processato da tutti i processor in questione</div>
 </div>
-<div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependantEntity</a>&gt;</code></div>
+<div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependantEntity</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#hardDependencies">hardDependencies</a></span></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Mappa delle dipendenze rigide, indicizzata
  per accedere in tempo costante alle dipendenze dato il nome di un'entità dipendente da esse.</div>
 </div>
-<div class="col-first even-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;</code></div>
+<div class="col-first even-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#resolvedEntities">resolvedEntities</a></span></code></div>
 <div class="col-last even-row-color">
 <div class="block">Mappa delle entità già risolte e correttamente costruite.</div>
 </div>
-<div class="col-first odd-row-color"><code>private <a href="../../utils/MultiMap.html" title="class in it.uniroma1.textadv.utils">MultiMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="EntityProcessor.BuildContext.DependencyObserver.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyObserver</a>&gt;</code></div>
+<div class="col-first odd-row-color"><code>private <a href="../../utils/MultiMap.html" title="class in it.uniroma1.textadv.utils">MultiMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="EntityProcessor.BuildContext.DependencyObserver.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyObserver</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#softDependencies">softDependencies</a></span></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Mappa delle dipendenze leggere, questa indicizzata
@@ -177,7 +177,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><span class="member-name-link"><a href="#%3Cinit%3E(it.uniroma1.textadv.entita.parser.GameFile)">BuildContext</a></span>&#8203;(<a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entita.parser">GameFile</a>&nbsp;gameFile)</code></div>
+<div class="col-constructor-name even-row-color"><code><span class="member-name-link"><a href="#%3Cinit%3E(it.uniroma1.textadv.entita.parser.GameFile)">BuildContext</a></span>&#8203;(<a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entity.parser">GameFile</a>&nbsp;gameFile)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Crea un nuovo context per i processor</div>
 </div>
@@ -196,16 +196,16 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addResolvedDependency(it.uniroma1.textadv.entita.pojo.Entity)">addResolvedDependency</a></span>&#8203;(<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&nbsp;entity)</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addResolvedDependency(it.uniroma1.textadv.entita.pojo.Entity)">addResolvedDependency</a></span>&#8203;(<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&nbsp;entity)</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Fornisci un'entità già risolta da usare per il resto delle costruzioni.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>private <a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a></code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#createDependencyForEntry(it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext.DependantEntity)">createDependencyForEntry</a></span>&#8203;(<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependantEntity</a>&nbsp;entry)</code></div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>private <a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a></code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#createDependencyForEntry(it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext.DependantEntity)">createDependencyForEntry</a></span>&#8203;(<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependantEntity</a>&nbsp;entry)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Crea l'entità partendo dalla descrizione della dipendenza.</div>
 </div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entita.parser">GameFile</a></code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entity.parser">GameFile</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getGameFile()">getGameFile</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Ottieni il file di gioco attualmente in processing</div>
@@ -215,24 +215,24 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Ottieni un'entità risolta, se presente, in base alla sua classe.</div>
 </div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getResolvedDependency(java.lang.String)">getResolvedDependency</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Ottieni un'entità risolta, se presente, in base al suo nome</div>
 </div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#observeEntity(it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext.DependencyObserver)">observeEntity</a></span>&#8203;(<a href="EntityProcessor.BuildContext.DependencyObserver.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyObserver</a>&nbsp;dependencyObserver)</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#observeEntity(it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext.DependencyObserver)">observeEntity</a></span>&#8203;(<a href="EntityProcessor.BuildContext.DependencyObserver.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyObserver</a>&nbsp;dependencyObserver)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Registra una nuova dipendenza leggera,
  sfruttando i meccanismi dell'<b>observer pattern</b>,
  dove il Subject è l'entità da cui si dipende.</div>
 </div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#registerDependantEntity(it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext.DependantEntity)">registerDependantEntity</a></span>&#8203;(<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependantEntity</a>&nbsp;dependantEntity)</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#registerDependantEntity(it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext.DependantEntity)">registerDependantEntity</a></span>&#8203;(<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependantEntity</a>&nbsp;dependantEntity)</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Registra una nuova dipendenza forte.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext</a></code></div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext</a></code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#resolve()">resolve</a></span>()</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Operazione terminale di tutto il processo.</div>
@@ -257,14 +257,14 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="gameFile">
 <h3>gameFile</h3>
-<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entita.parser">GameFile</a></span>&nbsp;<span class="element-name">gameFile</span></div>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entity.parser">GameFile</a></span>&nbsp;<span class="element-name">gameFile</span></div>
 <div class="block">File di gioco processato da tutti i processor in questione</div>
 </section>
 </li>
 <li>
 <section class="detail" id="hardDependencies">
 <h3>hardDependencies</h3>
-<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependantEntity</a>&gt;</span>&nbsp;<span class="element-name">hardDependencies</span></div>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependantEntity</a>&gt;</span>&nbsp;<span class="element-name">hardDependencies</span></div>
 <div class="block">Mappa delle dipendenze rigide, indicizzata
  per accedere in tempo costante alle dipendenze dato il nome di un'entità dipendente da esse.</div>
 </section>
@@ -272,7 +272,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="softDependencies">
 <h3>softDependencies</h3>
-<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="../../utils/MultiMap.html" title="class in it.uniroma1.textadv.utils">MultiMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="EntityProcessor.BuildContext.DependencyObserver.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyObserver</a>&gt;</span>&nbsp;<span class="element-name">softDependencies</span></div>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="../../utils/MultiMap.html" title="class in it.uniroma1.textadv.utils">MultiMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="EntityProcessor.BuildContext.DependencyObserver.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyObserver</a>&gt;</span>&nbsp;<span class="element-name">softDependencies</span></div>
 <div class="block">Mappa delle dipendenze leggere, questa indicizzata
  per accedere in tempo costante agli observer
  dato il nome della dipendenza osservata.
@@ -284,7 +284,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="resolvedEntities">
 <h3>resolvedEntities</h3>
-<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;</span>&nbsp;<span class="element-name">resolvedEntities</span></div>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,&#8203;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;</span>&nbsp;<span class="element-name">resolvedEntities</span></div>
 <div class="block">Mappa delle entità già risolte e correttamente costruite.</div>
 </section>
 </li>
@@ -299,7 +299,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(it.uniroma1.textadv.entita.parser.GameFile)">
 <h3>BuildContext</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BuildContext</span>&#8203;<span class="parameters">(<a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entita.parser">GameFile</a>&nbsp;gameFile)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BuildContext</span>&#8203;<span class="parameters">(<a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entity.parser">GameFile</a>&nbsp;gameFile)</span></div>
 <div class="block">Crea un nuovo context per i processor</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -318,21 +318,21 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="registerDependantEntity(it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext.DependantEntity)">
 <h3>registerDependantEntity</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registerDependantEntity</span>&#8203;<span class="parameters">(<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependantEntity</a>&nbsp;dependantEntity)</span>
-                             throws <span class="exceptions"><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyException</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registerDependantEntity</span>&#8203;<span class="parameters">(<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependantEntity</a>&nbsp;dependantEntity)</span>
+                             throws <span class="exceptions"><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyException</a></span></div>
 <div class="block">Registra una nuova dipendenza forte.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>dependantEntity</code> - Descrizione della dipendenza</dd>
 <dt>Throws:</dt>
-<dd><code><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyException</a></code> - In caso ci siano errori sulla dipendenza (es: duplicati)</dd>
+<dd><code><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyException</a></code> - In caso ci siano errori sulla dipendenza (es: duplicati)</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="observeEntity(it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext.DependencyObserver)">
 <h3>observeEntity</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">observeEntity</span>&#8203;<span class="parameters">(<a href="EntityProcessor.BuildContext.DependencyObserver.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyObserver</a>&nbsp;dependencyObserver)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">observeEntity</span>&#8203;<span class="parameters">(<a href="EntityProcessor.BuildContext.DependencyObserver.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyObserver</a>&nbsp;dependencyObserver)</span></div>
 <div class="block">Registra una nuova dipendenza leggera,
  sfruttando i meccanismi dell'<b>observer pattern</b>,
  dove il Subject è l'entità da cui si dipende.</div>
@@ -345,21 +345,21 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="addResolvedDependency(it.uniroma1.textadv.entita.pojo.Entity)">
 <h3>addResolvedDependency</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addResolvedDependency</span>&#8203;<span class="parameters">(<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&nbsp;entity)</span>
-                           throws <span class="exceptions"><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyException</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addResolvedDependency</span>&#8203;<span class="parameters">(<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&nbsp;entity)</span>
+                           throws <span class="exceptions"><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyException</a></span></div>
 <div class="block">Fornisci un'entità già risolta da usare per il resto delle costruzioni.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>entity</code> - Entità fornita</dd>
 <dt>Throws:</dt>
-<dd><code><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyException</a></code> - In caso di duplicati o errori sull'entità fornita</dd>
+<dd><code><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyException</a></code> - In caso di duplicati o errori sull'entità fornita</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getResolvedDependency(java.lang.String)">
 <h3>getResolvedDependency</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a>&gt;</span>&nbsp;<span class="element-name">getResolvedDependency</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a>&gt;</span>&nbsp;<span class="element-name">getResolvedDependency</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
 <div class="block">Ottieni un'entità risolta, se presente, in base al suo nome</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -389,26 +389,26 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="resolve()">
 <h3>resolve</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext</a></span>&nbsp;<span class="element-name">resolve</span>()
-                                     throws <span class="exceptions"><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyException</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext</a></span>&nbsp;<span class="element-name">resolve</span>()
+                                     throws <span class="exceptions"><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyException</a></span></div>
 <div class="block">Operazione terminale di tutto il processo.
  <p>
  Se consideriamo le varie registrazioni di dipendenza come operazioni intermedie,
  e questa come operazione terminale,
- ci sono analogie tra <a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entita.factory"><code>EntityProcessor.BuildContext</code></a> e generalmente un <b>Builder di un grafo delle dipendenze</b>.</div>
+ ci sono analogie tra <a href="EntityProcessor.BuildContext.html" title="class in it.uniroma1.textadv.entity.factory"><code>EntityProcessor.BuildContext</code></a> e generalmente un <b>Builder di un grafo delle dipendenze</b>.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>Lo stesso grafo ma senza più alcuna dipendenza irrisolta.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyException</a></code> - Errore durante la risoluzione delle dipendenze</dd>
+<dd><code><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyException</a></code> - Errore durante la risoluzione delle dipendenze</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="createDependencyForEntry(it.uniroma1.textadv.entita.factory.EntityProcessor.BuildContext.DependantEntity)">
 <h3>createDependencyForEntry</h3>
-<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entita.pojo">Entity</a></span>&nbsp;<span class="element-name">createDependencyForEntry</span>&#8203;<span class="parameters">(<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependantEntity</a>&nbsp;entry)</span>
-                                 throws <span class="exceptions"><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyException</a></span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="../pojo/Entity.html" title="class in it.uniroma1.textadv.entity.pojo">Entity</a></span>&nbsp;<span class="element-name">createDependencyForEntry</span>&#8203;<span class="parameters">(<a href="EntityProcessor.BuildContext.DependantEntity.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependantEntity</a>&nbsp;entry)</span>
+                                 throws <span class="exceptions"><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyException</a></span></div>
 <div class="block">Crea l'entità partendo dalla descrizione della dipendenza.
  <p>
  Rappresenta il lato <b>Factory</b> del Processor,
@@ -419,14 +419,14 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>Entità creata</dd>
 <dt>Throws:</dt>
-<dd><code><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entita.factory">EntityProcessor.BuildContext.DependencyException</a></code> - Errore durante la risoluzione delle dipendenze</dd>
+<dd><code><a href="EntityProcessor.BuildContext.DependencyException.html" title="class in it.uniroma1.textadv.entity.factory">EntityProcessor.BuildContext.DependencyException</a></code> - Errore durante la risoluzione delle dipendenze</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getGameFile()">
 <h3>getGameFile</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entita.parser">GameFile</a></span>&nbsp;<span class="element-name">getGameFile</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../parser/GameFile.html" title="class in it.uniroma1.textadv.entity.parser">GameFile</a></span>&nbsp;<span class="element-name">getGameFile</span>()</div>
 <div class="block">Ottieni il file di gioco attualmente in processing</div>
 <dl class="notes">
 <dt>Returns:</dt>
