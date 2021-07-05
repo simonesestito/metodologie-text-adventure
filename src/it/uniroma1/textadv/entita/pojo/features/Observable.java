@@ -1,6 +1,8 @@
 package it.uniroma1.textadv.entita.pojo.features;
 
 import it.uniroma1.textadv.engine.CommandException;
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
 
 import java.util.function.BooleanSupplier;
 
@@ -12,7 +14,7 @@ public interface Observable extends Posizionabile {
 
     class LockedObjectException extends CommandException {
         public LockedObjectException() {
-            super("Non è possibile prendere l'oggetto");
+            super(Strings.of(StringId.OBJECT_LOCKED));
         }
     }
 }

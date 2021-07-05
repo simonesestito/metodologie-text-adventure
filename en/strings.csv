@@ -37,3 +37,4 @@ PLAYER_EMPTY_INVENTARY,I've nothing in the inventary
 PLAYER_INVENTARY_CONTENT,In the inventary, I'm keeping:
 UNREACHABLE_ROOM_ERROR,Sorry, this room is unreachable
 GAME_OVER,Game over. You won, congratulations!
+OBJECT_LOCKED,I can't take this object...

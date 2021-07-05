@@ -35,7 +35,17 @@ public class Camino extends OggettoContenitore implements UsabileCon<Secchio> {
     @Override
     public void prendiOggetto(Posizionabile oggetto) throws CommandException {
         if (acceso)
-            throw new CommandException(Strings.of(StringId.FIREPLACE_LIT));
+            throw new CommandException("""
+                               (  .      )
+                           )           (              )
+                                 .  '   .   '  .  '  .
+                        (    , )       (.   )  (   ',    )
+                         .' ) ( . )    ,  ( ,     )   ( .
+                      ). , ( .   (  ) ( , ')  .' (  ,    )
+                     (_,) . ), ) _) _,')  (, ) '. )  ,. (' )
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    
+                    """+Strings.of(StringId.FIREPLACE_LIT));
         super.prendiOggetto(oggetto);
     }
 

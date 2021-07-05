@@ -1,8 +1,6 @@
 package it.uniroma1.textadv.entita.pojo.features;
 
 
-import java.util.Objects;
-
 public class ApribileConBlocco implements ApribileCon<BloccoApertura> {
     private BloccoApertura blocco;
 

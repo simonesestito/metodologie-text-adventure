@@ -31,9 +31,10 @@ PLAYER_ACTION_OPEN,Ho aperto %s
 PLAYER_ACTION_TAKE,Ho preso %s da %s
 PLAYER_ACTION_BREAK,Ho rotto %s
 PLAYER_ACTION_USE,Ho usato %s con %s
-PLAYER_ACTION_RECEIVE,Ho ricevuto queste cose:
+PLAYER_ACTION_RECEIVE,Ho ricevuto queste cose: %s
 PLAYER_ACTION_LISTEN_SPOKEN,%s dice: %s
 PLAYER_EMPTY_INVENTARY,Non ho nulla nell'inventario
-PLAYER_INVENTARY_CONTENT,Nell'inventario ho raccolto:
+PLAYER_INVENTARY_CONTENT,Nell'inventario ho raccolto: %s
 UNREACHABLE_ROOM_ERROR,Stanza irraggiungibile
 GAME_OVER,Gioco concluso. Hai vinto, complimenti!
+OBJECT_LOCKED,Non è possibile prendere l'oggetto

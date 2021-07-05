@@ -1,5 +1,6 @@
 package it.uniroma1.textadv.entita.pojo.links;
 
+import it.uniroma1.textadv.entita.pojo.Giocatore;
 import it.uniroma1.textadv.entita.pojo.Stanza;
 import it.uniroma1.textadv.entita.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entita.pojo.features.ApribileConBlocco;
@@ -15,13 +16,21 @@ public class Botola extends OggettoLink implements ApribileCon<BloccoApertura> {
     }
 
     @Override
-    public void apri() throws AperturaException {
-        apribileConBlocco.apri();
-    }
-
-    @Override
     public void apri(BloccoApertura oggetto) throws AperturaException {
         apribileConBlocco.apri(oggetto);
+        Giocatore.getInstance().rispondiUtente("""
+                                          _.-'
+                                        _.-'
+                        _____________.-'________________
+                       /         _.-' O                /|
+                      /  i====_======O      __________/ /
+                     /  / _.-'      O      /     _   /|/
+                    /  / | p       o      /     (   / /
+                   /  /           O      /_________/ /
+                  /  L===========O                /|/
+                 /______________O________________/ /
+                |________________________________|/
+                """);
     }
 
     @Override

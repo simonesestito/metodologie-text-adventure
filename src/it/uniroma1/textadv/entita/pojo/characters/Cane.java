@@ -4,7 +4,16 @@ import it.uniroma1.textadv.entita.pojo.features.Accarezzabile;
 import it.uniroma1.textadv.entita.pojo.features.Parla;
 
 public class Cane extends Personaggio implements Accarezzabile, Parla {
-    private static final String ABBAIO = "Bau";
+    private static final String ABBAIO = """
+                                        __
+                 ,                    ," e`--o  BAU
+                ((                   (  | __,'
+                 \\\\~----------------' \\_;/
+                 (                      /
+                 /) ._______________.  )
+                (( (               (( (
+                 ``-'               ``-'
+            """;
     public Cane(String name) {
         super(name);
     }

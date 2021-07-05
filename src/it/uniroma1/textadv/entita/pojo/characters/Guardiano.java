@@ -2,12 +2,12 @@ package it.uniroma1.textadv.entita.pojo.characters;
 
 import it.uniroma1.textadv.engine.CommandException;
 import it.uniroma1.textadv.entita.pojo.Entity;
+import it.uniroma1.textadv.entita.pojo.Giocatore;
 import it.uniroma1.textadv.entita.pojo.features.Contenitore;
 import it.uniroma1.textadv.entita.pojo.features.ObservableObject;
 import it.uniroma1.textadv.entita.pojo.features.Posizionabile;
 import it.uniroma1.textadv.entita.pojo.features.Ricevitore;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,7 +18,30 @@ public class Guardiano extends Personaggio implements Ricevitore<Entity, Object>
     public Guardiano(String name, ObservableObject oggetto, Posizionabile distrazione) {
         super(name);
         this.distrazione = distrazione;
-        oggetto.observe(this::isDistratto);
+        oggetto.observe(() -> {
+            if (isDistratto()) {
+                return true;
+            }
+
+            Giocatore.getInstance().rispondiUtente("""
+                            |`.             /
+                            | \\`.          / |
+                            |  \\ \\.------./ '|
+                            |  .'          / |
+                            |  |             |
+                            \\  |  ___ ' __  /
+                             \\  \\ `0 ) /0 //
+                              `--\\    v  /-
+                                / \\ -  /
+                              .--. '---'_
+                             /      ./ //-
+                            (`-.    .-'/- \\
+                            /`- `--'    \\__|
+                           /  ,          )_|
+                          /    Y        -  (\s
+                        """);
+            return false;
+        });
     }
 
     private boolean isDistratto() {
