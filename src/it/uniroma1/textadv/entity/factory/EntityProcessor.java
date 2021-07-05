@@ -50,13 +50,9 @@ public interface EntityProcessor {
     static EntityProcessor forTag(String tagName) throws GameFile.ParseException {
         try {
             return (EntityProcessor) ReflectionUtils.scanPackage(EntityProcessor.class.getPackageName())
-                    .peek(System.out::println)
                     .filter(c -> c.isAnnotationPresent(ForTag.class))
-                    .peek(System.out::println)
                     .filter(c -> supportsTag(c.getAnnotation(ForTag.class), tagName))
-                    .peek(System.out::println)
                     .filter(EntityProcessor.class::isAssignableFrom)
-                    .peek(System.out::println)
                     .findAny()
                     .orElseThrow(() -> new ClassNotFoundException("Can't find a factory class for tag: " + tagName))
                     .getConstructor()
