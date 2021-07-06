@@ -1,6 +1,6 @@
 package it.uniroma1.textadv.entity.pojo.links;
 
-import it.uniroma1.textadv.entity.pojo.Giocatore;
+import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.Stanza;
 
 /**

@@ -47,12 +47,4 @@ public class Cane extends Animale {
         return obj.getClass() == getClass();
     }
 
-    /**
-     * Calcola l'hash dell'oggetto
-     * @return Hash
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

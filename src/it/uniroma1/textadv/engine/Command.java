@@ -1,6 +1,6 @@
 package it.uniroma1.textadv.engine;
 
-import it.uniroma1.textadv.entity.pojo.Giocatore;
+import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.locale.StringId;
 import it.uniroma1.textadv.locale.Strings;
 import it.uniroma1.textadv.utils.ReflectionUtils;
@@ -101,6 +101,8 @@ public class Command {
         } catch (InvocationTargetException e) {
             if (e.getCause() != null && e.getCause() instanceof CommandException) {
                 throw (CommandException) e.getCause();
+            } else {
+                e.printStackTrace();
             }
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();

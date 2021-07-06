@@ -39,19 +39,17 @@ public class Scrivania extends OggettoContenitore implements ApribileCon<Object>
 
     /**
      * Apri la scrivania
-     * @throws AperturaException Errore nell'apertura
      */
     @Override
-    public void apri(Object oggetto) throws AperturaException {
+    public void apri(Object oggetto) {
         apribileSemplice.apri(oggetto);
     }
 
     /**
      * Chiudi la scrivania
-     * @throws ChiusuraException Errore nella chiusura
      */
     @Override
-    public void chiudi(Object oggetto) throws ChiusuraException {
+    public void chiudi(Object oggetto) {
         apribileSemplice.chiudi(oggetto);
     }
 

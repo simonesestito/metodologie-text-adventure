@@ -1,7 +1,6 @@
 package it.uniroma1.textadv.entity.pojo.characters;
 
 import it.uniroma1.textadv.engine.CommandException;
-import it.uniroma1.textadv.entity.pojo.Giocatore;
 import it.uniroma1.textadv.entity.pojo.features.Contenitore;
 import it.uniroma1.textadv.entity.pojo.features.Posizionabile;
 import it.uniroma1.textadv.entity.pojo.features.PosizionabileUnico;

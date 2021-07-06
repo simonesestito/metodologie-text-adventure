@@ -65,8 +65,4 @@ public class SingleLineEntityProcessor implements EntityProcessor {
         return obj != null && obj.getClass() == getClass();
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

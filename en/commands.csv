@@ -15,3 +15,5 @@ give,dai,Entity,Ricevitore
 enter,prendiDirezione,Link
 use,usa,Usabile
 talk,parla,Parla
+,vai,Direction
+sleep,dormi

@@ -108,10 +108,10 @@ public class TextEngine {
             arguments = parseArguments(input, 1);
         } else {
             overloadCommands = commands.get("");
-            arguments = parseArguments(input, 0);
+            arguments = parseArgumentsOrNull(input);
         }
 
-        if (overloadCommands.isEmpty()) {
+        if (arguments == null || overloadCommands.isEmpty()) {
             // Nessun comando trovato
             throw new CommandNotFoundException(arguments);
         }
@@ -122,6 +122,21 @@ public class TextEngine {
                 .findFirst()
                 .orElseThrow(() -> new WrongArgumentsException(arguments));
         return new InputParsingResult(command, arguments);
+    }
+
+    /**
+     * Esegui il parsing dei parametri, ma in caso ci siano errori nella risoluzione,
+     * restituisce <code>null</code> anzichè lanciare un'eccezione.
+     *
+     * @param input Input dell'utente, già normalizzato
+     * @return Elenco dei parametri, risolti, oppure <code>null</code> se ci sono errori
+     */
+    private List<?> parseArgumentsOrNull(List<String> input) {
+        try {
+            return parseArguments(input, 0);
+        } catch (ParseArgumentsException e) {
+            return null;
+        }
     }
 
     /**
@@ -140,7 +155,7 @@ public class TextEngine {
         while (wordIndex < input.size()) {
             // Parsing del primo argomento in sequenza
             Object foundEntity = null;
-            for (int i = input.size() - 1; i >= wordIndex; i--) {
+            for (int i = input.size(); i >= wordIndex; i--) {
                 var entityName = input.stream()
                         .skip(wordIndex)
                         .limit(i)
@@ -166,6 +181,7 @@ public class TextEngine {
 
     /**
      * Controlla se due text engine sono uguali
+     *
      * @param o Altro oggetto da controllare
      * @return <code>true</code> se i due oggetti sono uguali
      */
@@ -179,6 +195,7 @@ public class TextEngine {
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override
@@ -204,6 +221,7 @@ public class TextEngine {
 
         /**
          * Usa un dato file dei comandi, come {@link Path}
+         *
          * @param commandsFile File dei comandi da usare
          * @return <code>this</code> builder
          */
@@ -214,6 +232,7 @@ public class TextEngine {
 
         /**
          * Usa un dato file dei comandi, come {@link String}
+         *
          * @param commandsFile File dei comandi da usare
          * @return <code>this</code> builder
          */
@@ -223,6 +242,7 @@ public class TextEngine {
 
         /**
          * Usa un dato file delle stopword, come {@link Path}
+         *
          * @param stopWordsFile File delle stop word da usare
          * @return <code>this</code> builder
          */
@@ -233,6 +253,7 @@ public class TextEngine {
 
         /**
          * Usa un dato file delle stopword, come {@link String}
+         *
          * @param stopWordsFile File delle stop word da usare
          * @return <code>this</code> builder
          */
@@ -242,6 +263,7 @@ public class TextEngine {
 
         /**
          * Crea il text engine dai file forniti
+         *
          * @return Un nuovo TextEngine
          * @throws IOException Errori nei file forniti
          */
@@ -263,6 +285,7 @@ public class TextEngine {
 
         /**
          * Controlla se due builder sono uguali
+         *
          * @param o Altro oggetto da controllare
          * @return <code>true</code> se sono uguali
          */
@@ -276,6 +299,7 @@ public class TextEngine {
 
         /**
          * Calcola l'hash dell'oggetto
+         *
          * @return Hash
          */
         @Override
@@ -290,6 +314,7 @@ public class TextEngine {
     public static class CommandNotFoundException extends CommandException.Fatal {
         /**
          * Genera un errore con un dato messaggio
+         *
          * @param message Messaggio d'errore
          */
         public CommandNotFoundException(String message) {
@@ -298,11 +323,12 @@ public class TextEngine {
 
         /**
          * Genera l'errore su un comando, dove si hanno già gli argomenti forniti
+         *
          * @param arguments Argomenti del comando non compreso
          */
         public CommandNotFoundException(List<?> arguments) {
             this(
-                    arguments.size() > 0
+                    arguments != null && arguments.size() > 0
                             ? Strings.of(StringId.ACTION_ARGS_UNKNOWN, CommandNotFoundException.getArgumentsName(arguments))
                             : Strings.of(StringId.ACTION_UNKNOWN)
             );
@@ -310,6 +336,7 @@ public class TextEngine {
 
         /**
          * Formatta in maniera human-readable gli argomenti per il messaggio d'errore
+         *
          * @param arguments Argomenti da formattare
          * @return Human-readable argomenti
          */
@@ -327,6 +354,7 @@ public class TextEngine {
     public static class ParseArgumentsException extends CommandException.Fatal {
         /**
          * Errore, dato l'input utente come stringa
+         *
          * @param input Input utente del comando
          */
         public ParseArgumentsException(String input) {
@@ -335,6 +363,7 @@ public class TextEngine {
 
         /**
          * Errore, dato l'input utente come stringa nelle sue componenti
+         *
          * @param input Input dell'utente
          */
         public ParseArgumentsException(List<String> input) {
@@ -348,6 +377,7 @@ public class TextEngine {
     public static class WrongArgumentsException extends CommandException.Fatal {
         /**
          * Errore, dati i parametri sintatticamente corretti ma non semanticamente
+         *
          * @param arguments Argomenti dell'utente
          */
         public WrongArgumentsException(List<?> arguments) {

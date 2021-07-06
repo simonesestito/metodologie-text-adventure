@@ -1,7 +1,7 @@
 package it.uniroma1.textadv.entity.pojo.links;
 
 import it.uniroma1.textadv.engine.CommandException;
-import it.uniroma1.textadv.entity.pojo.Giocatore;
+import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.Stanza;
 import it.uniroma1.textadv.entity.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entity.pojo.features.ApribileConChiave;

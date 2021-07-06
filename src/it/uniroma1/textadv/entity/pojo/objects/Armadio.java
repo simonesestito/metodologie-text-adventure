@@ -27,10 +27,9 @@ public class Armadio extends OggettoContenitore implements ApribileCon<Tronchesi
      * Apri l'armadio
      *
      * @param oggetto Oggetto con cui aprire
-     * @throws AperturaException Errore nell'apertura
      */
     @Override
-    public void apri(Tronchesi oggetto) throws AperturaException {
+    public void apri(Tronchesi oggetto) {
         if (oggetto != null)
             aperto = true;
     }

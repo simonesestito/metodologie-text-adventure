@@ -46,8 +46,4 @@ public class MondoFactory {
         return obj != null && obj.getClass() == getClass();
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

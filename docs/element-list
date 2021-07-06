@@ -1,5 +1,6 @@
 module:TextAdventure
 it.uniroma1.textadv
+it.uniroma1.textadv.easter
 it.uniroma1.textadv.engine
 it.uniroma1.textadv.entity.factory
 it.uniroma1.textadv.entity.parser

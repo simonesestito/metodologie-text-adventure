@@ -4,7 +4,7 @@ import it.uniroma1.textadv.entity.pojo.Entity;
 import it.uniroma1.textadv.entity.pojo.characters.Personaggio;
 import it.uniroma1.textadv.entity.pojo.links.Direction;
 import it.uniroma1.textadv.entity.pojo.links.Link;
-import it.uniroma1.textadv.entity.pojo.Giocatore;
+import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 
 import java.util.Optional;
 
@@ -126,12 +126,4 @@ public class EntityResolver {
         return obj != null && obj.getClass() == getClass();
     }
 
-    /**
-     * Calcola l'hash dell'oggetto
-     * @return Hash
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

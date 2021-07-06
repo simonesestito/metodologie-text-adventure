@@ -1,21 +1,22 @@
 package it.uniroma1.textadv.entity.pojo.links;
 
-import it.uniroma1.textadv.entity.pojo.Giocatore;
+import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.Stanza;
 import it.uniroma1.textadv.entity.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entity.pojo.features.ApribileConBlocco;
 import it.uniroma1.textadv.entity.pojo.features.BloccoApertura;
+import it.uniroma1.textadv.entity.pojo.objects.Vite;
 
 import java.util.Objects;
 
 /**
  * Botola come oggetto che collega due stanze, ad apertura controllata da un altro oggetto
  */
-public class Botola extends OggettoLink implements ApribileCon<BloccoApertura> {
+public class Botola extends OggettoLink implements ApribileCon<Vite> {
     /**
      * Implementazione parametrizzata (Strategy) dell'apertura
      */
-    private final ApribileConBlocco apribileConBlocco = new ApribileConBlocco();
+    private final ApribileConBlocco<Vite> apribileConBlocco = new ApribileConBlocco<>();
 
     /**
      * Crea una nuova botola
@@ -33,7 +34,7 @@ public class Botola extends OggettoLink implements ApribileCon<BloccoApertura> {
      * @throws AperturaException Errore nell'apertura
      */
     @Override
-    public void apri(BloccoApertura oggetto) throws AperturaException {
+    public void apri(Vite oggetto) throws AperturaException {
         apribileConBlocco.apri(oggetto);
         Giocatore.getInstance().rispondiUtente("""
                                           _.-'
@@ -56,7 +57,7 @@ public class Botola extends OggettoLink implements ApribileCon<BloccoApertura> {
      * @throws ChiusuraException Errore nella chiusura
      */
     @Override
-    public void chiudi(BloccoApertura oggetto) throws ChiusuraException {
+    public void chiudi(Vite oggetto) throws ChiusuraException {
         apribileConBlocco.chiudi(oggetto);
     }
 

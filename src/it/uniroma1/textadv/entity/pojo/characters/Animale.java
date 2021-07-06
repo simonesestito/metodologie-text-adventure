@@ -1,6 +1,5 @@
 package it.uniroma1.textadv.entity.pojo.characters;
 
-import it.uniroma1.textadv.entity.pojo.Giocatore;
 import it.uniroma1.textadv.entity.pojo.features.Accarezzabile;
 import it.uniroma1.textadv.entity.pojo.features.Parla;
 

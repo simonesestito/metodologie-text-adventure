@@ -35,7 +35,9 @@ public class GiocatoreProcessor implements EntityProcessor {
 
         var playerLine = section.getLines().iterator().next();
         var name = playerLine.getKey();
-        var className = playerLine.getArgumentsString();
+        var className = SingleLineEntityProcessor.CHARACTERS_TAG_NAME
+                + "."
+                + playerLine.getArgumentsString();
 
         var worldName = context.getGameFile()
                 .getSectionByTag(MondoProcessor.TAG_NAME)
@@ -55,8 +57,4 @@ public class GiocatoreProcessor implements EntityProcessor {
         return obj != null && obj.getClass() == getClass();
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

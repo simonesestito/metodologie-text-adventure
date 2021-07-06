@@ -1,8 +1,10 @@
-package it.uniroma1.textadv.entity.pojo;
+package it.uniroma1.textadv.entity.pojo.characters;
 
 import it.uniroma1.textadv.Mondo;
+import it.uniroma1.textadv.easter.Dino;
 import it.uniroma1.textadv.engine.CommandException;
-import it.uniroma1.textadv.entity.pojo.characters.Personaggio;
+import it.uniroma1.textadv.entity.pojo.Entity;
+import it.uniroma1.textadv.entity.pojo.Stanza;
 import it.uniroma1.textadv.entity.pojo.features.*;
 import it.uniroma1.textadv.entity.pojo.links.Direction;
 import it.uniroma1.textadv.entity.pojo.links.Link;
@@ -11,6 +13,7 @@ import it.uniroma1.textadv.locale.StringId;
 import it.uniroma1.textadv.locale.Strings;
 
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -352,6 +355,19 @@ public class Giocatore extends Personaggio {
     }
 
     /**
+     * Dormi (easter egg?)
+     * @throws InterruptedException In caso il thread si interrompa durante il gioco
+     */
+    public void dormi() throws InterruptedException {
+        var text = Strings.of(StringId.SLEEP_MESSAGE).split("\\.\\.\\. ");
+        for (var part : text) {
+            rispondiUtente(part + "...");
+            Thread.sleep(1000);
+        }
+        new Dino().avvia();
+    }
+
+    /**
      * Controlla se l'oggetto corrente e quello dato sono due entità uguali
      * @param o Altro oggetto
      * @return <code>true</code> se sono due entità uguali
@@ -382,7 +398,7 @@ public class Giocatore extends Personaggio {
          * Errore generico senza indicazione della stanza
          */
         public UnreachableRoomException() {
-            this(null);
+            super(Strings.of(StringId.UNKNOWN_ROOM_ERROR));
         }
 
         /**
