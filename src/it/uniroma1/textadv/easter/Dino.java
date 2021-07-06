@@ -1,5 +1,8 @@
 package it.uniroma1.textadv.easter;
 
+import it.uniroma1.textadv.locale.StringId;
+import it.uniroma1.textadv.locale.Strings;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -110,24 +113,31 @@ public class Dino {
         textArea.setEditable(false);
         textArea.setFont(new Font(Font.MONOSPACED, Font.BOLD, FONT_SIZE));
         frame.setVisible(true);
+        frame.setAlwaysOnTop(true);
+        frame.setAlwaysOnTop(false);
+        textArea.requestFocus();
+        textArea.setText(Strings.of(StringId.CLICK_TO_START));
+        textArea.addMouseListener(SwingUtils.getClickListener(listener -> {
+            textArea.removeMouseListener(listener);
 
-        scheduledExecutor.scheduleAtFixedRate(() -> {
-            try {
-                draw();
-            } catch (TextCanvas.CollisionException e) {
-                stop();
-            }
-        }, 0, CLOCK_TIMING, TimeUnit.MILLISECONDS);
+            scheduledExecutor.scheduleAtFixedRate(() -> {
+                try {
+                    draw();
+                } catch (TextCanvas.CollisionException e) {
+                    stop();
+                }
+            }, 0, CLOCK_TIMING, TimeUnit.MILLISECONDS);
 
-        scheduledExecutor.scheduleAtFixedRate(
-                () -> {
-                    if (Math.random() > 0.5) drawableList.add(new Cactus());
-                    if (Math.random() > 0.8) drawableList.add(new Bat());
-                },
-                CLOCK_TIMING,
-                CLOCK_TIMING * 20,
-                TimeUnit.MILLISECONDS
-        );
+            scheduledExecutor.scheduleAtFixedRate(
+                    () -> {
+                        if (Math.random() > 0.5) drawableList.add(new Cactus());
+                        if (Math.random() > 0.75) drawableList.add(new Bat());
+                    },
+                    CLOCK_TIMING,
+                    CLOCK_TIMING * 20,
+                    TimeUnit.MILLISECONDS
+            );
+        }));
 
         //noinspection ResultOfMethodCallIgnored
         scheduledExecutor.awaitTermination(1, TimeUnit.HOURS);

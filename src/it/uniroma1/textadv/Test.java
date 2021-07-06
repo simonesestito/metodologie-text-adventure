@@ -1,15 +1,14 @@
 package it.uniroma1.textadv;
 
-import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
+import it.uniroma1.textadv.entity.parser.GameFile;
 
-import java.nio.file.Paths;
+import java.io.IOException;
 
 public class Test {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException, GameFile.ParseException {
         Gioco g = new Gioco();
         Mondo m = Mondo.fromFile("minizak.game");
         g.localizza(Gioco.Lingua.IT);
-        Giocatore.getInstance().dormi();
-        g.play(m, Paths.get("minizak.ff"));
+        g.play(m); //, Paths.get("minizak.ff"));
     }
 }

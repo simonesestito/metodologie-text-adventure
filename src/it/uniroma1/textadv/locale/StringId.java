@@ -229,4 +229,9 @@ public enum StringId {
      * Enum per la stringa con ID: EASTER_TIME_REMAINING
      */
     EASTER_TIME_REMAINING,
+
+    /**
+     * Enum per la stringa con ID: EASTER_TIME_REMAINING
+     */
+    CLICK_TO_START,
 }
