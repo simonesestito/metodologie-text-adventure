@@ -1,5 +1,6 @@
 package it.uniroma1.textadv.entity.pojo;
 
+import it.uniroma1.textadv.engine.CommandException;
 import it.uniroma1.textadv.entity.pojo.characters.Personaggio;
 import it.uniroma1.textadv.entity.pojo.features.Contenitore;
 import it.uniroma1.textadv.entity.pojo.features.ContenitoreAggiungibile;
@@ -76,9 +77,11 @@ public class Stanza extends DescribableEntity implements ContenitoreAggiungibile
      * @param oggetto Oggetto da aggiungere
      */
     @Override
-    public void aggiungiOggetto(Posizionabile oggetto) {
-        if (oggetto instanceof Oggetto)
+    public void aggiungiOggetto(Posizionabile oggetto) throws CommandException {
+        if (oggetto instanceof Oggetto && !objects.contains(oggetto)) {
             objects.add((Oggetto) oggetto);
+            oggetto.spostaIn(this);
+        }
     }
 
     /**
