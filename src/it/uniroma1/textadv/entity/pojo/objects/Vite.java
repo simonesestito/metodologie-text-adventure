@@ -54,7 +54,7 @@ public class Vite extends Oggetto implements BloccoApertura, UsabileCon<Cacciavi
 
     @Override
     public void spostaIn(Contenitore contenitore) throws CommandException {
-        if (isBloccato() && getPosizione() != null)
+        if (isBloccato() && getPosizione() != null && !getPosizione().equals(contenitore))
             throw new Observable.LockedObjectException();
         super.spostaIn(contenitore);
     }
