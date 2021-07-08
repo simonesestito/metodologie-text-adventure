@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"TextAdventure"}];updateSearchResults();
+moduleSearchIndex = [{"l":"it.uniroma1.textadv"}];updateSearchResults();
