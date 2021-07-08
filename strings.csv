@@ -44,3 +44,4 @@ SLEEP_MESSAGE,Nei sogni... Posso giocare a tutto ciò che voglio
 UNKNOWN_ROOM_ERROR,Non so dove andare
 EASTER_TIME_REMAINING,Tempo rimasto: %s
 CLICK_TO_START,Fai click per iniziare
+SIMILAR_STRING_DETECTED_MESSAGE,Forse intendevi "%s"?

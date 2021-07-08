@@ -44,3 +44,4 @@ SLEEP_MESSAGE,In my dreams... I can play something else
 UNKNOWN_ROOM_ERROR,I don't know where to go
 EASTER_TIME_REMAINING,Remaining time: %s
 CLICK_TO_START,Click to start
+SIMILAR_STRING_DETECTED_MESSAGE,Did you mean "%s"?

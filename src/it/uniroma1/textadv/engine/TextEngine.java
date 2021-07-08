@@ -4,8 +4,7 @@ import it.uniroma1.textadv.Gioco;
 import it.uniroma1.textadv.entity.pojo.Entity;
 import it.uniroma1.textadv.locale.StringId;
 import it.uniroma1.textadv.locale.Strings;
-import it.uniroma1.textadv.utils.MultiMap;
-import it.uniroma1.textadv.utils.StreamUtils;
+import it.uniroma1.textadv.utils.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -50,6 +49,11 @@ public class TextEngine {
      * dal comando testuale dato.
      */
     private final EntityResolver entityResolver = new EntityResolver();
+
+    /**
+     * Algoritmo per la rilevazione di comandi simili ed errori di battitura
+     */
+    private final StringDistance stringDistance = new LevenshteinDistance();
 
     /**
      * Insieme delle stopwords da considerare, lette dal file
@@ -113,7 +117,17 @@ public class TextEngine {
 
         if (arguments == null || overloadCommands.isEmpty()) {
             // Nessun comando trovato
-            throw new CommandNotFoundException(arguments);
+            var similarCommand = commands.keySet()
+                    .stream()
+                    .map(s -> new Pair<>(
+                            s,
+                            stringDistance.calculateDistance(input.get(0), s)
+                    ))
+                    .filter(d -> d.value() < 0.7)
+                    .min(Comparator.comparing(Pair::value))
+                    .map(Pair::key)
+                    .orElse(null);
+            throw new CommandNotFoundException(arguments, similarCommand);
         }
 
         var command = overloadCommands.stream()
@@ -327,11 +341,27 @@ public class TextEngine {
          * @param arguments Argomenti del comando non compreso
          */
         public CommandNotFoundException(List<?> arguments) {
-            this(
+            this(arguments, null);
+        }
+
+        /**
+         * Genera l'errore su un comando, dove si hanno già gli argomenti forniti.
+         * <p>
+         * Inoltre, si ha anche un sospetto su quale possa essere il comando desiderato.
+         *
+         * @param arguments        Argomenti del comando non compreso
+         * @param suggestedCommand Comando vicino a quello scritto
+         */
+        public CommandNotFoundException(List<?> arguments, String suggestedCommand) {
+            this((
                     arguments != null && arguments.size() > 0
                             ? Strings.of(StringId.ACTION_ARGS_UNKNOWN, CommandNotFoundException.getArgumentsName(arguments))
                             : Strings.of(StringId.ACTION_UNKNOWN)
-            );
+            ) + (
+                    suggestedCommand == null
+                            ? ""
+                            : "\n" + Strings.of(StringId.SIMILAR_STRING_DETECTED_MESSAGE, suggestedCommand)
+            ));
         }
 
         /**

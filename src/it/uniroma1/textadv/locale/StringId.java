@@ -234,4 +234,9 @@ public enum StringId {
      * Enum per la stringa con ID: EASTER_TIME_REMAINING
      */
     CLICK_TO_START,
+    
+    /**
+     * Enum per la stringa con ID: SIMILAR_STRING_DETECTED_MESSAGE
+     */
+    SIMILAR_STRING_DETECTED_MESSAGE,
 }
