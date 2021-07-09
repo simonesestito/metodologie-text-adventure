@@ -14,7 +14,7 @@ public interface StringDistance {
     /**
      * Valore di distanza al di sotto del quale due stringhe sono veramente molto simili
      */
-    double REALLY_SIMILAR_THRESHOLD = 0.2;
+    double REALLY_SIMILAR_THRESHOLD = 0.15;
 
     /**
      * Calcola la distanza normalizzata [0,1] tra due stringhe.
