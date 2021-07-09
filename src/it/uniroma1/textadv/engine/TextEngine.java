@@ -107,27 +107,30 @@ public class TextEngine {
         // Comandi identificati dalla prima keyword, oppure quelli senza.
         List<Command> overloadCommands;
         List<?> arguments;
+
+        var similarCommand = commands.keySet()
+            .stream()
+            .map(s -> new Pair<>(
+                s,
+                stringDistance.calculateDistance(input.get(0), s)
+            ))
+            .filter(d -> d.value() < StringDistance.QUITE_SIMILAR_THRESHOLD)
+            .min(Comparator.comparing(Pair::value));
+
         if (commands.containsKey(input.get(0))) {
             overloadCommands = commands.get(input.get(0));
             arguments = parseArguments(input, 1);
-        } else {
+        } else if (similarCommand.isEmpty() || similarCommand.get().value() > StringDistance.REALLY_SIMILAR_THRESHOLD) {
             overloadCommands = commands.get("");
             arguments = parseArgumentsOrNull(input);
+        } else {
+            overloadCommands = commands.get(similarCommand.get().key());
+            arguments = parseArguments(input, 1);
         }
 
         if (arguments == null || overloadCommands.isEmpty()) {
             // Nessun comando trovato
-            var similarCommand = commands.keySet()
-                    .stream()
-                    .map(s -> new Pair<>(
-                            s,
-                            stringDistance.calculateDistance(input.get(0), s)
-                    ))
-                    .filter(d -> d.value() < 0.7)
-                    .min(Comparator.comparing(Pair::value))
-                    .map(Pair::key)
-                    .orElse(null);
-            throw new CommandNotFoundException(arguments, similarCommand);
+            throw new CommandNotFoundException(arguments, similarCommand.map(Pair::key).orElse(null));
         }
 
         var command = overloadCommands.stream()
