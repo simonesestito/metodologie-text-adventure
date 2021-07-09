@@ -13,7 +13,6 @@ import it.uniroma1.textadv.locale.StringId;
 import it.uniroma1.textadv.locale.Strings;
 
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -58,7 +57,7 @@ public class Giocatore extends Personaggio {
         this.userOutput = userOutput;
         try {
             vaiIn(stanza);
-        } catch (UnreachableRoomException e) {
+        } catch (CommandException e) {
             throw new IllegalArgumentException(e); // Irrecuperabile
         }
     }
@@ -144,7 +143,7 @@ public class Giocatore extends Personaggio {
      * @param stanza Stanza dove andare
      * @throws UnreachableRoomException In caso la destinazione sia irragiungibile
      */
-    public void vaiIn(Stanza stanza) throws UnreachableRoomException {
+    public void vaiIn(Stanza stanza) throws CommandException {
         if (stanza == null)
             throw new UnreachableRoomException();
 
@@ -161,7 +160,7 @@ public class Giocatore extends Personaggio {
      * @throws UnreachableRoomException    In caso la stanza non sia stata trovata
      * @throws Link.LinkNotUsableException In caso il collegamento in quella direzione non si possa usare
      */
-    public void vai(Direction direction) throws UnreachableRoomException, Link.LinkNotUsableException {
+    public void vai(Direction direction) throws CommandException {
         var destination = getCurrentLocation().getLink(direction)
                 .orElseThrow(UnreachableRoomException::new)
                 .attraversa(getCurrentLocation());
@@ -406,7 +405,7 @@ public class Giocatore extends Personaggio {
          * @param room Stanza non raggiungibile
          */
         public UnreachableRoomException(String room) {
-            super(Strings.of(StringId.UNREACHABLE_ROOM_ERROR) + (room == null ? "" : ": " + room));
+            super(Strings.of(StringId.UNREACHABLE_ROOM_ERROR) + (room == null ? "" : room));
         }
     }
 }

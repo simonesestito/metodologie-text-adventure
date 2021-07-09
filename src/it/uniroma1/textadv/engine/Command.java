@@ -63,7 +63,7 @@ public class Command {
         if (commandLine.isEmpty())
             return EMPTY;
 
-        var commandParts = commandLine.split(",");
+        var commandParts = commandLine.split(COMMAND_PART_SEPARATOR);
         return new Command(
                 commandParts[0],
                 Arrays.stream(Giocatore.class.getMethods())

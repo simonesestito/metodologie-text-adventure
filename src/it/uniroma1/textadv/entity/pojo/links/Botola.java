@@ -4,7 +4,6 @@ import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.Stanza;
 import it.uniroma1.textadv.entity.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entity.pojo.features.ApribileConBlocco;
-import it.uniroma1.textadv.entity.pojo.features.BloccoApertura;
 import it.uniroma1.textadv.entity.pojo.objects.Vite;
 
 import java.util.Objects;
