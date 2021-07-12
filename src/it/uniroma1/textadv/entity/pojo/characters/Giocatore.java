@@ -8,7 +8,6 @@ import it.uniroma1.textadv.entity.pojo.features.*;
 import it.uniroma1.textadv.entity.pojo.links.Direction;
 import it.uniroma1.textadv.entity.pojo.links.Link;
 import it.uniroma1.textadv.entity.pojo.objects.Inventario;
-import it.uniroma1.textadv.entity.pojo.objects.Oggetto;
 import it.uniroma1.textadv.locale.StringId;
 import it.uniroma1.textadv.locale.Strings;
 
@@ -367,6 +366,8 @@ public class Giocatore extends Personaggio {
 
     /**
      * Gioca con un oggetto con cui è possibile giocare
+     *
+     * @param gioco Gioco da avviare e far interagire con l'utente
      */
     public void gioca(Gioco gioco) {
         gioco.avviaGioco();

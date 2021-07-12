@@ -44,6 +44,7 @@ public class Gioco {
      * Gioca in un mondo dato, prendendo l'input da {@link System#in} in modalità interattiva
      *
      * @param mondo Mondo da giocare
+     * @throws IOException Errore di lettura dell'input utente
      */
     public void play(Mondo mondo) throws IOException {
         try {
@@ -58,6 +59,8 @@ public class Gioco {
      *
      * @param mondo  Mondo da giocare
      * @param script File da cui prendere i comandi
+     * @throws IOException            Errore di lettura del file dell'input utente
+     * @throws CommandException.Fatal Errore fatale per il comando dato, che interrompe l'esecuzione non interattiva
      */
     public void play(Mondo mondo, Path script) throws IOException, CommandException.Fatal {
         play(mondo, Files.newBufferedReader(script), GameModeHandler.NON_INTERACTIVE);
