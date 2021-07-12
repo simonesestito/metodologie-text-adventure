@@ -39,7 +39,7 @@ public class Strings {
     /**
      * Lingua dell'attuale caricamento delle stringhe
      */
-    private final Gioco.Lingua lingua;
+    private final Gioco.Language language;
 
     /**
      * Istanza da usare delle stringhe per la lingua attuale
@@ -59,11 +59,11 @@ public class Strings {
     /**
      * Crea una nuova traduzione
      * @param stringMap Mappa delle stringhe
-     * @param lingua Lingua del caricamento
+     * @param language Lingua del caricamento
      */
-    private Strings(Map<StringId, String> stringMap, Gioco.Lingua lingua) {
+    private Strings(Map<StringId, String> stringMap, Gioco.Language language) {
         this.stringMap = stringMap;
-        this.lingua = lingua;
+        this.language = language;
     }
 
     /**
@@ -72,18 +72,18 @@ public class Strings {
      *
      * Così facendo, il cambiamento è silenzioso in tutto il programma.
      *
-     * @param lingua Nuova lingua
+     * @param language Nuova lingua
      * @throws IOException Errore nel caricamento del file della lingua
      */
-    public static void localizza(Gioco.Lingua lingua) throws IOException {
-        if (instance == null || !lingua.equals(instance.getLingua())) {
-            var file = Paths.get(lingua.getFilePrefix() + STRINGS_FILENAME);
+    public static void localizza(Gioco.Language language) throws IOException {
+        if (instance == null || !language.equals(instance.getLingua())) {
+            var file = Paths.get(language.getFilePrefix() + STRINGS_FILENAME);
             var stringsMap = Files.lines(file)
                     .collect(Collectors.toMap(
                             s -> StringId.valueOf(s.substring(0, s.indexOf(',')).toUpperCase()),
                             s -> s.substring(s.indexOf(',') + 1)
                     ));
-            instance = new Strings(stringsMap, lingua);
+            instance = new Strings(stringsMap, language);
         }
     }
 
@@ -91,8 +91,8 @@ public class Strings {
      * Ottieni la lingua dell'attuale caricamento
      * @return Lingua attuale
      */
-    public Gioco.Lingua getLingua() {
-        return lingua;
+    public Gioco.Language getLingua() {
+        return language;
     }
 
     /**

@@ -13,7 +13,8 @@ break,rompi,Rompibile
 use,usa,Usabile,Object
 give,dai,Entity,Ricevitore
 enter,prendiDirezione,Link
+go,prendiDirezione,Link
 use,usa,Usabile
 talk,parla,Parla
 ,vai,Direction
-sleep,dormi
+play,gioca,Gioco

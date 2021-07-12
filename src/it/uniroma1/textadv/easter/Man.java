@@ -5,7 +5,7 @@ import static java.lang.Math.min;
 import static java.lang.Math.max;
 
 /**
- * Omino del gioco {@link Dino}
+ * Omino del gioco {@link DinoGame}
  */
 public class Man implements Drawable {
     /**

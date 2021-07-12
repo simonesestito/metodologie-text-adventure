@@ -2,10 +2,15 @@
 description	Benvenuto nel mondo in cui si svolgono le avventure di Zak!
 start	stanza di Zak
 
+[room:stanza dei giochi]
+description	Stanza con i giochi arcade di Zak
+objects	retrogame
+links	S:stanza di Zak
+
 [room:stanza di Zak]
 description	la camera da letto di Zak
 objects	scrivania,vite
-links	E:salone di Zak,S:botola
+links	E:salone di Zak,S:botola,N:stanza dei giochi
 
 [room:salone di Zak]
 description	il salone di Zak
@@ -98,6 +103,7 @@ grande chiave	Chiave	grande porta
 camino	Camino	gemma rossa // inizialmente acceso
 cassetto	Cassetto	grande chiave
 tesoro	Tesoro
+retrogame	GiocoArcade
 
 [characters]
 bob	Cane

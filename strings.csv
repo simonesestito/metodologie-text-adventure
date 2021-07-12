@@ -40,7 +40,6 @@ GAME_OVER,Gioco concluso. Hai vinto, complimenti!
 OBJECT_LOCKED,Non è possibile prendere l'oggetto
 UNABLE_TO_OPEN,Oh no, non si apre
 UNABLE_TO_CLOSE,Oh no, non si chiude
-SLEEP_MESSAGE,Nei sogni... Posso giocare a tutto ciò che voglio
 UNKNOWN_ROOM_ERROR,Non so dove andare
 EASTER_TIME_REMAINING,Tempo rimasto: %s
 CLICK_TO_START,Fai click per iniziare

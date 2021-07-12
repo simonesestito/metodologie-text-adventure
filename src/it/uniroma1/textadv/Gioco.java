@@ -20,7 +20,7 @@ public class Gioco {
     /**
      * Lingua di default
      */
-    public static final Lingua DEFAULT_LANGUAGE = Lingua.IT;
+    public static final Language DEFAULT_LANGUAGE = Language.IT;
 
     /**
      * Prefisso da stampare per accettare un input utente
@@ -45,10 +45,10 @@ public class Gioco {
      *
      * @param mondo Mondo da giocare
      */
-    public void play(Mondo mondo) {
+    public void play(Mondo mondo) throws IOException {
         try {
             play(mondo, new BufferedReader(new InputStreamReader(System.in)), GameModeHandler.INTERACTIVE);
-        } catch (IOException | CommandException.Fatal e) {
+        } catch (CommandException.Fatal e) {
             e.printStackTrace();
         }
     }
@@ -59,12 +59,8 @@ public class Gioco {
      * @param mondo  Mondo da giocare
      * @param script File da cui prendere i comandi
      */
-    public void play(Mondo mondo, Path script) {
-        try {
-            play(mondo, Files.newBufferedReader(script), GameModeHandler.NON_INTERACTIVE);
-        } catch (IOException | CommandException.Fatal e) {
-            e.printStackTrace();
-        }
+    public void play(Mondo mondo, Path script) throws IOException, CommandException.Fatal {
+        play(mondo, Files.newBufferedReader(script), GameModeHandler.NON_INTERACTIVE);
     }
 
     /**
@@ -101,16 +97,16 @@ public class Gioco {
     /**
      * Localizza il gioco intero cambiando la lingua ovunque
      *
-     * @param lingua Lingua da usare
+     * @param language Lingua da usare
      * @throws IOException Errore nella lettura dei file di lingua
      */
-    public void localizza(Lingua lingua) throws IOException {
-        Strings.localizza(lingua);
+    public void localizza(Language language) throws IOException {
+        Strings.localizza(language);
 
         textEngine = new Lazy<>(
                 () -> new TextEngine.Builder()
-                        .setCommandsFile(lingua.getFilePrefix() + TextEngine.COMMANDS_FILENAME)
-                        .setStopWordsFile(lingua.getFilePrefix() + TextEngine.STOPWORDS_FILENAME)
+                        .setCommandsFile(language.getFilePrefix() + TextEngine.COMMANDS_FILENAME)
+                        .setStopWordsFile(language.getFilePrefix() + TextEngine.STOPWORDS_FILENAME)
                         .build()
         );
         textEngine.get();
@@ -143,7 +139,7 @@ public class Gioco {
     /**
      * Lingua del gioco
      */
-    public enum Lingua {
+    public enum Language {
         /**
          * Inglese
          */
@@ -164,7 +160,7 @@ public class Gioco {
          *
          * @param filePrefix Prefisso dei file
          */
-        Lingua(String filePrefix) {
+        Language(String filePrefix) {
             this.filePrefix = filePrefix;
         }
 
@@ -241,28 +237,27 @@ public class Gioco {
          */
         public GameOverException() {
             super("""
-                                        
-                    -----------------------------------------------------
-                       _                             .-.
-                      / )  .-.    ___          __   (   )
-                     ( (  (   ) .'___)        (__'-._) (
-                      \\ '._) (,'.'               '.     '-.
-                       '.      /  "\\               '    -. '.
-                         )    /   \\ \\   .-.   ,'.   )  (  ',_)    _
-                       .'    (     \\ \\ (   \\ . .' .'    )    .-. ( \\
-                      (  .''. '.    \\ \\|  .' .' ,',--, /    (   ) ) )
-                       \\ \\   ', :    \\    .-'  ( (  ( (     _) (,' /
-                        \\ \\   : :    )  / _     ' .  \\ \\  ,'      /
-                      ,' ,'   : ;   /  /,' '.   /.'  / / ( (\\    (
-                      '.'      "   (    .-'. \\       ''   \\_)\\    \\
-                                    \\  |    \\ \\__             )    )
-                                  ___\\ |     \\___;           /  , /
-                                 /  ___)                    (  ( (
-                                 '.'                         ) ;) ;
-                                                            (_/(_/
-                    ----------------------------------------------------
-                                        
-                                        
+                    *******************************************************************************
+                               |                   |                  |                     |
+                      _________|________________.=""_;=.______________|_____________________|_______
+                     |                   |  ,-"_,=""     `"=.|                  |
+                     |___________________|__"=._o`"-._        `"=.______________|___________________
+                               |                `"=._o`"=._      _`"=._                     |
+                      _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+                     |                   |    __.--" , ; `"=._o." ,-""\"-._ ".   |
+                     |___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+                               |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
+                      _________|___________| ;`-.o`"=._; ." ` '`."\\` . "-._ /_______________|_______
+                     |                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
+                     |___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+                     ____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+                     /______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+                     ____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+                     /______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+                     ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+                     /______/______/______/______/______/______/______/______/______/______/______/_
+                     *******************************************************************************
+                     
                     """ + Strings.of(StringId.GAME_OVER));
         }
     }

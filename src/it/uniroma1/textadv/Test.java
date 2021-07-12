@@ -1,14 +1,18 @@
 package it.uniroma1.textadv;
 
-import it.uniroma1.textadv.entity.parser.GameFile;
-
-import java.io.IOException;
-
+/**
+ * Classe dei test di base dalle specifiche
+ */
 public class Test {
-    public static void main(String[] args) throws IOException, GameFile.ParseException {
+    /**
+     * Esegui il test di base per eseguire il gioco in interattivo
+     *
+     * @param args Argomenti della CLI inutilizzati
+     * @throws Exception Errore durante l'esecuzione
+     */
+    public static void main(String[] args) throws Exception {
         Gioco g = new Gioco();
         Mondo m = Mondo.fromFile("minizak.game");
-        g.localizza(Gioco.Lingua.IT);
-        g.play(m); //, Paths.get("minizak.ff"));
+        g.play(m);
     }
 }

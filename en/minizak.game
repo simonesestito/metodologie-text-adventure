@@ -2,10 +2,15 @@
 description	Welcome to the world where Zak's adventures unfold!
 start	Zak's room
 
+[room:game room]
+description	Zak's room with his arcade games
+objects	retrogame
+links	S:Zak's room
+
 [room:Zak's room]
 description	Zak's bedroom
 objects	desk,screw
-links	E:Zak's salon,S:trap door
+links	E:Zak's salon,S:trap door,N:game room
 
 [room:Zak's salon]
 description	the Zak's salon
@@ -98,6 +103,7 @@ big key	Chiave	big door
 fireplace	Camino	red gem // inizialmente acceso
 drawer	Cassetto	big key
 treasure	Tesoro
+retrogame	GiocoArcade
 
 [characters]
 bob	Cane

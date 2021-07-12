@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Gioco easter egg ispirato a Dino di Chrome
  */
-public class Dino {
+public class DinoGame {
     /**
      * Larghezza della finestra di gioco
      */
@@ -78,7 +78,7 @@ public class Dino {
     /**
      * Crea un nuovo gioco
      */
-    public Dino() {
+    public DinoGame() {
         this.drawableList.add(man);
     }
 

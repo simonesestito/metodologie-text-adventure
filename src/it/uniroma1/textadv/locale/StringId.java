@@ -216,11 +216,6 @@ public enum StringId {
     UNABLE_TO_CLOSE,
 
     /**
-     * Enum per la stringa con ID: SLEEP_MESSAGE
-     */
-    SLEEP_MESSAGE,
-
-    /**
      * Enum per la stringa con ID: UNKNOWN_ROOM_ERROR
      */
     UNKNOWN_ROOM_ERROR,

@@ -96,7 +96,7 @@ public class TextCanvas {
                 if (column >= getWidth() || row >= getHeight() || column < 0 || row < 0)
                     continue;
 
-                if (canvas[row][column] != '\0')
+                if (canvas[row][column] != '\0' && canvas[row][column] != ' ')
                     throw new CollisionException();
 
                 canvas[row][column] = line[j];

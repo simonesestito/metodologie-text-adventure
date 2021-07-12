@@ -5,6 +5,8 @@ import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.Stanza;
 import it.uniroma1.textadv.entity.pojo.features.Contenitore;
 
+import java.util.Objects;
+
 /**
  * Rappresentazione dei soldi nel gioco
  */
@@ -24,8 +26,9 @@ public class Soldi extends Oggetto {
      */
     @Override
     public void spostaIn(Contenitore contenitore) throws CommandException {
+        var vecchiaPosizione = getPosizione();
         super.spostaIn(contenitore);
-        if (contenitore instanceof Stanza) {
+        if (!Objects.equals(contenitore, vecchiaPosizione) && contenitore instanceof Stanza) {
             Giocatore.getInstance().rispondiUtente("""
                     ||====================================================================||
                     ||//$\\\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\//$\\\\||

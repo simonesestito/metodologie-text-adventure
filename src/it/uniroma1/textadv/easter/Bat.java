@@ -1,7 +1,7 @@
 package it.uniroma1.textadv.easter;
 
 /**
- * Elemento del gioco {@link Dino} che rappresenta un pipistrello
+ * Elemento del gioco {@link DinoGame} che rappresenta un pipistrello
  */
 public class Bat extends MovingObject {
     /**

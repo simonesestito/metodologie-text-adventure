@@ -21,7 +21,8 @@ public abstract class OggettoLink extends Oggetto implements Link {
 
     /**
      * Crea un oggetto che collega due stanze
-     * @param name Nome dell'oggetto
+     *
+     * @param name    Nome dell'oggetto
      * @param stanzaA Stanza collegata
      * @param stanzaB Altra stanza collegata
      */
@@ -33,6 +34,7 @@ public abstract class OggettoLink extends Oggetto implements Link {
 
     /**
      * Ottieni una delle due stanze collegate
+     *
      * @return Stanza collegata
      */
     @Override
@@ -42,6 +44,7 @@ public abstract class OggettoLink extends Oggetto implements Link {
 
     /**
      * Ottieni una delle due stanze collegate
+     *
      * @return Stanza collegata
      */
     @Override
@@ -50,7 +53,19 @@ public abstract class OggettoLink extends Oggetto implements Link {
     }
 
     /**
+     * Descrivi il link sempre come l'oggetto anche se visto da una direzione
+     *
+     * @param fromRoom Stanza in cui sono ora
+     * @return Descrizione dell'oggetto link
+     */
+    @Override
+    public String toStringFrom(Stanza fromRoom) {
+        return this.toString();
+    }
+
+    /**
      * Controlla se l'oggetto corrente e quello dato sono due link uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due link uguali
      */
@@ -64,6 +79,7 @@ public abstract class OggettoLink extends Oggetto implements Link {
 
     /**
      * Calcola l'hash di un collegamento in base alle stanze che collega
+     *
      * @return Hash delle stanze collegate
      */
     @Override

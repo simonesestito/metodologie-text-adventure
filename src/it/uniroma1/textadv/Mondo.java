@@ -55,12 +55,25 @@ public class Mondo extends DescribableEntity {
      * Metodo statico factory per la creazione di un mondo da un dato file che lo descrive.
      *
      * @param file File che descrive il mondo da istanziare
+     * @param language Lingua del mondo, da cui trovare il prefisso per il file
+     * @return Mondo istanziato
+     * @throws IOException             Errore nella lettura del file
+     * @throws GameFile.ParseException Errore nel parsing del file
+     */
+    public static Mondo fromFile(String file, Gioco.Language language) throws IOException, GameFile.ParseException {
+        return Mondo.fromFile(Path.of(language.getFilePrefix(), file));
+    }
+
+    /**
+     * Metodo statico factory per la creazione di un mondo da un dato file che lo descrive.
+     *
+     * @param file File che descrive il mondo da istanziare
      * @return Mondo istanziato
      * @throws IOException             Errore nella lettura del file
      * @throws GameFile.ParseException Errore nel parsing del file
      */
     public static Mondo fromFile(String file) throws IOException, GameFile.ParseException {
-        return Mondo.fromFile(Path.of(file));
+        return Mondo.fromFile(file, Gioco.Language.IT);
     }
 
     /**

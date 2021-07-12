@@ -1,7 +1,6 @@
 package it.uniroma1.textadv.entity.pojo.characters;
 
 import it.uniroma1.textadv.Mondo;
-import it.uniroma1.textadv.easter.Dino;
 import it.uniroma1.textadv.engine.CommandException;
 import it.uniroma1.textadv.entity.pojo.Entity;
 import it.uniroma1.textadv.entity.pojo.Stanza;
@@ -9,6 +8,7 @@ import it.uniroma1.textadv.entity.pojo.features.*;
 import it.uniroma1.textadv.entity.pojo.links.Direction;
 import it.uniroma1.textadv.entity.pojo.links.Link;
 import it.uniroma1.textadv.entity.pojo.objects.Inventario;
+import it.uniroma1.textadv.entity.pojo.objects.Oggetto;
 import it.uniroma1.textadv.locale.StringId;
 import it.uniroma1.textadv.locale.Strings;
 
@@ -179,7 +179,7 @@ public class Giocatore extends Personaggio {
             var objects = currentRoom.getOggettiContenuti().stream()
                     .map(Entity::getName)
                     .collect(Collectors.joining(", "));
-            rispondiUtente(Strings.of(StringId.PLAYER_OBJECTS_SEEN, currentRoom.toString()));
+            rispondiUtente(Strings.of(StringId.PLAYER_OBJECTS_SEEN, objects));
         }
 
         if (currentRoom.getCharacters().isEmpty()) {
@@ -188,11 +188,13 @@ public class Giocatore extends Personaggio {
             var coPlayers = currentRoom.getCharacters().stream()
                     .map(Object::toString)
                     .collect(Collectors.joining(", "));
-            rispondiUtente(Strings.of(StringId.PLAYER_PLAYERS_SEEN, currentRoom.toString()));
+            rispondiUtente(Strings.of(StringId.PLAYER_PLAYERS_SEEN, coPlayers));
         }
 
         rispondiUtente(Strings.of(StringId.PLAYER_DIRECTIONS));
-        currentRoom.getLinks().forEach((direction, link) -> rispondiUtente(direction.toString() + " " + link));
+        currentRoom.getLinks().forEach((direction, link) -> rispondiUtente(
+                direction.toString() + " " + link.toStringFrom(getCurrentLocation())
+        ));
     }
 
     /**
@@ -230,6 +232,7 @@ public class Giocatore extends Personaggio {
 
     /**
      * Vai verso un collegamento
+     *
      * @param link Collegamento da attraversare
      * @throws CommandException Errore nell'attraversamento
      */
@@ -239,6 +242,7 @@ public class Giocatore extends Personaggio {
 
     /**
      * Prendi un oggetto e aggiungilo all'inventario
+     *
      * @param oggetto Oggetto da prendere
      * @throws CommandException Errore nella presa
      */
@@ -248,10 +252,11 @@ public class Giocatore extends Personaggio {
 
     /**
      * Prendi un oggetto e aggiungilo all'inventario, da un contenitore fornito
-     * @param oggetto Oggetto da prendere
+     *
+     * @param oggetto     Oggetto da prendere
      * @param contenitore Contenitore dove dovrebbe essere l'oggetto attualmente
      * @throws Contenitore.UnresolvedEntityException Se non è dove indicato
-     * @throws CommandException Errore nella presa
+     * @throws CommandException                      Errore nella presa
      */
     public void prendi(Posizionabile oggetto, Contenitore contenitore) throws CommandException {
         if (!Objects.equals(oggetto.getPosizione(), contenitore))
@@ -277,6 +282,7 @@ public class Giocatore extends Personaggio {
 
     /**
      * Accarezza un'entità che può essere accarezzata
+     *
      * @param accarezzabile Entità da accarezzare
      */
     public void accarezza(Accarezzabile accarezzabile) {
@@ -285,6 +291,7 @@ public class Giocatore extends Personaggio {
 
     /**
      * Rompi un'entità che può essere rotta con un altro oggetto
+     *
      * @param rompibile Entità da rompere
      * @param rompitore Entità che verrà usata per rompere
      * @throws CommandException Errore nella rottura
@@ -296,6 +303,7 @@ public class Giocatore extends Personaggio {
 
     /**
      * Rompi un'entità che può essere rotta senza oggetti
+     *
      * @param rompibile Entità da rompere
      * @throws CommandException Errore nella rottura
      */
@@ -305,9 +313,10 @@ public class Giocatore extends Personaggio {
 
     /**
      * Usa un'entità che può essere usata con altri oggetti
-     * @param oggetto Entità da usare
+     *
+     * @param oggetto  Entità da usare
      * @param soggetto Oggetto con cui viene usato
-     * @param <T> Tipo dell'oggetto
+     * @param <T>      Tipo dell'oggetto
      * @throws CommandException Errore nell'utilizzo
      */
     public <T> void usa(T oggetto, UsabileCon<T> soggetto) throws CommandException {
@@ -317,6 +326,7 @@ public class Giocatore extends Personaggio {
 
     /**
      * Usa un'entità che può essere usata senza altri oggetti
+     *
      * @param soggetto Oggetto da usare
      * @throws CommandException Errore nell'utilizzo
      */
@@ -326,10 +336,11 @@ public class Giocatore extends Personaggio {
 
     /**
      * Dai un oggetto a un'altra entità, in cambio di altri oggetti che verranno messi nell'inventario
-     * @param oggetto Oggetto da dare
+     *
+     * @param oggetto    Oggetto da dare
      * @param ricevitore Entità che lo riceve
-     * @param <T> Tipo dell'oggetto da dare
-     * @param <R> Tipo degli oggetti da ricevere
+     * @param <T>        Tipo dell'oggetto da dare
+     * @param <R>        Tipo degli oggetti da ricevere
      * @throws CommandException Errore nello scambio
      */
     public <T extends Entity & Posizionabile, R extends Entity & Posizionabile> void dai(T oggetto, Ricevitore<? super T, R> ricevitore) throws CommandException {
@@ -347,6 +358,7 @@ public class Giocatore extends Personaggio {
 
     /**
      * Parla con un'altra entità con cui è possibile parlare
+     *
      * @param parlatore Entità con cui parlare
      */
     public void parla(Parla parlatore) {
@@ -354,20 +366,15 @@ public class Giocatore extends Personaggio {
     }
 
     /**
-     * Dormi (easter egg?)
-     * @throws InterruptedException In caso il thread si interrompa durante il gioco
+     * Gioca con un oggetto con cui è possibile giocare
      */
-    public void dormi() throws InterruptedException {
-        var text = Strings.of(StringId.SLEEP_MESSAGE).split("\\.\\.\\. ");
-        for (var part : text) {
-            rispondiUtente(part + "...");
-            Thread.sleep(1000);
-        }
-        new Dino().avvia();
+    public void gioca(Gioco gioco) {
+        gioco.avviaGioco();
     }
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due entità uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due entità uguali
      */
@@ -382,6 +389,7 @@ public class Giocatore extends Personaggio {
 
     /**
      * Calcola l'hash del giocatore
+     *
      * @return Hash del giocatore
      */
     @Override
@@ -402,6 +410,7 @@ public class Giocatore extends Personaggio {
 
         /**
          * Errore specificando la stanza interessata
+         *
          * @param room Stanza non raggiungibile
          */
         public UnreachableRoomException(String room) {

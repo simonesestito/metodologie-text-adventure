@@ -1,6 +1,7 @@
 package it.uniroma1.textadv.entity.pojo.links;
 
 import it.uniroma1.textadv.engine.CommandException;
+import it.uniroma1.textadv.entity.pojo.Entity;
 import it.uniroma1.textadv.entity.pojo.Stanza;
 import it.uniroma1.textadv.locale.StringId;
 import it.uniroma1.textadv.locale.Strings;
@@ -13,46 +14,8 @@ import java.util.stream.Stream;
  */
 public interface Link {
     /**
-     * Una delle due stanze collegate
-     * @return Stanza collegata
-     */
-    Stanza getStanzaA();
-
-    /**
-     * Una delle due stanze collegate
-     * @return Stanza collegata
-     */
-    Stanza getStanzaB();
-
-    /**
-     * Attraversa il collegamento per andare nell'altra stanza
-     * @param da Da dove viene attraversato il collegamento
-     * @return Destinazione raggiunta
-     * @throws LinkNotUsableException Errore nell'attraversamento
-     */
-    default Stanza attraversa(Stanza da) throws LinkNotUsableException {
-        if (!isAttraversabile())
-            throw new LinkNotUsableException(this);
-
-        if (Objects.equals(getStanzaA(), da)) {
-            return getStanzaB();
-        } else if (Objects.equals(getStanzaB(), da)) {
-            return getStanzaA();
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Controlla se il collegamento è attraversabile
-     * @return <code>true</code> se è attraversabile
-     */
-    default boolean isAttraversabile() {
-        return true;
-    }
-
-    /**
      * Crea un nuovo link diretto, senza ricorrere ad un oggetto, per collegare due stanze
+     *
      * @param a Stanza collegata
      * @param b Stanza collegata
      * @return Nuovo link senza essere un oggetto tra le due stanze date
@@ -77,7 +40,67 @@ public interface Link {
     }
 
     /**
+     * Una delle due stanze collegate
+     *
+     * @return Stanza collegata
+     */
+    Stanza getStanzaA();
+
+    /**
+     * Una delle due stanze collegate
+     *
+     * @return Stanza collegata
+     */
+    Stanza getStanzaB();
+
+    /**
+     * Attraversa il collegamento per andare nell'altra stanza
+     *
+     * @param da Da dove viene attraversato il collegamento
+     * @return Destinazione raggiunta
+     * @throws LinkNotUsableException Errore nell'attraversamento
+     */
+    default Stanza attraversa(Stanza da) throws LinkNotUsableException {
+        if (!isAttraversabile())
+            throw new LinkNotUsableException(this);
+
+        if (Objects.equals(getStanzaA(), da)) {
+            return getStanzaB();
+        } else if (Objects.equals(getStanzaB(), da)) {
+            return getStanzaA();
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Controlla se il collegamento è attraversabile
+     *
+     * @return <code>true</code> se è attraversabile
+     */
+    default boolean isAttraversabile() {
+        return true;
+    }
+
+    /**
+     * Descrivi il link come stringa, partendo dal lato dove sono in questo momento
+     *
+     * @param fromRoom Stanza in cui sono ora
+     * @return Descrizione del link visto da dove mi trovo ora
+     */
+    default String toStringFrom(Stanza fromRoom) {
+        if (getStanzaA().equals(fromRoom))
+            return getStanzaB().toString();
+
+        if (getStanzaB().equals(fromRoom))
+            return getStanzaA().toString();
+
+        return toString();
+    }
+
+    /**
      * Ottieni lo stream delle stanze raggiunte da questo link
+     *
      * @return Stanze collegate dal link
      */
     default Stream<Stanza> getRooms() {
@@ -90,6 +113,7 @@ public interface Link {
     class LinkNotUsableException extends CommandException {
         /**
          * Crea un'eccezione per un link non utilizzabile
+         *
          * @param link Link non utilizzabile
          */
         public LinkNotUsableException(Link link) {

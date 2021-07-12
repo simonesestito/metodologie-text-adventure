@@ -13,7 +13,8 @@ rompi,rompi,Rompibile
 usa,usa,Usabile,Object
 dai,dai,Entity,Ricevitore
 entra,prendiDirezione,Link
+vai,prendiDirezione,Link
 usa,usa,Usabile
 parla,parla,Parla
 ,vai,Direction
-dormi,dormi
+gioca,gioca,Gioco
