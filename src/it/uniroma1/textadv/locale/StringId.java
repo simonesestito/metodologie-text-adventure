@@ -8,33 +8,33 @@ public enum StringId {
      * Enum per la stringa con ID: COMMAND_NOT_FOUND
      */
     COMMAND_NOT_FOUND,
-    
+
     /**
      * Enum per la stringa con ID: ENTITY_NOT_FOUND
      */
     ENTITY_NOT_FOUND,
 
-    
+
     /**
      * Enum per la stringa con ID: ARGUMENT_COMMAND_NOT_FOUND
      */
     ARGUMENT_COMMAND_NOT_FOUND,
-    
+
     /**
      * Enum per la stringa con ID: ACTION_NOT_ALLOWED
      */
     ACTION_NOT_ALLOWED,
-    
+
     /**
      * Enum per la stringa con ID: ACTION_ARGS_NOT_ALLOWED
      */
     ACTION_ARGS_NOT_ALLOWED,
-    
+
     /**
      * Enum per la stringa con ID: ACTION_UNKNOWN
      */
     ACTION_UNKNOWN,
-    
+
     /**
      * Enum per la stringa con ID: ACTION_ARGS_UNKNOWN
      */
@@ -44,7 +44,7 @@ public enum StringId {
      * Enum per la stringa con ID: ITEM_ADDED_TO_CART
      */
     ITEM_ADDED_TO_CART,
-    
+
     /**
      * Enum per la stringa con ID: LINK_NOT_USABLE
      */
@@ -64,12 +64,12 @@ public enum StringId {
      * Enum per la stringa con ID: CONTAINER_HAS_HIDDEN_CONTENT
      */
     CONTAINER_HAS_HIDDEN_CONTENT,
-    
+
     /**
      * Enum per la stringa con ID: CONTAINER_HAS_VISIBLE_CONTENT
      */
     CONTAINER_HAS_VISIBLE_CONTENT,
-    
+
     /**
      * Enum per la stringa con ID: CONTAINER_HAS_NO_CONTENT
      */
@@ -79,7 +79,7 @@ public enum StringId {
      * Enum per la stringa con ID: UNABLE_TO_BREAK
      */
     UNABLE_TO_BREAK,
-    
+
     /**
      * Enum per la stringa con ID: OBJECT_BROKEN_STATUS_SUFFIX
      */
@@ -229,7 +229,7 @@ public enum StringId {
      * Enum per la stringa con ID: EASTER_TIME_REMAINING
      */
     CLICK_TO_START,
-    
+
     /**
      * Enum per la stringa con ID: SIMILAR_STRING_DETECTED_MESSAGE
      */

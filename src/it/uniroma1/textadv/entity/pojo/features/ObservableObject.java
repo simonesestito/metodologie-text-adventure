@@ -19,6 +19,7 @@ public class ObservableObject extends Oggetto implements Observable {
 
     /**
      * Crea un nuovo oggetto osservabile
+     *
      * @param name Nome dell'oggetto
      */
     public ObservableObject(String name) {
@@ -27,6 +28,7 @@ public class ObservableObject extends Oggetto implements Observable {
 
     /**
      * Osserva l'oggetto potenzialmente impedendone la presa
+     *
      * @param canTake Observer che controlla se è prendibile
      */
     @Override
@@ -36,6 +38,7 @@ public class ObservableObject extends Oggetto implements Observable {
 
     /**
      * Smetti di controllare la presa di un oggetto
+     *
      * @param canTake Observer da rimuovere
      */
     @Override
@@ -45,6 +48,7 @@ public class ObservableObject extends Oggetto implements Observable {
 
     /**
      * Sposta un oggetto in un altro posto
+     *
      * @param contenitore Nuovo contenitore dove stare
      * @throws CommandException Errore nello spostamento
      */
@@ -58,6 +62,7 @@ public class ObservableObject extends Oggetto implements Observable {
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due oggetti uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due oggetti uguali
      */

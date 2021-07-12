@@ -19,7 +19,8 @@ public class Camino extends OggettoContenitore implements UsabileCon<Secchio> {
 
     /**
      * Crea un nuovo camino, già acceso
-     * @param name Nome del camino
+     *
+     * @param name      Nome del camino
      * @param contenuto Contenuto del camino
      */
     public Camino(String name, List<Oggetto> contenuto) {
@@ -28,6 +29,7 @@ public class Camino extends OggettoContenitore implements UsabileCon<Secchio> {
 
     /**
      * Controlla se il camino è acceso
+     *
      * @return <code>true</code> se è acceso
      */
     public boolean isAcceso() {
@@ -36,6 +38,7 @@ public class Camino extends OggettoContenitore implements UsabileCon<Secchio> {
 
     /**
      * Imposta lo stato di accensione del camino
+     *
      * @param acceso Stato di accensione
      */
     private void setAcceso(boolean acceso) {
@@ -58,6 +61,7 @@ public class Camino extends OggettoContenitore implements UsabileCon<Secchio> {
 
     /**
      * Prendi un oggetto nel camino, avendo cura che questo sia stato spento
+     *
      * @param oggetto Oggetto da prendere
      * @throws CommandException Errore nella presa dell'oggetto
      */
@@ -73,13 +77,14 @@ public class Camino extends OggettoContenitore implements UsabileCon<Secchio> {
                       ). , ( .   (  ) ( , ')  .' (  ,    )
                      (_,) . ), ) _) _,')  (, ) '. )  ,. (' )
                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                    
-                    """+Strings.of(StringId.FIREPLACE_LIT));
+                                        
+                    """ + Strings.of(StringId.FIREPLACE_LIT));
         super.prendiOggetto(oggetto);
     }
 
     /**
      * Un camino è usabile con un secchio per spegnerlo
+     *
      * @param secchio Secchio da usare, deve essere riempito
      */
     @Override
@@ -92,6 +97,7 @@ public class Camino extends OggettoContenitore implements UsabileCon<Secchio> {
 
     /**
      * Controlla se due oggetti sono camini uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se l'oggetto è uguale al camino corrente
      */

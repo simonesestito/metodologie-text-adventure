@@ -6,12 +6,13 @@ import it.uniroma1.textadv.locale.Strings;
 
 /**
  * Oggetto che può essere rotto.
- *
+ * <p>
  * Di conseguenza è usabile con un oggetto che lo può rompere
  */
 public interface Rompibile extends UsabileCon<Rompitore> {
     /**
      * Rompi l'oggetto
+     *
      * @param rompitore Oggetto che lo rompe
      * @throws CommandException Errore nella sua rottura
      */
@@ -25,12 +26,14 @@ public interface Rompibile extends UsabileCon<Rompitore> {
 
     /**
      * Verifica se l'oggetto è rotto
+     *
      * @return <code>true</code> se è rotto
      */
     boolean isRotto();
 
     /**
      * Usa un oggetto che ne rompe altri, sull'oggetto corrente
+     *
      * @param oggetto Oggetto che ne rompe altri
      * @throws CommandException Errore nella rottura dell'oggetto attuale
      */
@@ -45,6 +48,7 @@ public interface Rompibile extends UsabileCon<Rompitore> {
     class ObjectRequiredException extends CommandException {
         /**
          * Nuova eccezione con il nome dell'oggetto
+         *
          * @param oggetto Oggetto da rompere
          */
         public ObjectRequiredException(String oggetto) {
@@ -58,6 +62,7 @@ public interface Rompibile extends UsabileCon<Rompitore> {
     class ObjectBrokenException extends CommandException {
         /**
          * Nuova eccezione con il nome dell'oggetto
+         *
          * @param oggetto Oggetto da rompere
          */
         public ObjectBrokenException(String oggetto) {
@@ -72,6 +77,7 @@ public interface Rompibile extends UsabileCon<Rompitore> {
     class ObjectUnbrokenException extends CommandException {
         /**
          * Nuova eccezione con il nome dell'oggetto
+         *
          * @param oggetto Oggetto da rompere
          */
         public ObjectUnbrokenException(String oggetto) {

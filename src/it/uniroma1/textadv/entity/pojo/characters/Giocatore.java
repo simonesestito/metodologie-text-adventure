@@ -94,7 +94,7 @@ public class Giocatore extends Personaggio {
      */
     public static Giocatore init(String name, Stanza stanza) {
         // if (INSTANCE != null)
-        //     throw new IllegalStateException();
+        //    throw new IllegalStateException();
         INSTANCE = new Giocatore(name, stanza);
         return getInstance();
     }

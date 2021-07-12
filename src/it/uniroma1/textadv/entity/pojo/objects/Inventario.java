@@ -23,6 +23,7 @@ public class Inventario implements ContenitoreAggiungibile {
 
     /**
      * Ottieni una vista immutabile degli oggetti nell'inventario
+     *
      * @return Oggetti nell'inventario
      */
     @Override
@@ -32,6 +33,7 @@ public class Inventario implements ContenitoreAggiungibile {
 
     /**
      * Prendi un oggetto da dentro l'inventario
+     *
      * @param oggetto Oggetto da prendere
      * @throws CommandException Errore durante lo spostamento dell'oggetto
      */
@@ -44,6 +46,7 @@ public class Inventario implements ContenitoreAggiungibile {
 
     /**
      * Aggiungi un oggetto nell'inventario
+     *
      * @param oggetto Oggetto da aggiungere
      * @throws CommandException Errore durante l'aggiunta
      */
@@ -55,6 +58,7 @@ public class Inventario implements ContenitoreAggiungibile {
 
     /**
      * Verifica che l'inventario sia vuoto
+     *
      * @return <code>true</code> se l'inventario è vuoto
      */
     public boolean isEmpty() {
@@ -63,6 +67,7 @@ public class Inventario implements ContenitoreAggiungibile {
 
     /**
      * Ottieni uno stream sugli oggetti contenuti nell'inventario
+     *
      * @return Stream degli oggetti contenuti
      */
     public Stream<Posizionabile> stream() {
@@ -71,6 +76,7 @@ public class Inventario implements ContenitoreAggiungibile {
 
     /**
      * Rappresenta l'inventario come stringa tramite il suo nome tradotto
+     *
      * @return Nome dell'inventario
      */
     @Override
@@ -80,6 +86,7 @@ public class Inventario implements ContenitoreAggiungibile {
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due inventari uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due inventari uguali
      */
@@ -93,6 +100,7 @@ public class Inventario implements ContenitoreAggiungibile {
 
     /**
      * Calcola l'hash dell'inventario
+     *
      * @return Hash calcolato
      */
     @Override

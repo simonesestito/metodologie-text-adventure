@@ -70,6 +70,7 @@ public class Venditore extends Personaggio implements Contenitore, Ricevitore<So
 
     /**
      * Ricevi i soldi in cambio degli oggetti nel carrello
+     *
      * @param soldi Soldi da ricevere
      * @return Oggetti venduti
      */
@@ -87,6 +88,7 @@ public class Venditore extends Personaggio implements Contenitore, Ricevitore<So
 
     /**
      * Controlla se i venditori sono uguali
+     *
      * @param o Altro oggetto da controllare
      * @return <code>true</code> se i venditori sono uguali
      */
@@ -101,6 +103,7 @@ public class Venditore extends Personaggio implements Contenitore, Ricevitore<So
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

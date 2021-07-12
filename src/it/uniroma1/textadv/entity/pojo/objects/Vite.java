@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * Rappresentazione della vite, oggetto che può controllare l'apertura di altri oggetti
+ *
  * @see Botola
  */
 public class Vite extends Oggetto implements BloccoApertura, UsabileCon<Cacciavite> {
@@ -23,7 +24,8 @@ public class Vite extends Oggetto implements BloccoApertura, UsabileCon<Cacciavi
 
     /**
      * Crea una nuova vite, già bloccata
-     * @param name Nome della nuova vite
+     *
+     * @param name   Nome della nuova vite
      * @param botola Oggetto di cui controlla l'apertura
      * @throws ApribileCon.ChiusuraException Errore nella chiusura dell'oggetto che controlla
      */
@@ -35,6 +37,7 @@ public class Vite extends Oggetto implements BloccoApertura, UsabileCon<Cacciavi
 
     /**
      * Verifica se la vite è bloccata
+     *
      * @return <code>true</code> se la vite è bloccata
      */
     @Override
@@ -44,6 +47,7 @@ public class Vite extends Oggetto implements BloccoApertura, UsabileCon<Cacciavi
 
     /**
      * Usa la vite con un cacciavite generico
+     *
      * @param cacciavite Cacciavite da usare
      */
     @Override
@@ -61,6 +65,7 @@ public class Vite extends Oggetto implements BloccoApertura, UsabileCon<Cacciavi
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due viti uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due viti uguali
      */
@@ -75,6 +80,7 @@ public class Vite extends Oggetto implements BloccoApertura, UsabileCon<Cacciavi
 
     /**
      * Calcola l'hash della vite
+     *
      * @return Hash della vite
      */
     @Override

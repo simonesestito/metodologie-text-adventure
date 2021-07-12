@@ -21,7 +21,8 @@ public class Scrivania extends OggettoContenitore implements ApribileCon<Object>
 
     /**
      * Crea una nuova scrivania
-     * @param name Nome della scrivania
+     *
+     * @param name      Nome della scrivania
      * @param contenuto Contenuto della scrivania
      */
     public Scrivania(String name, List<Oggetto> contenuto) {
@@ -30,6 +31,7 @@ public class Scrivania extends OggettoContenitore implements ApribileCon<Object>
 
     /**
      * Apri la scrivania
+     *
      * @throws AperturaException Errore nell'apertura
      */
     @Override
@@ -55,6 +57,7 @@ public class Scrivania extends OggettoContenitore implements ApribileCon<Object>
 
     /**
      * Controlla se la scrivania è aperta
+     *
      * @return <code>true</code> se la scrivania è aperta
      */
     @Override
@@ -64,6 +67,7 @@ public class Scrivania extends OggettoContenitore implements ApribileCon<Object>
 
     /**
      * Prendi un oggetto da dentro la scrivania controllando che questa sia aperta
+     *
      * @param oggetto Oggetto da prendere
      * @throws CommandException Errore nella presa
      */
@@ -76,6 +80,7 @@ public class Scrivania extends OggettoContenitore implements ApribileCon<Object>
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due scrivanie uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due scrivanie uguali
      */
@@ -90,6 +95,7 @@ public class Scrivania extends OggettoContenitore implements ApribileCon<Object>
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

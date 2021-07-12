@@ -22,6 +22,7 @@ public class ApribileConChiave implements ApribileCon<Chiave> {
 
     /**
      * Apri usando la chiave
+     *
      * @param chiave Chiave che dovrebbe aprire
      * @throws AperturaException Errore nell'apertura dell'oggetto
      */
@@ -34,6 +35,7 @@ public class ApribileConChiave implements ApribileCon<Chiave> {
 
     /**
      * Chiudi usando una chiave
+     *
      * @param chiave Chiave che dovrebbe chiudere
      * @throws ChiusuraException Errore nella chiusura dell'oggetto
      */
@@ -47,6 +49,7 @@ public class ApribileConChiave implements ApribileCon<Chiave> {
 
     /**
      * Controlla se è aperto
+     *
      * @return <code>true</code> se è aperto
      */
     @Override
@@ -56,6 +59,7 @@ public class ApribileConChiave implements ApribileCon<Chiave> {
 
     /**
      * Verifica che due implementazioni siano uguali
+     *
      * @param o Altro oggetto da controllare
      * @return <code>true</code> se i due oggetti sono equivalenti
      */
@@ -69,6 +73,7 @@ public class ApribileConChiave implements ApribileCon<Chiave> {
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

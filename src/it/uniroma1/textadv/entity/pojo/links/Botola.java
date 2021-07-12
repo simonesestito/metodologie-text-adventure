@@ -1,7 +1,7 @@
 package it.uniroma1.textadv.entity.pojo.links;
 
-import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.Stanza;
+import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.features.ApribileCon;
 import it.uniroma1.textadv.entity.pojo.features.ApribileConBlocco;
 import it.uniroma1.textadv.entity.pojo.objects.Vite;
@@ -19,7 +19,8 @@ public class Botola extends OggettoLink implements ApribileCon<Vite> {
 
     /**
      * Crea una nuova botola
-     * @param name Nome della botola
+     *
+     * @param name    Nome della botola
      * @param stanzaA Stanza collegata
      * @param stanzaB Stanza collegata
      */
@@ -29,6 +30,7 @@ public class Botola extends OggettoLink implements ApribileCon<Vite> {
 
     /**
      * Apri la botola con un oggetto
+     *
      * @param oggetto Oggetto con cui aprire
      * @throws AperturaException Errore nell'apertura
      */
@@ -52,6 +54,7 @@ public class Botola extends OggettoLink implements ApribileCon<Vite> {
 
     /**
      * Chiudi la botola con un oggetto
+     *
      * @param oggetto Oggetto con cui chiudere
      * @throws ChiusuraException Errore nella chiusura
      */
@@ -62,6 +65,7 @@ public class Botola extends OggettoLink implements ApribileCon<Vite> {
 
     /**
      * Verifica se la botola è aperta
+     *
      * @return Botola aperta
      */
     @Override
@@ -71,6 +75,7 @@ public class Botola extends OggettoLink implements ApribileCon<Vite> {
 
     /**
      * Controlla se la botola intesa come collegamento è attraversabile
+     *
      * @return <code>true</code> se è attraversabile
      */
     @Override
@@ -80,6 +85,7 @@ public class Botola extends OggettoLink implements ApribileCon<Vite> {
 
     /**
      * Verifica l'eguaglianza tra due botole
+     *
      * @param o Altro oggetto da controllare
      * @return <code>true</code> se le botole sono uguali
      */

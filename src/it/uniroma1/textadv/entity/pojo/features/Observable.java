@@ -15,12 +15,14 @@ import java.util.function.BooleanSupplier;
 public interface Observable extends Posizionabile {
     /**
      * Osserva l'entità
+     *
      * @param canTake Observer che controlla se è prendibile
      */
     void observe(BooleanSupplier canTake);
 
     /**
      * Smetti di osservare l'entità
+     *
      * @param canTake Observer da rimuovere
      */
     void removeObserver(BooleanSupplier canTake);

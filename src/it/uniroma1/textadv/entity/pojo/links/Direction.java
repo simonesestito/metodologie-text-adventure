@@ -42,7 +42,8 @@ public enum Direction {
 
     /**
      * Crea la direzione nell'enum
-     * @param symbol Simbolo per l'utente
+     *
+     * @param symbol        Simbolo per l'utente
      * @param abbreviations Abbreviazioni equivalenti
      */
     Direction(String symbol, String... abbreviations) {
@@ -52,6 +53,7 @@ public enum Direction {
 
     /**
      * Ottieni una direzione dall'abbreviazione o dal nome completo
+     *
      * @param abbreviation Abbreviazione o nome da risolvere
      * @return Direzione trovata o {@link Optional#empty()}
      */
@@ -70,6 +72,7 @@ public enum Direction {
 
     /**
      * Rappresentazione della direzione come stringa
+     *
      * @return Simbolo della direzione
      */
     @Override

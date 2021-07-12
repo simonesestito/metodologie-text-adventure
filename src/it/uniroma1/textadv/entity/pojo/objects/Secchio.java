@@ -32,6 +32,7 @@ public class Secchio extends Oggetto {
 
     /**
      * Imposta il riempimento del secchio
+     *
      * @param riempito Riempimento del secchio
      */
     private void setRiempito(boolean riempito) {
@@ -54,6 +55,7 @@ public class Secchio extends Oggetto {
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due secchi uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due secchi uguali
      */

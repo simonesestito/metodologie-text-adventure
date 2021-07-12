@@ -1,7 +1,7 @@
 package it.uniroma1.textadv.entity.pojo.links;
 
-import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.Stanza;
+import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 
 /**
  * Rappresenta un bus navetta nel gioco, che collega due stanza

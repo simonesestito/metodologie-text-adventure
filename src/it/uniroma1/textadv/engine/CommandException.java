@@ -12,6 +12,7 @@ public class CommandException extends Exception {
 
     /**
      * Crea un errore con un dato messaggio
+     *
      * @param message Messaggio d'errore
      */
     public CommandException(String message) {
@@ -20,8 +21,9 @@ public class CommandException extends Exception {
 
     /**
      * Crea un errore indicando sia un messaggio che una causa
+     *
      * @param message Messaggio d'errore
-     * @param cause Altro errore considerato sua causa
+     * @param cause   Altro errore considerato sua causa
      */
     public CommandException(String message, Throwable cause) {
         super(message, cause);
@@ -39,6 +41,7 @@ public class CommandException extends Exception {
 
         /**
          * Crea un errore con un dato messaggio
+         *
          * @param message Messaggio d'errore
          */
         public Fatal(String message) {
@@ -47,8 +50,9 @@ public class CommandException extends Exception {
 
         /**
          * Crea un errore indicando sia un messaggio che una causa
+         *
          * @param message Messaggio d'errore
-         * @param cause Altro errore considerato sua causa
+         * @param cause   Altro errore considerato sua causa
          */
         public Fatal(String message, Throwable cause) {
             super(message, cause);

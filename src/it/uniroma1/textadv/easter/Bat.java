@@ -16,6 +16,7 @@ public class Bat extends MovingObject {
 
     /**
      * Posizione Y del pipistrello
+     *
      * @return Coordinata Y
      */
     @Override
@@ -25,6 +26,7 @@ public class Bat extends MovingObject {
 
     /**
      * Ottieni il disegno del pipistrello come stringa ASCII art
+     *
      * @return Disegno del pipistrello
      */
     @Override

@@ -107,6 +107,7 @@ public class Stanza extends DescribableEntity implements ContenitoreAggiungibile
 
     /**
      * Ottieni una vista immutabile degli oggetti nella stanza
+     *
      * @return Oggetti nella stanza
      */
     @Override
@@ -116,6 +117,7 @@ public class Stanza extends DescribableEntity implements ContenitoreAggiungibile
 
     /**
      * Prendi un oggetto da questa stanza
+     *
      * @param oggetto Oggetto da prendere
      */
     @Override
@@ -126,6 +128,7 @@ public class Stanza extends DescribableEntity implements ContenitoreAggiungibile
 
     /**
      * Ottieni uno stream di tutte le entità varie che contengono oggetti, all'interno della stanza
+     *
      * @return Stream dei contenitori di oggetti
      */
     public Stream<Contenitore> getContainers() {
@@ -137,6 +140,7 @@ public class Stanza extends DescribableEntity implements ContenitoreAggiungibile
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due stanze uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due stanze uguali
      */
@@ -151,6 +155,7 @@ public class Stanza extends DescribableEntity implements ContenitoreAggiungibile
 
     /**
      * Calcola l'hash della stanza
+     *
      * @return hash calcolato
      */
     @Override

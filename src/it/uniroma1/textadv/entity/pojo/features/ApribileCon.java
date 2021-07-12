@@ -6,11 +6,13 @@ import it.uniroma1.textadv.locale.Strings;
 
 /**
  * Entità che può essere aperta con qualcosa
+ *
  * @param <T> Tipo dell'oggetto che la apre
  */
 public interface ApribileCon<T> extends UsabileCon<T> {
     /**
      * Apri l'oggetto senza alcun altro oggetto
+     *
      * @throws AperturaException Errore nell'apertura dell'oggetto
      */
     default void apri() throws AperturaException {
@@ -19,6 +21,7 @@ public interface ApribileCon<T> extends UsabileCon<T> {
 
     /**
      * Apri l'oggetto con un altro oggetto dato
+     *
      * @param oggetto Oggetto con cui aprire
      * @throws AperturaException Errore nell'apertura dell'oggetto
      */
@@ -26,6 +29,7 @@ public interface ApribileCon<T> extends UsabileCon<T> {
 
     /**
      * Chiudi un oggetto con un altro oggetto
+     *
      * @param oggetto Oggetto con cui chiudere
      * @throws ChiusuraException rrore nella chiusura dell'oggetto
      */
@@ -35,6 +39,7 @@ public interface ApribileCon<T> extends UsabileCon<T> {
 
     /**
      * Controlla se l'oggetto è attualmente aperto
+     *
      * @return <code>true</code> se è aperto
      */
     boolean isAperto();
@@ -42,6 +47,7 @@ public interface ApribileCon<T> extends UsabileCon<T> {
     /**
      * Un oggetto apribile può essere usato con un altro.
      * Equivale ad aprire l'oggetto corrente con quello passato in input.
+     *
      * @param oggetto Oggetto da usare, ovvero con cui aprire
      * @throws AperturaException Errore nell'apertura dell'oggetto
      */
@@ -63,6 +69,7 @@ public interface ApribileCon<T> extends UsabileCon<T> {
 
         /**
          * Errore di apertura con un messaggio dato
+         *
          * @param message Messaggio d'errore
          */
         public AperturaException(String message) {

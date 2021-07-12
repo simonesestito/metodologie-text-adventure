@@ -1,10 +1,10 @@
 package it.uniroma1.textadv.engine;
 
 import it.uniroma1.textadv.entity.pojo.Entity;
+import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.characters.Personaggio;
 import it.uniroma1.textadv.entity.pojo.links.Direction;
 import it.uniroma1.textadv.entity.pojo.links.Link;
-import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 
 import java.util.Optional;
 
@@ -16,6 +16,7 @@ import java.util.Optional;
 public class EntityResolver {
     /**
      * Metodo esterno per la risoluzione di un'entità dal suo nome
+     *
      * @param name Nome dell'entità richiesta
      * @return Entità risolta, o <code>Optional.empty()</code>
      */
@@ -31,6 +32,7 @@ public class EntityResolver {
 
     /**
      * Cerca questa entità come personaggio della stanza corrente.
+     *
      * @param name Nome dell'entità richiesta
      * @return Entità risolta, o <code>Optional.empty()</code>
      */
@@ -46,6 +48,7 @@ public class EntityResolver {
     /**
      * Cerca questa entità come link della stanza corrente.
      * Sia come nome dell'oggetto link, che come stanza.
+     *
      * @param name Nome dell'entità richiesta
      * @return Entità risolta, o <code>Optional.empty()</code>
      */
@@ -64,6 +67,7 @@ public class EntityResolver {
 
     /**
      * Cerca questa entità come oggetto nell'inventario del protagonista.
+     *
      * @param name Nome dell'entità richiesta
      * @return Entità risolta, o <code>Optional.empty()</code>
      */
@@ -77,6 +81,7 @@ public class EntityResolver {
 
     /**
      * Cerca questa entità come oggetto nella stanza corrente.
+     *
      * @param name Nome dell'entità richiesta
      * @return Entità risolta, o <code>Optional.empty()</code>
      */
@@ -91,6 +96,7 @@ public class EntityResolver {
 
     /**
      * Cerca questa entità come oggetto nei contenitori della stanza corrente.
+     *
      * @param name Nome dell'entità richiesta
      * @return Entità risolta, o <code>Optional.empty()</code>
      */
@@ -105,8 +111,9 @@ public class EntityResolver {
 
     /**
      * Controlla se un'entità combacia con il nome richiesto.
+     *
      * @param object Oggetto da verificare
-     * @param name Nome richiesto
+     * @param name   Nome richiesto
      * @return <code>true</code> se l'oggetto dato è l'entità richiesta
      */
     private boolean findEntity(Object object, String name) {
@@ -117,6 +124,7 @@ public class EntityResolver {
 
     /**
      * Controlla se due oggetti sono considerati uguali
+     *
      * @param obj Altro oggetto
      * @return <code>true</code> se i due oggetti sono uguali
      */

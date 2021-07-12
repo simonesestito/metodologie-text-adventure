@@ -11,6 +11,7 @@ import it.uniroma1.textadv.entity.pojo.features.ObservableObject;
 public class Tesoro extends ObservableObject {
     /**
      * Crea il tesoro
+     *
      * @param name Nome del tesoro
      */
     public Tesoro(String name) {
@@ -19,9 +20,10 @@ public class Tesoro extends ObservableObject {
 
     /**
      * Sposta il tesoro in un alto posto
+     *
      * @param contenitore Dove mettere il tesoro
      * @throws Gioco.GameOverException Deve far terminare il gioco
-     * @throws CommandException Errore nello spostamento del tesoro
+     * @throws CommandException        Errore nello spostamento del tesoro
      */
     @Override
     public void spostaIn(Contenitore contenitore) throws CommandException {

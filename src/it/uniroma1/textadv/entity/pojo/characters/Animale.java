@@ -11,6 +11,7 @@ import java.util.Objects;
 public abstract class Animale extends Personaggio implements Accarezzabile, Parla {
     /**
      * Crea un nuovo animale con un nome
+     *
      * @param name Nome dell'animale
      */
     public Animale(String name) {
@@ -19,6 +20,7 @@ public abstract class Animale extends Personaggio implements Accarezzabile, Parl
 
     /**
      * Ottieni il verso dell'animale
+     *
      * @return Verso dell'animale
      */
     public abstract String getVerso();
@@ -33,6 +35,7 @@ public abstract class Animale extends Personaggio implements Accarezzabile, Parl
 
     /**
      * Parla con l'animale
+     *
      * @return Verso dell'animale
      */
     @Override
@@ -42,6 +45,7 @@ public abstract class Animale extends Personaggio implements Accarezzabile, Parl
 
     /**
      * Controlla se due animali sono uguali
+     *
      * @param o Altro oggetto da controllare
      * @return <code>true</code> se gli animali sono uguali
      */
@@ -56,6 +60,7 @@ public abstract class Animale extends Personaggio implements Accarezzabile, Parl
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

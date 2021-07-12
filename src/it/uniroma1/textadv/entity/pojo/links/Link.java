@@ -1,7 +1,6 @@
 package it.uniroma1.textadv.entity.pojo.links;
 
 import it.uniroma1.textadv.engine.CommandException;
-import it.uniroma1.textadv.entity.pojo.Entity;
 import it.uniroma1.textadv.entity.pojo.Stanza;
 import it.uniroma1.textadv.locale.StringId;
 import it.uniroma1.textadv.locale.Strings;

@@ -17,7 +17,8 @@ public class Cassetto extends OggettoContenitore implements ApribileCon<Chiave> 
 
     /**
      * Crea un nuovo cassetto
-     * @param name Nome del cassetto
+     *
+     * @param name      Nome del cassetto
      * @param contenuto Contenuto del cassetto
      */
     public Cassetto(String name, List<Oggetto> contenuto) {
@@ -26,6 +27,7 @@ public class Cassetto extends OggettoContenitore implements ApribileCon<Chiave> 
 
     /**
      * Apri il cassetto con una chiave, se è chiuso
+     *
      * @param oggetto Oggetto con cui aprire
      * @throws AperturaException Errore nell'apertura
      */
@@ -36,6 +38,7 @@ public class Cassetto extends OggettoContenitore implements ApribileCon<Chiave> 
 
     /**
      * Chiudi il cassetto con una chiave
+     *
      * @param oggetto Oggetto con cui chiudere
      * @throws ChiusuraException Errore nella chiusura
      */
@@ -46,6 +49,7 @@ public class Cassetto extends OggettoContenitore implements ApribileCon<Chiave> 
 
     /**
      * Controlla se l'oggetto è attualmente aperto
+     *
      * @return <code>true</code> se è aperto
      */
     @Override
@@ -55,6 +59,7 @@ public class Cassetto extends OggettoContenitore implements ApribileCon<Chiave> 
 
     /**
      * Verifica che l'oggetto corrente e quello dato siano uguali
+     *
      * @param o Oggetto da controllare
      * @return <code>true</code> se sono entrambi cassetti uguali
      */
@@ -69,6 +74,7 @@ public class Cassetto extends OggettoContenitore implements ApribileCon<Chiave> 
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

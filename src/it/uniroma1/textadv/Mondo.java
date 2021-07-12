@@ -31,15 +31,6 @@ public class Mondo extends DescribableEntity {
     }
 
     /**
-     * Ottieni la stanza da cui inizia il mondo
-     *
-     * @return Inizio del mondo
-     */
-    public Stanza getStart() {
-        return start;
-    }
-
-    /**
      * Metodo statico factory per la creazione di un mondo da un dato file che lo descrive.
      *
      * @param file File che descrive il mondo da istanziare
@@ -54,7 +45,7 @@ public class Mondo extends DescribableEntity {
     /**
      * Metodo statico factory per la creazione di un mondo da un dato file che lo descrive.
      *
-     * @param file File che descrive il mondo da istanziare
+     * @param file     File che descrive il mondo da istanziare
      * @param language Lingua del mondo, da cui trovare il prefisso per il file
      * @return Mondo istanziato
      * @throws IOException             Errore nella lettura del file
@@ -77,7 +68,17 @@ public class Mondo extends DescribableEntity {
     }
 
     /**
+     * Ottieni la stanza da cui inizia il mondo
+     *
+     * @return Inizio del mondo
+     */
+    public Stanza getStart() {
+        return start;
+    }
+
+    /**
      * Controlla se l'oggetto corrente e quello dato sono due mondi uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due mondi uguali
      */
@@ -92,6 +93,7 @@ public class Mondo extends DescribableEntity {
 
     /**
      * Calcola l'hash del mondo di gioco
+     *
      * @return hash del mondo
      */
     @Override

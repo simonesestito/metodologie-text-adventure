@@ -26,6 +26,7 @@ public interface Posizionabile {
 
     /**
      * Ottieni la propria posizione solo se questa permette l'aggiunta di nuovi oggetti.
+     *
      * @return {@link Optional} con la posizione attuale, se questa è "aggiungibile"
      */
     default Optional<ContenitoreAggiungibile> getPosizioneAggiungibile() {

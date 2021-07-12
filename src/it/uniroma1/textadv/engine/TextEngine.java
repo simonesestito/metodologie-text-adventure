@@ -109,13 +109,13 @@ public class TextEngine {
         List<?> arguments;
 
         var similarCommand = commands.keySet()
-            .stream()
-            .map(s -> new Pair<>(
-                s,
-                stringDistance.calculateDistance(input.get(0), s)
-            ))
-            .filter(d -> d.value() < StringDistance.QUITE_SIMILAR_THRESHOLD)
-            .min(Comparator.comparing(Pair::value));
+                .stream()
+                .map(s -> new Pair<>(
+                        s,
+                        stringDistance.calculateDistance(input.get(0), s)
+                ))
+                .filter(d -> d.value() < StringDistance.QUITE_SIMILAR_THRESHOLD)
+                .min(Comparator.comparing(Pair::value));
 
         if (commands.containsKey(input.get(0))) {
             overloadCommands = commands.get(input.get(0));

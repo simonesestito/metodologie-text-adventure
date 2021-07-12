@@ -5,16 +5,12 @@ import it.uniroma1.textadv.locale.Strings;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Gioco easter egg ispirato a Dino di Chrome
@@ -51,19 +47,14 @@ public class DinoGame {
     private final ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(0);
 
     /**
-     * Esecutore del salto sul personaggio, a ripetizione finchè il tasto non viene rilasciato
-     */
-    private final ExecutorService jumpExecutor = Executors.newSingleThreadExecutor();
-
-    /**
-     * Indicatore della pressione di un qualche tasto in questo momento
-     */
-    private final AtomicBoolean keyPressed = new AtomicBoolean(false);
-
-    /**
      * Personaggio del gioco
      */
     private final Man man = new Man();
+
+    /**
+     * Esecutore per l'azione di salto che deve essere ripetuta di continuo, dal click iniziato al click finito
+     */
+    private final KeepExecutingAction keepExecutingJump = new KeepExecutingAction(man::jump);
 
     /**
      * Area di disegno, ovvero area di testo dove viene stampato l'output del {@link TextCanvas}
@@ -91,32 +82,16 @@ public class DinoGame {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame.add(textArea);
-        textArea.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                keyPressed.set(true);
-                jumpExecutor.execute(() -> {
-                    while (keyPressed.get())
-                        man.jump();
-                });
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                keyPressed.set(false);
-            }
-        });
+        setAreaListeners(textArea);
         textArea.setEditable(false);
+        textArea.setHighlighter(null);
         textArea.setFont(new Font(Font.MONOSPACED, Font.BOLD, FONT_SIZE));
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
         frame.setAlwaysOnTop(false);
         textArea.requestFocus();
         textArea.setText(Strings.of(StringId.CLICK_TO_START));
+
         textArea.addMouseListener(SwingUtils.getClickListener(listener -> {
             textArea.removeMouseListener(listener);
 
@@ -144,11 +119,58 @@ public class DinoGame {
     }
 
     /**
+     * Imposta i listener sull'area di gioco
+     *
+     * @param area Area di gioco dove ascoltare gli eventi
+     */
+    private void setAreaListeners(JComponent area) {
+        area.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                keepExecutingJump.start();
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                keepExecutingJump.stop();
+            }
+        });
+
+        area.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                keepExecutingJump.stop();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                keepExecutingJump.start();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+        });
+    }
+
+    /**
      * Termina il gioco e chiudi la finestra
      */
     private synchronized void stop() {
         scheduledExecutor.shutdownNow();
-        jumpExecutor.shutdown();
+        keepExecutingJump.shutdown();
 
         SwingUtilities.invokeLater(() -> {
             try {

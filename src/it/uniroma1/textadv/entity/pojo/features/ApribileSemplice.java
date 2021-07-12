@@ -13,6 +13,7 @@ public class ApribileSemplice implements ApribileCon<Object> {
 
     /**
      * Controlla se è aperto
+     *
      * @return <code>true</code> se è aperto
      */
     @Override
@@ -22,6 +23,7 @@ public class ApribileSemplice implements ApribileCon<Object> {
 
     /**
      * Chiudi con qualunque oggetto, anche nessuno (<code>null</code>)
+     *
      * @param oggetto Oggetto con cui chiudere
      */
     @Override
@@ -31,6 +33,7 @@ public class ApribileSemplice implements ApribileCon<Object> {
 
     /**
      * Apri con qualunque oggetto, anche nessuno (<code>null</code>)
+     *
      * @param oggetto Oggetto con cui aprire
      */
     @Override
@@ -40,6 +43,7 @@ public class ApribileSemplice implements ApribileCon<Object> {
 
     /**
      * Verifica che due implementazioni siano uguali
+     *
      * @param o Altro oggetto da controllare
      * @return <code>true</code> se i due oggetti sono equivalenti
      */

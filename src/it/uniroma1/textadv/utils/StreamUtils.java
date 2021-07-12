@@ -55,6 +55,7 @@ public class StreamUtils {
     public interface StreamCheckedExecutor<X extends Exception, T, R> {
         /**
          * Funzione che invoca la vera funzione di mapping, incapsulata
+         *
          * @param body Incapsulamento della funzione di mapping
          * @return Funzione da poter utilizzare, con sostituita l'eccezione checked con una unchecked
          */
@@ -72,6 +73,7 @@ public class StreamUtils {
     public interface StreamCheckedExecutorBody<X extends Exception, T, R> {
         /**
          * Esegui la funzione di mapping accettando la possibilità di avere l'eccezione checked
+         *
          * @param argument Parametro della funzione di mapping sottostante
          * @return Risultato della funzione di mapping sottostante
          * @throws X Eccezione checked concessa
@@ -87,6 +89,7 @@ public class StreamUtils {
     private static class StreamUncheckedException extends RuntimeException {
         /**
          * Incapsula l'eccezione checked data
+         *
          * @param cause Eccezione da incapsulare
          */
         public StreamUncheckedException(Exception cause) {

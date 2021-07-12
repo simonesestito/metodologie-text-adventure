@@ -13,7 +13,8 @@ public class Tronchesi extends Oggetto {
 
     /**
      * Crea una tronchesi specifica per un armadio
-     * @param name Nome della tronchesi
+     *
+     * @param name    Nome della tronchesi
      * @param armadio Armadio in grado di rompere
      */
     public Tronchesi(String name, Armadio armadio) {
@@ -23,6 +24,7 @@ public class Tronchesi extends Oggetto {
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due tronchesi uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due tronchesi uguali
      */
@@ -37,6 +39,7 @@ public class Tronchesi extends Oggetto {
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

@@ -24,9 +24,5 @@ public class FullTest {
         g.localizza(Gioco.Language.IT);
         Mondo mondoItaliano = Mondo.fromFile("minizak.game");
         g.play(mondoItaliano, Path.of("minizak.ff"));
-
-        // Gioca interattivo in italiano
-        g.play(mondoItaliano);
-
     }
 }

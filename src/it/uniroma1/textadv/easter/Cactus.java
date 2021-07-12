@@ -20,6 +20,7 @@ public class Cactus extends MovingObject {
 
     /**
      * Ottieni il disegno del cactus come stringa ASCII art
+     *
      * @return Disegno del cactus
      */
     @Override
@@ -29,6 +30,7 @@ public class Cactus extends MovingObject {
 
     /**
      * Posizione Y del cactus
+     *
      * @return Coordinata Y
      */
     @Override

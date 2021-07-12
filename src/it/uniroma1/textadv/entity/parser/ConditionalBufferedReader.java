@@ -205,6 +205,7 @@ public class ConditionalBufferedReader extends BufferedReader implements AutoClo
 
     /**
      * Controlla se i due reader sono uguali
+     *
      * @param o Altro reader, od oggetto, da controllare
      * @return <code>true</code> se i reader sono uguali
      */
@@ -218,6 +219,7 @@ public class ConditionalBufferedReader extends BufferedReader implements AutoClo
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

@@ -128,6 +128,19 @@ public class GameFile implements Iterable<GameFile.Section> {
         return sections.iterator();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameFile sections1 = (GameFile) o;
+        return Objects.equals(getSections(), sections1.getSections());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSections());
+    }
+
     /**
      * Rappresentazione di una singola sezione all'interno del file
      */
@@ -515,18 +528,5 @@ public class GameFile implements Iterable<GameFile.Section> {
         public ParseException(String message, Throwable cause) {
             super(message, cause);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GameFile sections1 = (GameFile) o;
-        return Objects.equals(getSections(), sections1.getSections());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getSections());
     }
 }

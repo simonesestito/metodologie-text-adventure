@@ -24,6 +24,7 @@ public class DescribableEntity extends Entity {
 
     /**
      * Ottieni la descrizione dell'entità
+     *
      * @return Descrizione dell'entità
      */
     public String getDescription() {
@@ -32,6 +33,7 @@ public class DescribableEntity extends Entity {
 
     /**
      * Rappresentazione come stringa dell'entità, includendo la descrizione fornita
+     *
      * @return Rappresentazione testuale
      */
     @Override
@@ -41,6 +43,7 @@ public class DescribableEntity extends Entity {
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due entità uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due entità uguali
      */
@@ -55,6 +58,7 @@ public class DescribableEntity extends Entity {
 
     /**
      * Calcola l'hash in base anche alla descrizione
+     *
      * @return Hash calcolato
      */
     @Override

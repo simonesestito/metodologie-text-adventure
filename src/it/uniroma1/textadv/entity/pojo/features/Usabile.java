@@ -8,6 +8,7 @@ import it.uniroma1.textadv.engine.CommandException;
 public interface Usabile {
     /**
      * Utilizza l'oggetto
+     *
      * @throws CommandException Errore nel suo utilizzo
      */
     void usa() throws CommandException;

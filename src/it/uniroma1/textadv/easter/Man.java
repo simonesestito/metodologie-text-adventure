@@ -1,8 +1,9 @@
 package it.uniroma1.textadv.easter;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import static java.lang.Math.min;
+
 import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 /**
  * Omino del gioco {@link DinoGame}
@@ -35,6 +36,7 @@ public class Man implements Drawable {
 
     /**
      * Disegna l'omino sul canvas
+     *
      * @param canvas Canvas dove disegnare
      * @throws TextCanvas.CollisionException Collisione rilevata con un altro elemento
      */

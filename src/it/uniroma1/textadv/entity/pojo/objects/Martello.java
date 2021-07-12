@@ -8,6 +8,7 @@ import it.uniroma1.textadv.entity.pojo.features.Rompitore;
 public class Martello extends Oggetto implements Rompitore {
     /**
      * Crea un nuovo martello
+     *
      * @param name Nome del martello
      */
     public Martello(String name) {

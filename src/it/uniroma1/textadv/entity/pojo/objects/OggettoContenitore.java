@@ -21,7 +21,8 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
 
     /**
      * Crea un nuovo contenitore
-     * @param name Nome del contenitore
+     *
+     * @param name      Nome del contenitore
      * @param contenuto Suo contenuto
      */
     public OggettoContenitore(String name, List<? extends Oggetto> contenuto) {
@@ -30,12 +31,14 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
         for (var oggetto : contenuto) {
             try {
                 oggetto.spostaIn(this);
-            } catch (CommandException ignored) {}
+            } catch (CommandException ignored) {
+            }
         }
     }
 
     /**
      * Ottieni una vista immutabile del contenuto dell'oggetto
+     *
      * @return Contenuto dell'oggetto
      */
     @Override
@@ -45,6 +48,7 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
 
     /**
      * Prendi un oggetto dal suo interno
+     *
      * @param oggetto Oggetto da prendere
      * @throws CommandException Errore nella presa
      */
@@ -57,6 +61,7 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
 
     /**
      * Verifica che il contenuto all'interno debba essere nascosto all'utente
+     *
      * @return <code>true</code> se il contenuto è nascosto
      * @see OggettoContenitore#toString()
      */
@@ -66,6 +71,7 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
 
     /**
      * Rappresentazione come stringa dell'oggetto e del suo contenuto, se visibile
+     *
      * @return Rappresentazione dell'oggetto come stringa
      * @see OggettoContenitore#isContentHidden()
      */
@@ -88,6 +94,7 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
 
     /**
      * Controlla che due oggetti siano contenitori e uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se i due oggetti sono contenitori uguali
      */
@@ -102,6 +109,7 @@ public abstract class OggettoContenitore extends Oggetto implements Contenitore 
 
     /**
      * Calcola l'hash dell'oggetto e del suo contenuto
+     *
      * @return Hash
      */
     @Override

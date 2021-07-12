@@ -98,6 +98,7 @@ public class Salvadanaio extends OggettoContenitore implements Rompibile {
 
     /**
      * Controlla se due oggetti sono salvadanai uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono salvadanai uguali
      */
@@ -112,6 +113,7 @@ public class Salvadanaio extends OggettoContenitore implements Rompibile {
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

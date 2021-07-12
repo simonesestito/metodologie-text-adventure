@@ -6,6 +6,7 @@ package it.uniroma1.textadv.entity.pojo.objects;
 public class Cacciavite extends Oggetto {
     /**
      * Crea un nuovo cacciavite
+     *
      * @param name Nome del cacciavite
      */
     public Cacciavite(String name) {
@@ -14,6 +15,7 @@ public class Cacciavite extends Oggetto {
 
     /**
      * Controlla se sono due cacciaviti
+     *
      * @param obj Altro oggetto
      * @return <code>true</code> se sono due cacciaviti uguali
      */

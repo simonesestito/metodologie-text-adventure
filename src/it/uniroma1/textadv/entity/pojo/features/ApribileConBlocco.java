@@ -15,6 +15,7 @@ public class ApribileConBlocco<T extends BloccoApertura> implements ApribileCon<
 
     /**
      * Apri usando un blocco
+     *
      * @param blocco Blocco che deve aprire
      * @throws AperturaException Errore nell'apertura dell'oggetto
      */
@@ -26,6 +27,7 @@ public class ApribileConBlocco<T extends BloccoApertura> implements ApribileCon<
 
     /**
      * Chiudi usando un blocco
+     *
      * @param blocco Blocco che deve chiudere
      * @throws ChiusuraException Errore nella chiusura dell'oggetto
      */
@@ -38,6 +40,7 @@ public class ApribileConBlocco<T extends BloccoApertura> implements ApribileCon<
 
     /**
      * Controlla se è aperto
+     *
      * @return <code>true</code> se è aperto
      */
     @Override
@@ -47,6 +50,7 @@ public class ApribileConBlocco<T extends BloccoApertura> implements ApribileCon<
 
     /**
      * Verifica che due implementazioni siano uguali
+     *
      * @param o Altro oggetto da controllare
      * @return <code>true</code> se i due oggetti sono equivalenti
      */
@@ -60,6 +64,7 @@ public class ApribileConBlocco<T extends BloccoApertura> implements ApribileCon<
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

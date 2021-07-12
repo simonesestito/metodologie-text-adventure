@@ -18,7 +18,8 @@ public class Porta extends OggettoLink implements ApribileCon<Chiave> {
 
     /**
      * Crea una nuova porta
-     * @param name Nome della porta
+     *
+     * @param name    Nome della porta
      * @param stanzaA Stanza collegata
      * @param stanzaB Stanza collegata
      */
@@ -28,6 +29,7 @@ public class Porta extends OggettoLink implements ApribileCon<Chiave> {
 
     /**
      * Apri la porta senza alcun oggetto
+     *
      * @throws AperturaException Errore nell'apertura
      */
     @Override
@@ -37,6 +39,7 @@ public class Porta extends OggettoLink implements ApribileCon<Chiave> {
 
     /**
      * Apri la porta con una chiave
+     *
      * @throws AperturaException Errore nell'apertura
      */
     @Override
@@ -46,6 +49,7 @@ public class Porta extends OggettoLink implements ApribileCon<Chiave> {
 
     /**
      * Chiudi la porta con una chiave
+     *
      * @throws ChiusuraException Errore nell'apertura
      */
     @Override
@@ -55,6 +59,7 @@ public class Porta extends OggettoLink implements ApribileCon<Chiave> {
 
     /**
      * Controlla se la porta è attualmente aperta
+     *
      * @return <code>true</code> se è aperta
      */
     @Override
@@ -64,6 +69,7 @@ public class Porta extends OggettoLink implements ApribileCon<Chiave> {
 
     /**
      * Controlla se la porta, intesa come collegamento, è attraversabile
+     *
      * @return <code>true</code> se è attraversabile
      */
     @Override
@@ -73,6 +79,7 @@ public class Porta extends OggettoLink implements ApribileCon<Chiave> {
 
     /**
      * Verifica che la porta e l'oggetto dato siano uguali
+     *
      * @param o Oggetto da controllare
      * @return <code>true</code> se sono uguali
      */

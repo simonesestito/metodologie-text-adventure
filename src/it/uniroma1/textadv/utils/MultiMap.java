@@ -84,6 +84,7 @@ public class MultiMap<K, V> {
 
     /**
      * Verifica se la mappa è vuota
+     *
      * @return <code>true</code> se la mappa è vuota
      */
     public boolean isEmpty() {
@@ -92,6 +93,7 @@ public class MultiMap<K, V> {
 
     /**
      * Ottieni l'insieme delle chiavi della multimappa
+     *
      * @return Insieme delle chiavi
      * @see Map#keySet()
      */
@@ -101,6 +103,7 @@ public class MultiMap<K, V> {
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due multimappe uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due multimappe uguali
      */
@@ -114,6 +117,7 @@ public class MultiMap<K, V> {
 
     /**
      * Calcola l'hash in base alla mappa sottostante
+     *
      * @return Hash della multimappa
      */
     @Override

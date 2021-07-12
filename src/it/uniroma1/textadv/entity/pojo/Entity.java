@@ -53,6 +53,7 @@ public abstract class Entity {
 
     /**
      * Controlla se l'oggetto corrente e quello dato sono due entità uguali
+     *
      * @param o Altro oggetto
      * @return <code>true</code> se sono due entità uguali
      */
@@ -66,6 +67,7 @@ public abstract class Entity {
 
     /**
      * Calcola l'hash in base al nome dell'entità
+     *
      * @return Hash calcolato
      */
     @Override

@@ -6,6 +6,7 @@ package it.uniroma1.textadv.easter;
 public interface Drawable {
     /**
      * Disegna l'elemento sul canvas dato
+     *
      * @param canvas Canvas dove disegnare
      * @throws TextCanvas.CollisionException In caso si rilevi una collisione nel disegno
      */
@@ -14,5 +15,6 @@ public interface Drawable {
     /**
      * Aggiorna lo stato dell'elemento al prossimo frame
      */
-    default void onClock() {}
+    default void onClock() {
+    }
 }

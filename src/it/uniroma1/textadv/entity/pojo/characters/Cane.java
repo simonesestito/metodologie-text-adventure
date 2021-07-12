@@ -20,6 +20,7 @@ public class Cane extends Animale {
 
     /**
      * Crea un nuovo cane con un nome
+     *
      * @param name Nome del cane
      */
     public Cane(String name) {
@@ -28,6 +29,7 @@ public class Cane extends Animale {
 
     /**
      * Verso del cane
+     *
      * @return Verso del cane
      */
     @Override
@@ -37,6 +39,7 @@ public class Cane extends Animale {
 
     /**
      * Controlla se i due cani sono uguali
+     *
      * @param obj Altro oggetto da controllare
      * @return <code>true</code> se i cani sono uguali
      */

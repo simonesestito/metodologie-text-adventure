@@ -16,6 +16,7 @@ public class Personaggio extends Entity {
 
     /**
      * Crea un nuovo personaggio
+     *
      * @param name Nome del personaggio
      */
     public Personaggio(String name) {
@@ -24,6 +25,7 @@ public class Personaggio extends Entity {
 
     /**
      * Ottieni l'inventario, mutabile, del personaggio
+     *
      * @return Inventario del personaggio
      */
     protected Inventario getInventario() {
@@ -32,6 +34,7 @@ public class Personaggio extends Entity {
 
     /**
      * Verifica che due personaggi siano uguali
+     *
      * @param o Altro oggetto da controllare
      * @return <code>true</code> se i personaggi sono uguali
      */
@@ -46,6 +49,7 @@ public class Personaggio extends Entity {
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

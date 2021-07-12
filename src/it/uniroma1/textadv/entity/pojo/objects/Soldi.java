@@ -1,8 +1,8 @@
 package it.uniroma1.textadv.entity.pojo.objects;
 
 import it.uniroma1.textadv.engine.CommandException;
-import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.Stanza;
+import it.uniroma1.textadv.entity.pojo.characters.Giocatore;
 import it.uniroma1.textadv.entity.pojo.features.Contenitore;
 
 import java.util.Objects;
@@ -13,6 +13,7 @@ import java.util.Objects;
 public class Soldi extends Oggetto {
     /**
      * Crea nuovi soldi
+     *
      * @param name Nome dei soldi creati
      */
     public Soldi(String name) {
@@ -21,6 +22,7 @@ public class Soldi extends Oggetto {
 
     /**
      * Sposta i soldi altrove
+     *
      * @param contenitore Nuovo contenitore dove stare
      * @throws CommandException Errore nello spostamento
      */

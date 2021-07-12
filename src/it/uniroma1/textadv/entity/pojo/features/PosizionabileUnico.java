@@ -22,6 +22,7 @@ public class PosizionabileUnico implements Posizionabile {
 
     /**
      * Crea una nuova istanza di questa implementazione per un dato oggetto
+     *
      * @param oggetto Oggetto da controllare
      */
     public PosizionabileUnico(Posizionabile oggetto) {
@@ -62,6 +63,7 @@ public class PosizionabileUnico implements Posizionabile {
 
     /**
      * Verifica che due implementazioni siano uguali
+     *
      * @param o Altro oggetto da controllare
      * @return <code>true</code> se i due oggetti sono equivalenti
      */
@@ -75,6 +77,7 @@ public class PosizionabileUnico implements Posizionabile {
 
     /**
      * Calcola l'hash dell'oggetto
+     *
      * @return Hash
      */
     @Override

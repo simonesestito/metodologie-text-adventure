@@ -1,9 +1,9 @@
 package it.uniroma1.textadv.entity.factory;
 
-import it.uniroma1.textadv.utils.MultiMap;
-import it.uniroma1.textadv.utils.ReflectionUtils;
 import it.uniroma1.textadv.entity.parser.GameFile;
 import it.uniroma1.textadv.entity.pojo.Entity;
+import it.uniroma1.textadv.utils.MultiMap;
+import it.uniroma1.textadv.utils.ReflectionUtils;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -116,6 +116,7 @@ public interface EntityProcessor {
     @interface ForTag {
         /**
          * Nomi dei tag degli header delle sezioni di propria responsabilità
+         *
          * @return Intestazioni gestite
          */
         String[] value();
@@ -238,7 +239,7 @@ public interface EntityProcessor {
          * In caso ne siano presenti più di una, ne restituisce una senza criteri.
          *
          * @param clazz Classe dell'entità cercata
-         * @param <T> Tipo della dipendenza da risolvere
+         * @param <T>   Tipo della dipendenza da risolvere
          * @return Entità trovata, se presente
          */
         public <T> Optional<? extends T> getResolvedDependency(Class<T> clazz) {
@@ -389,6 +390,7 @@ public interface EntityProcessor {
 
             /**
              * Trova la classe corrispondente
+             *
              * @return Classe corrispondente
              * @throws ClassNotFoundException Classe non trovata
              */
