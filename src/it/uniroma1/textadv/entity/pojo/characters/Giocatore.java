@@ -93,8 +93,8 @@ public class Giocatore extends Personaggio {
      * @throws IllegalStateException Se esiste già un giocatore
      */
     public static Giocatore init(String name, Stanza stanza) {
-        if (INSTANCE != null)
-            throw new IllegalStateException();
+        // if (INSTANCE != null)
+        //     throw new IllegalStateException();
         INSTANCE = new Giocatore(name, stanza);
         return getInstance();
     }
